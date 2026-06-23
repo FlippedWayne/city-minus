@@ -1,0 +1,24 @@
+# 敏感文件
+.env
+
+# Python缓存
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# 数据文件
+data/knowledge_graph/
+data/cache/
+data/logs/
+data/report.html
+
+# IDE
+.codegraph/
+.idea/
+.vscode/
+
+# 系统文件
+Thumbs.db
+*~

@@ -1,0 +1,325 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萧山区2023年城市边界动态分析报告</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #111827;
+            background-color: #f6f6f6;
+            padding: 16px 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* ─── Header ─── */
+        header {
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        header .subtitle {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* ─── Typography ─── */
+        h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            padding-left: 12px;
+            border-left: 3px solid #2563eb;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 1.25rem 0 0.5rem;
+        }
+
+        p { margin-bottom: 0.75rem; }
+
+        .text-secondary {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* ─── Cards ─── */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        /* ─── Stats grid ─── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .stat-card .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .stat-value.positive { color: #059669; }
+        .stat-value.negative { color: #dc2626; }
+        .stat-value.neutral { color: #111827; }
+
+        /* ─── Tags ─── */
+        .tag-entering {
+            display: inline-block;
+            background-color: #ecfdf5;
+            color: #059669;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .tag-exiting {
+            display: inline-block;
+            background-color: #fef2f2;
+            color: #dc2626;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .tag-neutral {
+            display: inline-block;
+            background-color: #f3f4f6;
+            color: #374151;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* ─── Table ─── */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+        }
+        .data-table caption {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: left;
+            margin-bottom: 6px;
+        }
+        .data-table th {
+            background-color: #2563eb;
+            color: #fff;
+            padding: 12px;
+            font-weight: 600;
+            text-align: left;
+        }
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            margin-top: 2rem;
+            padding: 16px 20px;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+        }
+        footer .text-secondary {
+            margin-bottom: 0;
+        }
+
+        /* ─── Misc ─── */
+        .evidence-weak {
+            background-color: #f3f4f6;
+            color: #374151;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-size: 0.8125rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .section-spacing {
+            margin-bottom: 32px;
+        }
+
+        /* 引用编号样式 */
+        .citation {
+            font-size: 0.75rem;
+            color: #6b7280;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ═══ Header ═══ -->
+        <header>
+            <h1>萧山区2023年城市边界动态分析报告</h1>
+            <div class="subtitle">生成日期：2025年4月11日 · 基于 SpatialEventAgent 与 GraphReasoningAgent 联合分析</div>
+        </header>
+
+        <main>
+            <!-- ═══ 数据概览 ═══ -->
+            <section class="section-spacing">
+                <h2>数据概览</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value neutral">5</div>
+                        <div class="stat-label">总边界变化事件 (2023)</div>
+                        <div class="text-secondary" style="margin-top:4px;">进入+退出</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value positive">3</div>
+                        <div class="stat-label">城市边界进入</div>
+                        <div class="text-secondary" style="margin-top:4px;">新纳入点位</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value negative">2</div>
+                        <div class="stat-label">城市边界退出</div>
+                        <div class="text-secondary" style="margin-top:4px;">移除点位</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value positive">+1</div>
+                        <div class="stat-label">净变化</div>
+                        <div class="text-secondary" style="margin-top:4px;">进入-退出</div>
+                    </div>
+                </div>
+                <p style="font-size:0.8125rem; color:#6b7280;">
+                    所有事件均发生在杭州市整体尺度，萧山区未出现行政边界扩张 <span class="citation">[空间分析-E1]</span>
+                </p>
+            </section>
+
+            <!-- ═══ 空间变化分析 ═══ -->
+            <section class="section-spacing">
+                <h2>空间变化分析</h2>
+                <p>2023年杭州市城市边界共有5个变化事件：3个进入点位，2个退出点位，净增1个点位 <span class="citation">[空间分析-E8][空间分析-E16]</span>。</p>
+                <p><strong>进入点位</strong>（均不属萧山区）：国际会议中心（拱墅区）<span class="citation">[空间分析-E5]</span>、居住组团W（西湖区）<span class="citation">[空间分析-E12]</span>、居住组团R（临平区）<span class="citation">[空间分析-E8]</span>。</p>
+                <p><strong>退出点位</strong>：分别位于拱墅区与滨江区 <span class="citation">[空间分析-E3][空间分析-E16]</span>。</p>
+                <div class="evidence-weak">⚠ 空间分析Agent明确指出：萧山区无专属边界变化事件，证据不足 <span class="citation">[空间分析-E1]</span></div>
+            </section>
+
+            <!-- ═══ 政策驱动分析 ═══ -->
+            <section class="section-spacing">
+                <h2>政策驱动分析</h2>
+                <p>图谱检索显示2022–2023年杭州市实施了若干宏观政策：</p>
+                <ul style="list-style:disc; padding-left:24px; margin-bottom:0.75rem;">
+                    <li>“跨行政区利益分享机制” <span class="citation">[图谱推理-E4][图谱推理-E6]</span></li>
+                    <li>“十四五期间全面推行‘规划一体化、错位协同开发’的飞地治理模式” <span class="citation">[图谱推理-D3]</span></li>
+                </ul>
+                <p>上述政策为全市性框架，<strong>未检索到直接作用于萧山区行政边界扩张的特定政策</strong>。文档提及萧山国际机场综合交通枢纽战略落位 <span class="citation">[图谱推理-D1]</span> 和大江东智造园建设 <span class="citation">[图谱推理-D1]</span>，但属于<strong>区域空间优化与重大项目落地</strong>，不涉及行政边界调整。</p>
+                <div class="evidence-weak">⚠ 图谱推理Agent确认：证据不足以支撑“萧山区2023年存在明确的政策导致边界扩张”这一前提 <span class="citation">[图谱推理-E2][图谱推理-E3]</span></div>
+            </section>
+
+            <!-- ═══ 因果推理 ═══ -->
+            <section class="section-spacing">
+                <h2>因果推理</h2>
+                <p>基于现有证据，无法建立“萧山区政策 → 边界扩张”的因果关系链条。空间变化事件均发生在其他行政区，且政策文献中未发现指向萧山边界扩张的专项文件。图谱推理与空间分析两个Agent均得出<strong>证据不足</strong>的一致结论 <span class="citation">[空间分析-E1][图谱推理-E2]</span>。</p>
+                <p>若将分析范围扩大至杭州市整体，可观察到城市开发边界因会议中心与居住组团建设而扩展，但这些变化与萧山区无关。</p>
+                <div class="evidence-weak">⚠ 因果链条断裂：无任何链接将杭州市政策与萧山区行政边界改变相关联</div>
+            </section>
+
+            <!-- ═══ 事件详情表格 ═══ -->
+            <section class="section-spacing">
+                <h2>事件详情</h2>
+                <div class="card" style="padding:0; overflow-x:auto;">
+                    <table class="data-table">
+                        <caption>2023年杭州市城市边界变化事件清单 —— 萧山区未涉及</caption>
+                        <thead>
+                            <tr>
+                                <th>事件</th>
+                                <th>类型</th>
+                                <th>位置 / 行政区</th>
+                                <th>引用编号</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>国际会议中心</td>
+                                <td><span class="tag-entering">进入</span></td>
+                                <td>拱墅区</td>
+                                <td class="citation">[空间分析-E5]</td>
+                            </tr>
+                            <tr>
+                                <td>居住组团W</td>
+                                <td><span class="tag-entering">进入</span></td>
+                                <td>西湖区</td>
+                                <td class="citation">[空间分析-E12]</td>
+                            </tr>
+                            <tr>
+                                <td>居住组团R</td>
+                                <td><span class="tag-entering">进入</span></td>
+                                <td>临平区</td>
+                                <td class="citation">[空间分析-E8]</td>
+                            </tr>
+                            <tr>
+                                <td>点位E3</td>
+                                <td><span class="tag-exiting">退出</span></td>
+                                <td>拱墅区</td>
+                                <td class="citation">[空间分析-E3]</td>
+                            </tr>
+                            <tr>
+                                <td>点位E16</td>
+                                <td><span class="tag-exiting">退出</span></td>
+                                <td>滨江区</td>
+                                <td class="citation">[空间分析-E16]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-secondary" style="margin-top:6px;">注：萧山区无进入/退出事件，无行政边界调整记录。以上为杭州市整体边界变化。</div>
+            </section>
+        </main>
+
+        <!-- ═══ Footer ═══ -->
+        <footer>
+            <div class="text-secondary">
+                <strong>系统：</strong>城市边界智能分析平台 v2.1 (SpatialEventAgent + GraphReasoningAgent) &nbsp;|&nbsp;
+                <strong>报告生成时间：</strong>2025-04-11 15:30 UTC+8
+            </div>
+            <div class="text-secondary" style="margin-top:4px;">
+                本报告基于图谱检索与空间事件联合分析生成，所有结论均附引用编号。证据不足处已如实标注。
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+```

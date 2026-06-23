@@ -1,0 +1,9 @@
+Building prefix dict from the default dictionary ...
+Loading model from cache C:\Users\WANGHA~1\AppData\Local\Temp\jieba.cache
+Loading model cost 0.427 seconds.
+Prefix dict has been built successfully.
+total: 21
+  杭州市土地利用规划白皮书（2021-2025）.pdf: 15
+  杭州规划2035_p6_img0_663c9d80.pdf: 6
+白皮书 chunks: 15, all text: True
+img PDF chunks: 6, types: {'text'}

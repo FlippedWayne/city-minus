@@ -1,0 +1,39 @@
+{
+  "session_id": "403eaa9804054f4788562ee566c62870",
+  "created_at": "2026-06-18T16:44:33.630038",
+  "current_task_id": "4384098100aa4311bc2d7b6187d34c02",
+  "tenant_id": "",
+  "turns": [
+    {
+      "task_id": "4384098100aa4311bc2d7b6187d34c02",
+      "session_id": "403eaa9804054f4788562ee566c62870",
+      "question": "市边界从2020年到2025年发生了什么变化？",
+      "status": "done",
+      "intent": {
+        "agents": [
+          "SpatialEventAgent"
+        ],
+        "is_report": false
+      },
+      "sub_results": {
+        "SpatialEventAgent": {
+          "agent_name": "SpatialEventAgent",
+          "status": "failed",
+          "answer": "",
+          "evidence": [],
+          "tool_calls": [],
+          "self_audit": null,
+          "error": "APIConnectionError: Connection error.",
+          "started_at": "2026-06-18T16:45:44.667034",
+          "finished_at": "2026-06-18T16:45:44.667034"
+        }
+      },
+      "aggregated": "⚠ 所有分析维度均未能产出有效结果，无法回答该问题。\n\n  • SpatialEventAgent: 失败 — APIConnectionError: Connection error.\n\n可能原因：\n  1. 数据未导入（检查 data/gis_graph/ 与 data/full_graph/ 是否为空）\n  2. DeepSeek API 不可用（检查 .env 中的 DEEPSEEK_API_KEY 与网络）\n  3. 问题与已有数据无关——换一个角度提问",
+      "result": "⚠ 所有分析维度均未能产出有效结果，无法回答该问题。\n\n  • SpatialEventAgent: 失败 — APIConnectionError: Connection error.\n\n可能原因：\n  1. 数据未导入（检查 data/gis_graph/ 与 data/full_graph/ 是否为空）\n  2. DeepSeek API 不可用（检查 .env 中的 DEEPSEEK_API_KEY 与网络）\n  3. 问题与已有数据无关——换一个角度提问",
+      "citation_audit": null,
+      "error": null,
+      "started_at": "2026-06-18T16:44:33.649717",
+      "finished_at": "2026-06-18T16:45:44.674584"
+    }
+  ]
+}

@@ -1,0 +1,2038 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d11" for="edge" attr.name="created_at" attr.type="long"/>
+<key id="d10" for="edge" attr.name="file_path" attr.type="string"/>
+<key id="d9" for="edge" attr.name="source_id" attr.type="string"/>
+<key id="d8" for="edge" attr.name="keywords" attr.type="string"/>
+<key id="d7" for="edge" attr.name="description" attr.type="string"/>
+<key id="d6" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d5" for="node" attr.name="created_at" attr.type="long"/>
+<key id="d4" for="node" attr.name="file_path" attr.type="string"/>
+<key id="d3" for="node" attr.name="source_id" attr.type="string"/>
+<key id="d2" for="node" attr.name="description" attr.type="string"/>
+<key id="d1" for="node" attr.name="entity_type" attr.type="string"/>
+<key id="d0" for="node" attr.name="entity_id" attr.type="string"/>
+<graph edgedefault="undirected"><node id="居住组团R">
+  <data key="d0">居住组团R</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">本轮新增流转的居住功能组团，被叫停</data>
+  <data key="d3">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="西湖风景名胜区">
+  <data key="d0">西湖风景名胜区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州西湖周边的风景名胜区，法定功能区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="临平新城商圈">
+  <data key="d0">临平新城商圈</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">临平新城的商圈项目</data>
+  <data key="d3">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="国际会议中心">
+  <data key="d0">国际会议中心</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">公共服务核心项目</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="城西银泰商圈">
+  <data key="d0">城西银泰商圈</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">位于仓前街道的商业设施</data>
+  <data key="d3">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="运河二通道港区">
+  <data key="d0">运河二通道港区</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">国家级/省级重大水运枢纽，属于重大交通基础设施</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="居住组团W">
+  <data key="d0">居住组团W</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">位于西湖区北山街道的规划居住组团</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="滨江互联网小镇">
+  <data key="d0">滨江互联网小镇</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">位于临安区玲珑街道但归属临平新城规划的互联网产业园区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="湘湖旅游度假区">
+  <data key="d0">湘湖旅游度假区</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:富阳区 | 街道:鹿山街道 | 规划片区:钱江世纪城 | 经纬度:(120.2222,30.3182) | 功能:生态休闲区 | 用地:G1（公园绿地） | 类型:green_space | 控制线:城镇开发边界内 | 阶段:在建 | 首次出现:2021年 | 变化原因:城市扩张</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="大江东智造园">
+  <data key="d0">大江东智造园</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">位于临安区青山湖街道的智能制造园区，由大江东产业集聚区托管</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="奥体中心">
+  <data key="d0">奥体中心</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:余杭区 | 街道:仓前街道 | 规划片区:大江东产业集聚区 | 经纬度:(120.1467,30.2356) | 功能:教育科研区 | 用地:A（公共管理与公共服务用地） | 类型:service | 控制线:城镇开发边界内 | 阶段:待更新 | 服务人口:42170 | 首次出现:2020年 | 变化原因:产业园区建设</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="下沙大学城北住区">
+  <data key="d0">下沙大学城北住区</data>
+  <data key="d1">District</data>
+  <data key="d2">高品质住区与公共服务核心，位于下沙</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="钱江新城住区">
+  <data key="d0">钱江新城住区</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">位于钱江新城的住区，启动城市更新改造</data>
+  <data key="d3">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="半山森林公园">
+  <data key="d0">半山森林公园</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州半山区域的森林公园，规划片区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="良渚品质住区">
+  <data key="d0">良渚品质住区</data>
+  <data key="d1">District</data>
+  <data key="d2">服务人口2.2万的规划住区，属于良渚地区的品质民生项目，进行产城融合评估</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="青山湖科创园">
+  <data key="d0">青山湖科创园</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">位于滨江区西兴街道的科创园区，纳入钱江新城规划主轴</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="萧山国际机场">
+  <data key="d0">萧山国际机场</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">杭州市级综合交通枢纽，位于萧山区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="居住组团Q">
+  <data key="d0">居住组团Q</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">居住组团Q，与钱江新城住区一同列入城市更新改造</data>
+  <data key="d3">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="杭州大剧院">
+  <data key="d0">杭州大剧院</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">位于富阳区富春街道的市级文化基础设施</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="2020年城市边界">
+  <data key="d0">2020年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2020年的城市边界状态，边界内共 10 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2021年城市边界">
+  <data key="d0">2021年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2021年的城市边界状态，边界内共 11 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2022年城市边界">
+  <data key="d0">2022年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2022年的城市边界状态，边界内共 12 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2023年城市边界">
+  <data key="d0">2023年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2023年的城市边界状态，边界内共 13 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2024年城市边界">
+  <data key="d0">2024年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2024年的城市边界状态，边界内共 14 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2025年城市边界">
+  <data key="d0">2025年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2025年的城市边界状态，边界内共 15 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2021年进入边界事件">
+  <data key="d0">2021年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2021年共有 2 个点进入边界内：萧山国际机场, 湘湖旅游度假区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2021年退出边界事件">
+  <data key="d0">2021年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2021年共有 1 个点退出边界外：西湖风景名胜区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2022年进入边界事件">
+  <data key="d0">2022年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2022年共有 2 个点进入边界内：大江东智造园, 青山湖科创园</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2022年退出边界事件">
+  <data key="d0">2022年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2022年共有 1 个点退出边界外：城西银泰商圈</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2023年进入边界事件">
+  <data key="d0">2023年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2023年共有 3 个点进入边界内：居住组团W, 居住组团R, 国际会议中心</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2023年退出边界事件">
+  <data key="d0">2023年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2023年共有 2 个点退出边界外：运河二通道港区, 钱江新城住区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2024年进入边界事件">
+  <data key="d0">2024年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2024年共有 3 个点进入边界内：奥体中心, 城西银泰商圈, 西湖风景名胜区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2024年退出边界事件">
+  <data key="d0">2024年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2024年共有 2 个点退出边界外：居住组团W, 滨江互联网小镇</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2025年进入边界事件">
+  <data key="d0">2025年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2025年共有 2 个点进入边界内：临平新城商圈, 滨江互联网小镇</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="2025年退出边界事件">
+  <data key="d0">2025年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2025年共有 1 个点退出边界外：西湖风景名胜区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973303</data>
+</node>
+<node id="杭州市">
+  <data key="d0">杭州市</data>
+  <data key="d1">District</data>
+  <data key="d2">浙江省省会，政策适用的城市</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="三区三线">
+  <data key="d0">三区三线</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">城市开发边界、永久基本农田、生态保护红线的统称</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="城市开发边界">
+  <data key="d0">城市开发边界</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">三区三线中控制城市无序蔓延的边界线</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="永久基本农田">
+  <data key="d0">永久基本农田</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">三区三线中保障粮食安全的耕地红线</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="生态保护红线">
+  <data key="d0">生态保护红线</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">三区三线中维护生态安全的管控界线</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="滨江-临安-钱江新城联动轴">
+  <data key="d0">滨江-临安-钱江新城联动轴</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">连接滨江、临安和钱江新城的空间发展轴线，定位高新产业创新区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="滨江区">
+  <data key="d0">滨江区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区，位于钱塘江南岸</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="西兴街道">
+  <data key="d0">西兴街道</data>
+  <data key="d1">District</data>
+  <data key="d2">滨江区下辖街道</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="钱江新城">
+  <data key="d0">钱江新城</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州城市新中心，位于钱塘江北岸的规划功能区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="临安区">
+  <data key="d0">临安区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区，位于杭州西部</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="玲珑街道">
+  <data key="d0">玲珑街道</data>
+  <data key="d1">District</data>
+  <data key="d2">临安区下辖街道</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="临平新城">
+  <data key="d0">临平新城</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州东部新城，规划涵盖滨江互联网小镇</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="临安-大江东现代制造带">
+  <data key="d0">临安-大江东现代制造带</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">连接临安与大江东的现代制造业发展带</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="青山湖街道">
+  <data key="d0">青山湖街道</data>
+  <data key="d1">District</data>
+  <data key="d2">临安区下辖街道</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="大江东产业集聚区">
+  <data key="d0">大江东产业集聚区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州大江东区域产业功能区，托管大江东智造园</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="飞地政策">
+  <data key="d0">飞地政策</data>
+  <data key="d1">Policy</data>
+  <data key="d2">实行‘研发在核心、产业在周边’的跨区域产业协作政策</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="容积率">
+  <data key="d0">容积率</data>
+  <data key="d1">Indicator</data>
+  <data key="d2">建筑物面积与用地面积的比值，新引入项目不得低于2.5</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="富阳-钱江新城医疗康养组团">
+  <data key="d0">富阳-钱江新城医疗康养组团</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">位于富阳区和钱江新城区域的医疗康养功能组团</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="拱墅-上城-西湖跨区品质居住带">
+  <data key="d0">拱墅-上城-西湖跨区品质居住带</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">跨拱墅、上城、西湖三区的品质居住带</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="富阳区">
+  <data key="d0">富阳区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="富春街道">
+  <data key="d0">富春街道</data>
+  <data key="d1">District</data>
+  <data key="d2">富阳区下辖街道</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="拱墅区">
+  <data key="d0">拱墅区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="西湖区">
+  <data key="d0">西湖区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="上城区">
+  <data key="d0">上城区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="北山街道">
+  <data key="d0">北山街道</data>
+  <data key="d1">District</data>
+  <data key="d2">西湖区下辖街道</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="小营街道">
+  <data key="d0">小营街道</data>
+  <data key="d1">District</data>
+  <data key="d2">上城区下辖街道</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="钱江世纪城">
+  <data key="d0">钱江世纪城</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州钱江世纪城功能区</data>
+  <data key="d3">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="城西科创大走廊">
+  <data key="d0">城西科创大走廊</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">杭州市城西的科技创新产业走廊</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="跨区一体化的公共配套'同城待遇'政策">
+  <data key="d0">跨区一体化的公共配套'同城待遇'政策</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">推行跨区公共服务一体化的具体政策</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="红线刚性保护">
+  <data key="d0">红线刚性保护</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">差异化处置方案中的措施之一，强调对红线的刚性保护</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="存量有序流转">
+  <data key="d0">存量有序流转</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">差异化处置方案中的措施之一，允许存量建设用地有序流转</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="占补平衡纠偏">
+  <data key="d0">占补平衡纠偏</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">差异化处置方案中的措施之一，纠正占补平衡中的偏差</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="绝对保留原则">
+  <data key="d0">绝对保留原则</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">针对重大交通基础设施的政策原则，允许维持交通设施用地性质</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="存量锁死、不扩建原则">
+  <data key="d0">存量锁死、不扩建原则</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">针对高品质住区与公共服务核心的政策原则，限制土地流转在现有界线内</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="临平区">
+  <data key="d0">临平区</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区，位于城东</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="东湖街道">
+  <data key="d0">东湖街道</data>
+  <data key="d1">District</data>
+  <data key="d2">临平区下辖街道</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="生态环境修复">
+  <data key="d0">生态环境修复</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">双轮驱动措施之一，指生态环境治理与修复</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="绿色交通网络延伸">
+  <data key="d0">绿色交通网络延伸</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">双轮驱动措施之一，指绿色交通系统的扩展</data>
+  <data key="d3">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="交通网络延伸">
+  <data key="d0">交通网络延伸</data>
+  <data key="d1">Policy</data>
+  <data key="d2">用于盘活住区的政策</data>
+  <data key="d3">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="仓前街道">
+  <data key="d0">仓前街道</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市余杭区下辖街道，城西银泰商圈所在地</data>
+  <data key="d3">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="钱塘江滨水绿廊">
+  <data key="d0">钱塘江滨水绿廊</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">新一轮城市扩张背景下的公园绿地规划项目，沿钱塘江的滨水绿廊</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="M1 一类工业用地">
+  <data key="d0">M1 一类工业用地</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">一类工业用地，用于产业创新区，亩均税收大于50万元/亩</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="R2 二类居住用地">
+  <data key="d0">R2 二类居住用地</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">二类居住用地，用于高品质住区/人才公寓，200-400人/公顷</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="B1 商业用地">
+  <data key="d0">B1 商业用地</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">商业用地，用于商业商务区，地下空间开发率大于70%</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="A 公共管理/服务">
+  <data key="d0">A 公共管理/服务</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">公共管理与服务用地，用于医疗康养/公共服务核心，辐射周边2-5万居民</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="G1 公Park 绿地">
+  <data key="d0">G1 公Park 绿地</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">公园绿地，用于城市公园/生态休闲区，绿地率大于85%</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="亩均税收">
+  <data key="d0">亩均税收</data>
+  <data key="d1">Indicator</data>
+  <data key="d2">工业用地亩均税收指标，大于50万元/亩</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="地下空间开发率">
+  <data key="d0">地下空间开发率</data>
+  <data key="d1">Indicator</data>
+  <data key="d2">商业用地地下空间开发率指标，大于70%</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="绿地率">
+  <data key="d0">绿地率</data>
+  <data key="d1">Indicator</data>
+  <data key="d2">公园绿地绿地率指标，大于85%</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="城镇开发边界">
+  <data key="d0">城镇开发边界</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">城市扩展的控制边界，用地须在边界内</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="基本农田">
+  <data key="d0">基本农田</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">为保障粮食安全划定的农田区域，严控外溢</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="空间数字化红线预警">
+  <data key="d0">空间数字化红线预警</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">依托GIS和数字化城市大脑对位于永久基本农田内的项目实施空间位移监测的预警机制</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="GIS">
+  <data key="d0">GIS</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">地理信息系统，用于空间监测</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="数字化城市大脑">
+  <data key="d0">数字化城市大脑</data>
+  <data key="d1">Infrastructure</data>
+  <data key="d2">杭州城市数字化管理平台</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="跨行政区利益分享机制">
+  <data key="d0">跨行政区利益分享机制</data>
+  <data key="d1">PolicyMeasure</data>
+  <data key="d2">针对滨江、富阳、余杭、拱墅等区建立的财税分成、指标共担机制</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="滨江">
+  <data key="d0">滨江</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区，参与跨区协作机制</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="富阳">
+  <data key="d0">富阳</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区，参与跨区协作机制</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="余杭">
+  <data key="d0">余杭</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区，参与跨区协作机制</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="拱墅">
+  <data key="d0">拱墅</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区，参与跨区协作机制</data>
+  <data key="d3">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="高阳区">
+  <data key="d0">高阳区</data>
+  <data key="d1">District</data>
+  <data key="d2">原文出现的行政区，可能为富阳区的OCR误写</data>
+  <data key="d3">chunk-d7093bfaa6029018d2d7c3b89ad0c3ff</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="海宁">
+  <data key="d0">海宁</data>
+  <data key="d1">District</data>
+  <data key="d2">浙江省嘉兴市下辖县级市</data>
+  <data key="d3">chunk-d7093bfaa6029018d2d7c3b89ad0c3ff</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="临平">
+  <data key="d0">临平</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市临平区</data>
+  <data key="d3">chunk-d7093bfaa6029018d2d7c3b89ad0c3ff</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="径山">
+  <data key="d0">径山</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">杭州余杭区境内的山，知名风景区</data>
+  <data key="d3">chunk-d7093bfaa6029018d2d7c3b89ad0c3ff</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="悼女县">
+  <data key="d0">悼女县</data>
+  <data key="d1">District</data>
+  <data key="d2">原文出现的县级地名，可能为淳安县的OCR误写</data>
+  <data key="d3">chunk-d7093bfaa6029018d2d7c3b89ad0c3ff</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="核心区">
+  <data key="d0">核心区</data>
+  <data key="d1">SpatialConcept</data>
+  <data key="d2">规划中的城市核心区域</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="钱塘">
+  <data key="d0">钱塘</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="昌化">
+  <data key="d0">昌化</data>
+  <data key="d1">District</data>
+  <data key="d2">临安区辖镇</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="临安">
+  <data key="d0">临安</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="萧山">
+  <data key="d0">萧山</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市辖区</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="绍兴">
+  <data key="d0">绍兴</data>
+  <data key="d1">District</data>
+  <data key="d2">浙江省地级市</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="分水">
+  <data key="d0">分水</data>
+  <data key="d1">District</data>
+  <data key="d2">桐庐县辖镇</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="场口">
+  <data key="d0">场口</data>
+  <data key="d1">District</data>
+  <data key="d2">富阳区辖镇</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="黄山市">
+  <data key="d0">黄山市</data>
+  <data key="d1">District</data>
+  <data key="d2">安徽省地级市</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="桐庐">
+  <data key="d0">桐庐</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市下辖县</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="建德">
+  <data key="d0">建德</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市下辖县级市</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<node id="淳安">
+  <data key="d0">淳安</data>
+  <data key="d1">District</data>
+  <data key="d2">杭州市下辖县</data>
+  <data key="d3">chunk-a0cc829db5021d34413843b01796ea99</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781973304</data>
+</node>
+<edge source="居住组团R" target="湘湖旅游度假区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团R'与点'湘湖旅游度假区'地理相邻（距离 3.62 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团R" target="钱江新城住区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团R'与点'钱江新城住区'地理相邻（距离 4.56 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团R" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团R'与点'半山森林公园'地理相邻（距离 4.23 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团R" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团R'与点'青山湖科创园'地理相邻（距离 3.59 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团R" target="2023年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'居住组团R'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="西湖风景名胜区" target="居住组团Q">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团Q'与点'西湖风景名胜区'地理相邻（距离 4.59 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="西湖风景名胜区" target="2021年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'西湖风景名胜区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="西湖风景名胜区" target="2024年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'西湖风景名胜区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="西湖风景名胜区" target="2025年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'西湖风景名胜区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="西湖风景名胜区" target="生态环境修复">
+  <data key="d6">1.0</data>
+  <data key="d7">生态环境修复措施适用于西湖风景名胜区</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="西湖风景名胜区" target="绿色交通网络延伸">
+  <data key="d6">1.0</data>
+  <data key="d7">绿色交通网络延伸措施适用于西湖风景名胜区</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="西湖风景名胜区" target="G1 公Park 绿地">
+  <data key="d6">1.0</data>
+  <data key="d7">G1公园绿地的示例项目为西湖风景名胜区</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="临平新城商圈" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'临平新城商圈'与点'杭州大剧院'地理相邻（距离 4.62 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="临平新城商圈" target="2025年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'临平新城商圈'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="临平新城商圈" target="小营街道">
+  <data key="d6">1.0</data>
+  <data key="d7">临平新城商圈位于上城区小营街道</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="临平新城商圈" target="拱墅-上城-西湖跨区品质居住带">
+  <data key="d6">1.0</data>
+  <data key="d7">临平新城商圈属于该居住带</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="国际会议中心" target="居住组团W">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'国际会议中心'地理相邻（距离 1.03 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="国际会议中心" target="湘湖旅游度假区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'湘湖旅游度假区'地理相邻（距离 2.97 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="国际会议中心" target="钱江新城住区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'钱江新城住区'地理相邻（距离 4.95 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="国际会议中心" target="运河二通道港区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'运河二通道港区'地理相邻（距离 2.86 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="国际会议中心" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'杭州大剧院'地理相邻（距离 3.92 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="国际会议中心" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'半山森林公园'地理相邻（距离 2.63 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="国际会议中心" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'青山湖科创园'地理相邻（距离 3.90 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="国际会议中心" target="2023年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'国际会议中心'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="国际会议中心" target="存量锁死、不扩建原则">
+  <data key="d6">1.0</data>
+  <data key="d7">存量锁死、不扩建原则适用于国际会议中心</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="国际会议中心" target="空间数字化红线预警">
+  <data key="d6">1.0</data>
+  <data key="d7">空间数字化红线预警对国际会议中心实施24小时空间位移监测</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="国际会议中心" target="永久基本农田">
+  <data key="d6">1.0</data>
+  <data key="d7">国际会议中心位于永久基本农田内</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="城西银泰商圈" target="2022年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'城西银泰商圈'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="城西银泰商圈" target="2024年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'城西银泰商圈'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="城西银泰商圈" target="仓前街道">
+  <data key="d6">1.0</data>
+  <data key="d7">城西银泰商圈位于仓前街道，确立其商业商务核心地位</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="城西银泰商圈" target="B1 商业用地">
+  <data key="d6">1.0</data>
+  <data key="d7">B1商业用地的示例项目为城西银泰商圈</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="运河二通道港区" target="居住组团W">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'运河二通道港区'地理相邻（距离 3.89 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="运河二通道港区" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'运河二通道港区'与点'半山森林公园'地理相邻（距离 4.48 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="运河二通道港区" target="2023年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'运河二通道港区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="运河二通道港区" target="绝对保留原则">
+  <data key="d6">1.0</data>
+  <data key="d7">绝对保留原则适用于运河二通道港区</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="居住组团W" target="湘湖旅游度假区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'湘湖旅游度假区'地理相邻（距离 2.55 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团W" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'杭州大剧院'地理相邻（距离 3.19 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团W" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'半山森林公园'地理相邻（距离 2.52 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团W" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'青山湖科创园'地理相邻（距离 2.97 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团W" target="2023年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'居住组团W'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团W" target="2024年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'居住组团W'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="居住组团W" target="北山街道">
+  <data key="d6">1.0</data>
+  <data key="d7">居住组团W位于西湖区北山街道</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="居住组团W" target="拱墅-上城-西湖跨区品质居住带">
+  <data key="d6">1.0</data>
+  <data key="d7">居住组团W属于该居住带</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="滨江互联网小镇" target="大江东智造园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'滨江互联网小镇'与点'大江东智造园'地理相邻（距离 4.92 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="滨江互联网小镇" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'滨江互联网小镇'与点'杭州大剧院'地理相邻（距离 4.94 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="滨江互联网小镇" target="2024年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'滨江互联网小镇'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="滨江互联网小镇" target="2025年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'滨江互联网小镇'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="滨江互联网小镇" target="临安区">
+  <data key="d6">1.0</data>
+  <data key="d7">滨江互联网小镇位于临安区玲珑街道</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="滨江互联网小镇" target="临平新城">
+  <data key="d6">0.8</data>
+  <data key="d7">滨江互联网小镇归属临平新城规划</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="滨江互联网小镇" target="飞地政策">
+  <data key="d6">1.0</data>
+  <data key="d7">飞地政策适用于滨江互联网小镇</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="湘湖旅游度假区" target="钱江新城住区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'湘湖旅游度假区'与点'钱江新城住区'地理相邻（距离 3.17 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="湘湖旅游度假区" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'湘湖旅游度假区'与点'半山森林公园'地理相邻（距离 0.82 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="湘湖旅游度假区" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'湘湖旅游度假区'与点'青山湖科创园'地理相邻（距离 2.20 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="湘湖旅游度假区" target="2021年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'湘湖旅游度假区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="湘湖旅游度假区" target="富阳区">
+  <data key="d6">0.9</data>
+  <data key="d7">区域'富阳区'管辖空间点'湘湖旅游度假区'</data>
+  <data key="d8">GOVERNS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="湘湖旅游度假区" target="钱江世纪城">
+  <data key="d6">0.9</data>
+  <data key="d7">区域'钱江世纪城'管辖空间点'湘湖旅游度假区'</data>
+  <data key="d8">GOVERNS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="湘湖旅游度假区" target="富阳">
+  <data key="d6">0.9</data>
+  <data key="d7">区域'富阳'管辖空间点'湘湖旅游度假区'</data>
+  <data key="d8">GOVERNS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="湘湖旅游度假区" target="生态环境修复">
+  <data key="d6">0.75</data>
+  <data key="d7">措施'生态环境修复'指向空间点'湘湖旅游度假区'</data>
+  <data key="d8">TARGETS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="湘湖旅游度假区" target="G1 公Park 绿地">
+  <data key="d6">0.75</data>
+  <data key="d7">措施'G1 公Park 绿地'指向空间点'湘湖旅游度假区'</data>
+  <data key="d8">TARGETS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="湘湖旅游度假区" target="城镇开发边界">
+  <data key="d6">0.7</data>
+  <data key="d7">空间概念'城镇开发边界'包含空间点'湘湖旅游度假区'</data>
+  <data key="d8">CONTAINS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="大江东智造园" target="奥体中心">
+  <data key="d6">1.0</data>
+  <data key="d7">点'大江东智造园'与点'奥体中心'地理相邻（距离 2.49 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="大江东智造园" target="2022年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'大江东智造园'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="大江东智造园" target="临安区">
+  <data key="d6">1.0</data>
+  <data key="d7">大江东智造园位于临安区青山湖街道</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="大江东智造园" target="临安-大江东现代制造带">
+  <data key="d6">1.0</data>
+  <data key="d7">大江东智造园是临安-大江东现代制造带的一部分</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="大江东智造园" target="大江东产业集聚区">
+  <data key="d6">0.9</data>
+  <data key="d7">大江东产业集聚区全面托管大江东智造园</data>
+  <data key="d8">SUPPORTS</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="奥体中心" target="2024年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'奥体中心'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="奥体中心" target="大江东产业集聚区">
+  <data key="d6">0.9</data>
+  <data key="d7">区域'大江东产业集聚区'管辖空间点'奥体中心'</data>
+  <data key="d8">GOVERNS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="奥体中心" target="仓前街道">
+  <data key="d6">0.9</data>
+  <data key="d7">区域'仓前街道'管辖空间点'奥体中心'</data>
+  <data key="d8">GOVERNS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="奥体中心" target="余杭">
+  <data key="d6">0.9</data>
+  <data key="d7">区域'余杭'管辖空间点'奥体中心'</data>
+  <data key="d8">GOVERNS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="奥体中心" target="跨区一体化的公共配套'同城待遇'政策">
+  <data key="d6">0.75</data>
+  <data key="d7">措施'跨区一体化的公共配套'同城待遇'政策'指向空间点'奥体中心'</data>
+  <data key="d8">TARGETS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="奥体中心" target="M1 一类工业用地">
+  <data key="d6">0.75</data>
+  <data key="d7">措施'M1 一类工业用地'指向空间点'奥体中心'</data>
+  <data key="d8">TARGETS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="奥体中心" target="A 公共管理/服务">
+  <data key="d6">0.75</data>
+  <data key="d7">措施'A 公共管理/服务'指向空间点'奥体中心'</data>
+  <data key="d8">TARGETS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="奥体中心" target="空间数字化红线预警">
+  <data key="d6">0.75</data>
+  <data key="d7">措施'空间数字化红线预警'指向空间点'奥体中心'</data>
+  <data key="d8">TARGETS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="奥体中心" target="城镇开发边界">
+  <data key="d6">0.7</data>
+  <data key="d7">空间概念'城镇开发边界'包含空间点'奥体中心'</data>
+  <data key="d8">CONTAINS</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973305</data>
+</edge>
+<edge source="下沙大学城北住区" target="萧山国际机场">
+  <data key="d6">1.0</data>
+  <data key="d7">点'下沙大学城北住区'与点'萧山国际机场'地理相邻（距离 2.68 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="下沙大学城北住区" target="存量锁死、不扩建原则">
+  <data key="d6">1.0</data>
+  <data key="d7">存量锁死、不扩建原则适用于下沙大学城北住区</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="下沙大学城北住区" target="R2 二类居住用地">
+  <data key="d6">1.0</data>
+  <data key="d7">R2二类居住用地的示例项目为下沙大学城北住区</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="钱江新城住区" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'钱江新城住区'与点'半山森林公园'地理相邻（距离 2.70 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="钱江新城住区" target="2023年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'钱江新城住区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="钱江新城住区" target="交通网络延伸">
+  <data key="d6">1.0</data>
+  <data key="d7">依托'交通网络延伸'政策盘活钱江新城住区</data>
+  <data key="d8">SUPPORTS</data>
+  <data key="d9">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="钱江新城住区" target="R2 二类居住用地">
+  <data key="d6">1.0</data>
+  <data key="d7">R2二类居住用地的示例项目为钱江新城住区</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="半山森林公园" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'半山森林公园'与点'青山湖科创园'地理相邻（距离 2.97 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="半山森林公园" target="生态环境修复">
+  <data key="d6">1.0</data>
+  <data key="d7">生态环境修复措施适用于半山森林公园</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="半山森林公园" target="绿色交通网络延伸">
+  <data key="d6">1.0</data>
+  <data key="d7">绿色交通网络延伸措施适用于半山森林公园</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="良渚品质住区" target="居住组团Q">
+  <data key="d6">1.0</data>
+  <data key="d7">点'良渚品质住区'与点'居住组团Q'地理相邻（距离 4.91 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="良渚品质住区" target="拱墅-上城-西湖跨区品质居住带">
+  <data key="d6">1.0</data>
+  <data key="d7">良渚品质住区属于该居住带</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="良渚品质住区" target="钱江世纪城">
+  <data key="d6">1.0</data>
+  <data key="d7">良渚品质住区定向承接钱江世纪城溢出的人才居住需求</data>
+  <data key="d8">SUPPORTS</data>
+  <data key="d9">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="青山湖科创园" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'杭州大剧院'与点'青山湖科创园'地理相邻（距离 4.00 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="青山湖科创园" target="2022年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'青山湖科创园'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="青山湖科创园" target="滨江区">
+  <data key="d6">1.0</data>
+  <data key="d7">青山湖科创园位于滨江区西兴街道</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="青山湖科创园" target="钱江新城">
+  <data key="d6">0.8</data>
+  <data key="d7">青山湖科创园纳入钱江新城规划主轴</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="青山湖科创园" target="飞地政策">
+  <data key="d6">1.0</data>
+  <data key="d7">飞地政策适用于青山湖科创园</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="青山湖科创园" target="M1 一类工业用地">
+  <data key="d6">1.0</data>
+  <data key="d7">M1一类工业用地的示例项目为青山湖科创园</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="青山湖科创园" target="跨行政区利益分享机制">
+  <data key="d6">1.0</data>
+  <data key="d7">跨行政区利益分享机制确保青山湖科创园作为飞地项目顺利推进</data>
+  <data key="d8">SUPPORTS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="萧山国际机场" target="2021年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'萧山国际机场'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="萧山国际机场" target="富阳-钱江新城医疗康养组团">
+  <data key="d6">1.0</data>
+  <data key="d7">萧山国际机场是该组团的组成部分</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="居住组团Q" target="交通网络延伸">
+  <data key="d6">1.0</data>
+  <data key="d7">依托'交通网络延伸'政策盘活居住组团Q</data>
+  <data key="d8">SUPPORTS</data>
+  <data key="d9">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="杭州大剧院" target="富春街道">
+  <data key="d6">1.0</data>
+  <data key="d7">杭州大剧院位于富春街道</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="杭州大剧院" target="富阳-钱江新城医疗康养组团">
+  <data key="d6">1.0</data>
+  <data key="d7">杭州大剧院是该组团的组成部分</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="杭州大剧院" target="富阳区">
+  <data key="d6">1.0</data>
+  <data key="d7">杭州大剧院位于富阳区</data>
+  <data key="d8">LOCATED_IN</data>
+  <data key="d9">chunk-0c4a505f68e3e1f72112aaf2771afc59</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="杭州大剧院" target="A 公共管理/服务">
+  <data key="d6">1.0</data>
+  <data key="d7">A公共管理/服务用地的示例项目为杭州大剧院</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="2020年城市边界" target="2021年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2020年边界转换到2021年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2021年城市边界" target="2022年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2021年边界转换到2022年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2021年城市边界" target="2021年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2021年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2021年城市边界" target="2021年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2021年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2022年城市边界" target="2023年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2022年边界转换到2023年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2022年城市边界" target="2022年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2022年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2022年城市边界" target="2022年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2022年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2023年城市边界" target="2024年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2023年边界转换到2024年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2023年城市边界" target="2023年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2023年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2023年城市边界" target="2023年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2023年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2024年城市边界" target="2025年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2024年边界转换到2025年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2024年城市边界" target="2024年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2024年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2024年城市边界" target="2024年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2024年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2025年城市边界" target="2025年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2025年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="2025年城市边界" target="2025年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2025年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973303</data>
+</edge>
+<edge source="三区三线" target="城市开发边界">
+  <data key="d6">1.0</data>
+  <data key="d7">城市开发边界是三区三线的组成部分</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="三区三线" target="永久基本农田">
+  <data key="d6">1.0</data>
+  <data key="d7">永久基本农田是三区三线的组成部分</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="三区三线" target="生态保护红线">
+  <data key="d6">1.0</data>
+  <data key="d7">生态保护红线是三区三线的组成部分</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="永久基本农田" target="红线刚性保护">
+  <data key="d6">1.0</data>
+  <data key="d7">红线刚性保护措施对永久基本农田实施刚性保护</data>
+  <data key="d8">CONSTRAINS</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="生态保护红线" target="红线刚性保护">
+  <data key="d6">1.0</data>
+  <data key="d7">红线刚性保护措施对生态保护红线实施刚性保护</data>
+  <data key="d8">CONSTRAINS</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="生态保护红线" target="G1 公Park 绿地">
+  <data key="d6">1.0</data>
+  <data key="d7">G1公园绿地生态保护红线内绝对禁止商业化</data>
+  <data key="d8">CONSTRAINS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="滨江-临安-钱江新城联动轴" target="滨江区">
+  <data key="d6">0.7</data>
+  <data key="d7">联动轴提及滨江区</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="滨江-临安-钱江新城联动轴" target="临安区">
+  <data key="d6">0.7</data>
+  <data key="d7">联动轴提及临安区</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="滨江-临安-钱江新城联动轴" target="钱江新城">
+  <data key="d6">0.7</data>
+  <data key="d7">联动轴提及钱江新城</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="临安区" target="临安-大江东现代制造带">
+  <data key="d6">0.7</data>
+  <data key="d7">现代制造带提及临安区</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="临安-大江东现代制造带" target="大江东产业集聚区">
+  <data key="d6">0.7</data>
+  <data key="d7">现代制造带提及大江东产业集聚区</data>
+  <data key="d8">MENTIONS</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="拱墅-上城-西湖跨区品质居住带" target="跨区一体化的公共配套'同城待遇'政策">
+  <data key="d6">1.0</data>
+  <data key="d7">该政策适用于跨区品质居住带</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="富阳区" target="富春街道">
+  <data key="d6">1.0</data>
+  <data key="d7">富春街道是富阳区的下辖街道</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="临平区" target="东湖街道">
+  <data key="d6">1.0</data>
+  <data key="d7">东湖街道是临平区下辖的街道</data>
+  <data key="d8">PART_OF</data>
+  <data key="d9">chunk-a074972a0140d1cc3ac31d8f44410495</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="M1 一类工业用地" target="城镇开发边界">
+  <data key="d6">1.0</data>
+  <data key="d7">M1一类工业用地须在城镇开发边界内，且严格生态审查</data>
+  <data key="d8">CONSTRAINS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="M1 一类工业用地" target="亩均税收">
+  <data key="d6">1.0</data>
+  <data key="d7">M1一类工业用地目标为亩均税收大于50万元/亩</data>
+  <data key="d8">HAS_GOAL</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="R2 二类居住用地" target="基本农田">
+  <data key="d6">1.0</data>
+  <data key="d7">R2二类居住用地严控向基本农田外溢</data>
+  <data key="d8">CONSTRAINS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="B1 商业用地" target="城镇开发边界">
+  <data key="d6">1.0</data>
+  <data key="d7">B1商业用地须在城镇开发边界内</data>
+  <data key="d8">CONSTRAINS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="B1 商业用地" target="地下空间开发率">
+  <data key="d6">1.0</data>
+  <data key="d7">B1商业用地目标为地下空间开发率大于70%</data>
+  <data key="d8">HAS_GOAL</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="G1 公Park 绿地" target="绿地率">
+  <data key="d6">1.0</data>
+  <data key="d7">G1公园绿地目标为绿地率大于85%</data>
+  <data key="d8">HAS_GOAL</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="空间数字化红线预警" target="GIS">
+  <data key="d6">1.0</data>
+  <data key="d7">GIS为空间数字化红线预警提供技术支撑</data>
+  <data key="d8">SUPPORTS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="空间数字化红线预警" target="数字化城市大脑">
+  <data key="d6">1.0</data>
+  <data key="d7">数字化城市大脑为空间数字化红线预警提供平台支持</data>
+  <data key="d8">SUPPORTS</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="跨行政区利益分享机制" target="滨江">
+  <data key="d6">1.0</data>
+  <data key="d7">跨行政区利益分享机制针对滨江区土地利用与经济规划错位现象</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="跨行政区利益分享机制" target="富阳">
+  <data key="d6">1.0</data>
+  <data key="d7">跨行政区利益分享机制针对富阳区土地利用与经济规划错位现象</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="跨行政区利益分享机制" target="余杭">
+  <data key="d6">1.0</data>
+  <data key="d7">跨行政区利益分享机制针对余杭区土地利用与经济规划错位现象</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+<edge source="跨行政区利益分享机制" target="拱墅">
+  <data key="d6">1.0</data>
+  <data key="d7">跨行政区利益分享机制针对拱墅区土地利用与经济规划错位现象</data>
+  <data key="d8">APPLIES_TO</data>
+  <data key="d9">chunk-d7a48fb363c5f040774be1a1912755e1</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781973304</data>
+</edge>
+</graph></graphml>

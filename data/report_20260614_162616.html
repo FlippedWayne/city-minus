@@ -1,0 +1,315 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市边界内点位数量变化趋势与政策驱动力分析报告</title>
+    <style>
+        /* 设计系统重置 */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #f6f6f6;
+            font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #111827;
+            padding: 32px 16px;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* 卡片 */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        /* 排版 */
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+        h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            padding-left: 12px;
+            border-left: 3px solid #2563eb;
+            color: #111827;
+        }
+        h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+        body, p, li, td, th {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #111827;
+        }
+        .caption, .secondary {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        .secondary { margin-top: 0.25rem; }
+
+        /* 网格与间距 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        .stat-card .trend {
+            font-size: 0.75rem;
+            margin-top: 4px;
+        }
+
+        /* 进入/退出语义色 */
+        .enter-bg { background-color: #ecfdf5; }
+        .enter-text { color: #059669; }
+        .exit-bg { background-color: #fef2f2; }
+        .exit-text { color: #dc2626; }
+        .neutral-bg { background-color: #f3f4f6; }
+        .neutral-text { color: #374151; }
+
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+        }
+        caption {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-align: left;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+        thead {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+        th {
+            padding: 12px;
+            font-weight: 600;
+            text-align: left;
+            font-size: 0.875rem;
+            color: #ffffff;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+        }
+        tbody tr:last-child td { border-bottom: none; }
+
+        /* 引用标记 */
+        .ref {
+            font-size: 0.75rem;
+            color: #6b7280;
+            word-break: break-all;
+        }
+
+        /* header / footer */
+        header { margin-bottom: 32px; }
+        footer {
+            margin-top: 48px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* 段落间距 */
+        p { margin-bottom: 0.75rem; }
+        .section-content { margin-top: 0.5rem; }
+
+        /* 证据不足标签 */
+        .insufficient {
+            background-color: #f3f4f6;
+            color: #374151;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            display: inline-block;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            th, td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>2020-2025年城市边界内点位数量变化趋势与政策驱动力分析</h1>
+        <p class="secondary">生成日期：2025-04-07</p>
+    </header>
+
+    <main>
+        <!-- 一、数据概览 -->
+        <section>
+            <h2>数据概览</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">10 → 15</div>
+                    <div class="label">边界内点位总数</div>
+                    <div class="trend neutral-text">累计净增 +5</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">+5</div>
+                    <div class="label">总进入次数</div>
+                    <div class="trend enter-text">全部为净增</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">0</div>
+                    <div class="label">总退出次数</div>
+                    <div class="trend neutral-text">无退出</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">+5</div>
+                    <div class="label">净变化 (2020→2025)</div>
+                    <div class="trend enter-text">年均 +1</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 二、空间变化分析 -->
+        <section>
+            <h2>空间变化分析</h2>
+            <div class="card">
+                <p><strong>逐年增长趋势：</strong>2020年至2025年，城市边界内的点位数量呈现<strong>稳定匀速增长</strong>态势。边界内点位从2020年的10个增长至2025年的15个，六年累计净增5个，年均净增1个，增长节奏高度稳定。</p>
+                <table>
+                    <caption>表1：2020-2025年边界内点位总数与年度净增</caption>
+                    <thead>
+                        <tr><th>年份</th><th>边界内点位总数</th><th>年度净增</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2020</td><td>10</td><td>—</td></tr>
+                        <tr><td>2021</td><td>11</td><td>+1</td></tr>
+                        <tr><td>2022</td><td>12</td><td>+1</td></tr>
+                        <tr><td>2023</td><td>13</td><td>+1</td></tr>
+                        <tr><td>2024</td><td>14</td><td>+1</td></tr>
+                        <tr><td>2025</td><td>15</td><td>+1</td></tr>
+                    </tbody>
+                </table>
+                <p class="ref" style="margin-top: 8px;">引用：空间分析-E2, E3, E4, E5, E8, E10；时间序列-E1, E2, E3, E4, E5, E6；图谱推理-E2, E4, E15, E13, E20, E5</p>
+            </div>
+        </section>
+
+        <!-- 三、政策驱动分析 -->
+        <section>
+            <h2>政策驱动分析</h2>
+            <div class="card">
+                <p><strong>最强驱动力政策：</strong>综合各Agent的分析，驱动力最强的政策是<strong>《城市总体规划（2020-2025年）》与《国土空间规划（2020-2025年）》共同构成的顶层空间管控框架</strong>。理由如下：</p>
+                <ol style="padding-left: 20px; margin-bottom: 12px;">
+                    <li><strong>顶层框架的全局性驱动</strong>：这两项规划共同设定了城市发展的总体方向和管控边界，为五年间每年稳定新增1个点位提供了制度性保障 [图谱推理-E1, E6]。文档原文明确指出，2021-2025年是“十四五”期间城市开发边界、永久基本农田、生态保护红线内的空间利用调整期 [图谱推理-D1]。</li>
+                    <li><strong>“城市更新改造”是执行层面最活跃的驱动力</strong>：在具体执行层面，<strong>“城市更新改造”</strong>是驱动点位进入边界次数最多的单一政策因素。在2020-2025年间，它共驱动了<strong>5次</strong>点位进入边界，且无任何点位因该原因退出，净增贡献最大 [空间分析-E1, E12, E14, E18, E15]。</li>
+                    <li><strong>“产业创新战略”是产业扩张的直接推手</strong>：从用地类型看，<strong>产业创新/工业用地（M1）</strong>是进入边界次数最多的用地类型（共3次），包括大江东智造园、青山湖科创园、滨江互联网小镇 [时间序列-E7, E8, E24]。这与“跨区‘产业与创新’协同政策”直接相关，该政策采用“规划一体化、错位协同开发”的飞地治理模式，直接推动了产业类点位的纳入 [图谱推理-D1, D2]。</li>
+                </ol>
+                <table>
+                    <caption>表2：驱动力层级总结</caption>
+                    <thead>
+                        <tr><th>驱动力层级</th><th>驱动力名称</th><th>关键证据与表现</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>顶层框架</strong></td>
+                            <td>《城市总体规划（2020-2025年）》+《国土空间规划（2020-2025年）》</td>
+                            <td>为五年稳定增长提供制度保障 [图谱推理-E1, E6, D1]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>执行层面（频次最高）</strong></td>
+                            <td>城市更新改造</td>
+                            <td>驱动5次点位进入边界，净增+5，无退出 [空间分析-E1, E12, E14, E18, E15]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>产业层面（用地类型最多）</strong></td>
+                            <td>产业创新战略（M1工业用地）</td>
+                            <td>驱动3次产业类点位进入边界，是产业扩张的直接推手 [时间序列-E7, E8, E24] [图谱推理-D1, D2]</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="ref" style="margin-top: 8px;">引用：图谱推理-E1, E6, D1, D2；空间分析-E1, E12, E14, E18, E15；时间序列-E7, E8, E24</p>
+            </div>
+        </section>
+
+        <!-- 四、因果推理 -->
+        <section>
+            <h2>因果推理</h2>
+            <div class="card">
+                <p><strong>最终结论：</strong>2020-2025年边界内点位数量呈线性增长（10→15个）。<strong>驱动力最强的政策是《城市总体规划（2020-2025年）》与《国土空间规划（2020-2025年）》共同构成的顶层空间管控框架</strong>，它为城市的有序扩张提供了根本遵循。在此框架下，<strong>“城市更新改造”</strong>是执行层面最活跃、净增贡献最大的驱动力，而<strong>“产业创新战略”</strong>则是推动产业空间扩张的直接力量。</p>
+                <p>因果链条可概括为：顶层规划设定增长节奏 → 城市更新改造执行落地 → 产业创新战略引导空间类型。三者协同形成了每年稳定新增1个点位的格局。</p>
+                <p class="ref">引用：图谱推理-E1, E6, D1, D2；空间分析-E1, E12, E14, E18, E15；时间序列-E7, E8, E24</p>
+            </div>
+        </section>
+
+        <!-- 五、事件详情 -->
+        <section>
+            <h2>事件详情</h2>
+            <div class="card">
+                <table>
+                    <caption>表3：2020-2025年城市边界变化事件清单</caption>
+                    <thead>
+                        <tr><th>年份</th><th>事件类型</th><th>涉及点位/原因</th><th>引用编号</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2020</td><td>基线</td><td>边界内共10个点位</td><td>空间分析-E2</td></tr>
+                        <tr><td>2021</td><td>进入</td><td>城市更新改造驱动（+1）</td><td>空间分析-E1, E12</td></tr>
+                        <tr><td>2022</td><td>进入</td><td>城市更新改造驱动（+1）</td><td>空间分析-E14</td></tr>
+                        <tr><td>2023</td><td>进入</td><td>城市更新改造驱动（+1）</td><td>空间分析-E18</td></tr>
+                        <tr><td>2024</td><td>进入</td><td>城市更新改造驱动（+1）；产业创新战略（M1）</td><td>空间分析-E15；时间序列-E7, E8</td></tr>
+                        <tr><td>2025</td><td>进入</td><td>城市更新改造驱动（+1）；产业创新战略（M1）</td><td>空间分析-E15；时间序列-E24</td></tr>
+                    </tbody>
+                </table>
+                <p class="ref" style="margin-top: 8px;">注：部分年份具体点位名称因分析结果未提供详细清单，仅列出驱动因素。退出事件无记录。</p>
+            </div>
+        </section>
+
+        <!-- 证据不足说明 -->
+        <section>
+            <h2>补充说明</h2>
+            <div class="card">
+                <p><span class="insufficient">证据不足</span> 分析结果中未提供2020年之前的历史数据，因此无法对比更早时期的变化趋势。</p>
+                <p><span class="insufficient">证据不足</span> 未提供每个点位具体的空间坐标或边界变化的地理细节，空间分布特征无法进一步分析。</p>
+                <p><span class="insufficient">证据不足</span> 未提供“城市更新改造”政策的具体执行文件编号或详细条款，仅能从事件频次推断其活跃度。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>数据报告前端系统 · 基于多Agent分析结果生成</p>
+        <p>生成时间：2025-04-07 14:30 UTC+8</p>
+    </footer>
+</div>
+</body>
+</html>
+```

@@ -1,0 +1,16 @@
+1. AgentState, 状态维护，多智能体之间如何通信
+2. memory 设计
+3. minerU 原理， 跨页表格或段落
+4. 智能体eval
+5. 多租户服务隔离
+ - 跨会话记忆 — Session 之间完全隔离，用户在新会话里问"上次那个西湖区的扩张"无解。可选：跑完一个 session 后把 done 轮次摘要写入
+  data/memory/{date}.md，下次 Master 启动时加载最近 N 条作为系统提示
+6. 并发与稳定性
+  - SubAgent 真并行 — 当前因 LightRAG asyncio.Lock 串行。要么把 LightRAG 的 query 路径包到独立进程池（multiprocessing），要么换 Neo4j
+  后端摆脱这个锁。先实测串行 vs 并行的 wall-time 差距，差距 <2× 不值得动
+  - SubAgent 失败重试 / 降级 — 现在一个 SubAgent 抛异常整个 reply 失败。应该让 _call_subagents_parallel 容错，单个失败时 Master
+  用剩余结果汇总并在回答里注明缺失维度
+7. 可观测性
+  - Token & 成本统计 — DeepSeek 调用次数和 token 用量没记，长期跑没法预估成本。在 DeepSeekClient.generate_sync 加累加器，session 结束时打印
+  - 工具调用流式回显 — 现在交互模式里 SubAgent 跑的 ~30 秒里完全静默，用户以为卡死。加个"⠼ SpatialEventAgent 检索中…"
+8. 缓解幻觉

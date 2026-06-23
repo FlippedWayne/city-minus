@@ -1,0 +1,248 @@
+base_url = https://ark.cn-beijing.volces.com/api/v3
+key len = 36
+
+=== models.list() ===
+  id=doubao-lite-128k-240428  owned_by=None  created=1714982195
+  id=doubao-pro-128k-240515  owned_by=None  created=1714991851
+  id=doubao-lite-4k-240328  owned_by=None  created=1715137903
+  id=doubao-lite-32k-240428  owned_by=None  created=1715141913
+  id=doubao-pro-4k-240515  owned_by=None  created=1715170090
+  id=doubao-lite-4k-character-240515  owned_by=None  created=1715269330
+  id=doubao-embedding-text-240515  owned_by=None  created=1715588483
+  id=mistral-7b-instruct-v0.2  owned_by=None  created=1715666514
+  id=doubao-pro-4k-character-240515  owned_by=None  created=1715676753
+  id=doubao-pro-4k-functioncall-240515  owned_by=None  created=1715676960
+  id=doubao-lite-4k-pretrain-character-240516  owned_by=None  created=1715863817
+  id=doubao-pro-32k-character-240528  owned_by=None  created=1716875160
+  id=doubao-pro-4k-browsing-240524  owned_by=None  created=1716898221
+  id=doubao-pro-32k-functioncall-240515  owned_by=None  created=1717640934
+  id=doubao-pro-4k-functioncall-240615  owned_by=None  created=1718181900
+  id=doubao-pro-32k-browsing-240615  owned_by=None  created=1718185692
+  id=doubao-pro-32k-240615  owned_by=None  created=1718269628
+  id=doubao-lite-32k-240628  owned_by=None  created=1719493913
+  id=doubao-pro-128k-240628  owned_by=None  created=1719716798
+  id=doubao-embedding-text-240715  owned_by=None  created=1720700820
+  id=doubao-pro-4k-character-240728  owned_by=None  created=1721811261
+  id=doubao-pro-32k-functioncall-240815  owned_by=None  created=1724918081
+  id=doubao-pro-32k-240828  owned_by=None  created=1725440807
+  id=doubao-lite-4k-character-240828  owned_by=None  created=1725457183
+  id=doubao-pro-32k-character-240828  owned_by=None  created=1725529592
+  id=doubao-lite-32k-240828  owned_by=None  created=1725625303
+  id=doubao-lite-128k-240828  owned_by=None  created=1725625652
+  id=doubao-pro-32k-browsing-240828  owned_by=None  created=1725884653
+  id=doubao-pro-32k-functioncall-preview  owned_by=None  created=1725977476
+  id=doubao-embedding-large-text-240915  owned_by=None  created=1727248240
+  id=doubao-lite-32k-character-241015  owned_by=None  created=1728992008
+  id=doubao-pro-32k-functioncall-241028  owned_by=None  created=1730384951
+  id=doubao-pro-32k-browsing-241115  owned_by=None  created=1732191664
+  id=doubao-vision-pro-32k-241028  owned_by=None  created=1732546403
+  id=doubao-vision-lite-32k-241015  owned_by=None  created=1732696484
+  id=doubao-seaweed-241128  owned_by=None  created=1733388395
+  id=doubao-pro-256k-241115  owned_by=None  created=1733642657
+  id=doubao-pro-32k-character-241215  owned_by=None  created=1734090305
+  id=doubao-pro-32k-241215  owned_by=None  created=1734276312
+  id=doubao-1-5-lite-32k-250115  owned_by=None  created=1736337657
+  id=doubao-1-5-pro-32k-250115  owned_by=None  created=1736522163
+  id=doubao-1-5-vision-pro-32k-250115  owned_by=None  created=1736565150
+  id=doubao-embedding-vision-241215  owned_by=None  created=1737031443
+  id=doubao-1-5-pro-256k-250115  owned_by=None  created=1737279642
+  id=deepseek-v3-241226  owned_by=None  created=1738595048
+  id=deepseek-r1-distill-qwen-7b-250120  owned_by=None  created=1738595087
+  id=deepseek-r1-distill-qwen-32b-250120  owned_by=None  created=1738595120
+  id=deepseek-r1-250120  owned_by=None  created=1738595139
+  id=doubao-1-5-pro-32k-character-250228  owned_by=None  created=1741186636
+  id=doubao-1.5-vision-lite-250315  owned_by=None  created=1741700997
+  id=deepseek-v3-250324  owned_by=None  created=1742915497
+  id=doubao-1.5-vision-pro-250328  owned_by=None  created=1743165682
+  id=doubao-lite-32k-character-250228  owned_by=None  created=1744045784
+  id=doubao-1.5-ui-tars-250328  owned_by=None  created=1744097647
+  id=doubao-embedding-vision-250328  owned_by=None  created=1744105858
+  id=doubao-1-5-thinking-pro-250415  owned_by=None  created=1744268865
+  id=wan2-1-14b-i2v-250225  owned_by=None  created=1744343791
+  id=wan2-1-14b-t2v-250225  owned_by=None  created=1744343828
+  id=doubao-1-5-thinking-pro-m-250415  owned_by=None  created=1744883125
+  id=doubao-seedance-1-0-lite-i2v-250428  owned_by=None  created=1745578849
+  id=doubao-seedance-1-0-lite-t2v-250428  owned_by=None  created=1745578941
+  id=doubao-seedream-3-0-t2i-250415  owned_by=None  created=1745579251
+  id=wan2-1-14b-flf2v-250417  owned_by=None  created=1745579544
+  id=doubao-1-5-thinking-vision-pro-250428  owned_by=None  created=1745909273
+  id=doubao-1-5-thinking-pro-m-250428  owned_by=None  created=1745909332
+  id=doubao-embedding-large-text-250515  owned_by=None  created=1747668176
+  id=doubao-1-5-ui-tars-250428  owned_by=None  created=1747801857
+  id=deepseek-r1-250528  owned_by=None  created=1748483795
+  id=doubao-seed-1-6-flash-250615  owned_by=None  created=1748561656
+  id=doubao-seed-1-6-250615  owned_by=None  created=1749199360
+  id=doubao-seed-1-6-thinking-250615  owned_by=None  created=1749199438
+  id=doubao-seedance-1-0-pro-250528  owned_by=None  created=1749465881
+  id=doubao-embedding-vision-250615  owned_by=None  created=1750314847
+  id=doubao-seed-1-6-thinking-250715  owned_by=None  created=1751986347
+  id=doubao-1-5-pro-32k-character-250715  owned_by=None  created=1752026509
+  id=doubao-seededit-3-0-i2i-250628  owned_by=None  created=1752234291
+  id=doubao-seed-1-6-flash-250715  owned_by=None  created=1752495416
+  id=kimi-k2-250711  owned_by=None  created=1752601711
+  id=doubao-seed-1-6-vision-250815  owned_by=None  created=1754400707
+  id=deepseek-v3-1-250821  owned_by=None  created=1755762018
+  id=doubao-seed-1-6-flash-250828  owned_by=None  created=1756182208
+  id=glm-4-5-air-20250728  owned_by=None  created=1756904544
+  id=qwen3-8b-20250429  owned_by=None  created=1756904653
+  id=qwen3-32b-20250429  owned_by=None  created=1756905470
+  id=qwen2-5-72b-20240919  owned_by=None  created=1756905592
+  id=doubao-seedream-4-0-250828  owned_by=None  created=1757244120
+  id=kimi-k2-250905  owned_by=None  created=1757311490
+  id=doubao-seed-translation-250915  owned_by=None  created=1758007209
+  id=deepseek-v3-1-terminus  owned_by=None  created=1758618860
+  id=doubao-smart-router-250928  owned_by=None  created=1758877484
+  id=doubao-seed-1-6-251015  owned_by=None  created=1760183257
+  id=doubao-seedance-1-0-pro-fast-251015  owned_by=None  created=1760414492
+  id=doubao-seed-1-6-lite-251015  owned_by=None  created=1760422532
+  id=doubao-seed3d-1-0-250928  owned_by=None  created=1760698024
+  id=kimi-k2-thinking-251104  owned_by=None  created=1762760609
+  id=doubao-seed-code-preview-251028  owned_by=None  created=1762761011
+  id=qwen3-0-6b-20250429  owned_by=None  created=1762786120
+  id=qwen3-14b-20250429  owned_by=None  created=1762786375
+  id=doubao-seedream-4-5-251128  owned_by=None  created=1764294940
+  id=doubao-embedding-vision-251215  owned_by=None  created=1764645281
+  id=deepseek-v3-2-251201  owned_by=None  created=1764681612
+  id=doubao-seedance-1-5-pro-251215  owned_by=None  created=1765188065
+  id=glm-4-7-251222  owned_by=None  created=1766502254
+  id=doubao-seed-1-8-251228  owned_by=None  created=1767587883
+  id=doubao-seed-character-251128  owned_by=None  created=1767958115
+  id=doubao-seed-2-0-lite-260215  owned_by=None  created=1770131613
+  id=doubao-seedance-2-0-260128  owned_by=None  created=1770189126
+  id=doubao-seedream-5-0-260128  owned_by=None  created=1770190658
+  id=doubao-seed-2-0-mini-260215  owned_by=None  created=1770361611
+  id=doubao-seed-2-0-pro-260215  owned_by=None  created=1770361777
+  id=doubao-seedance-2-0-fast-260128  owned_by=None  created=1770734929
+  id=doubao-seed-2-0-code-preview-260215  owned_by=None  created=1770998079
+  id=hyper3d-gen2-260112  owned_by=None  created=1774428230
+  id=hitem3d-2-0-251223  owned_by=None  created=1774431204
+  id=doubao-seed3d-2-0-260328  owned_by=None  created=1775281921
+  id=doubao-seed-2-0-mini-260428  owned_by=None  created=1778037357
+  id=doubao-seed-2-0-lite-260428  owned_by=None  created=1778037480
+  id=deepseek-v4-pro-260425  owned_by=None  created=1778837387
+  id=deepseek-v4-flash-260425  owned_by=None  created=1778916543
+  id=doubao-seedance-2-0-mini-260615  owned_by=None  created=1781024994
+total: 120
+
+=== HTTP GET /models ===
+  doubao-lite-128k-240428
+  doubao-pro-128k-240515
+  doubao-lite-4k-240328
+  doubao-lite-32k-240428
+  doubao-pro-4k-240515
+  doubao-lite-4k-character-240515
+  doubao-embedding-text-240515
+  mistral-7b-instruct-v0.2
+  doubao-pro-4k-character-240515
+  doubao-pro-4k-functioncall-240515
+  doubao-lite-4k-pretrain-character-240516
+  doubao-pro-32k-character-240528
+  doubao-pro-4k-browsing-240524
+  doubao-pro-32k-functioncall-240515
+  doubao-pro-4k-functioncall-240615
+  doubao-pro-32k-browsing-240615
+  doubao-pro-32k-240615
+  doubao-lite-32k-240628
+  doubao-pro-128k-240628
+  doubao-embedding-text-240715
+  doubao-pro-4k-character-240728
+  doubao-pro-32k-functioncall-240815
+  doubao-pro-32k-240828
+  doubao-lite-4k-character-240828
+  doubao-pro-32k-character-240828
+  doubao-lite-32k-240828
+  doubao-lite-128k-240828
+  doubao-pro-32k-browsing-240828
+  doubao-pro-32k-functioncall-preview
+  doubao-embedding-large-text-240915
+  doubao-lite-32k-character-241015
+  doubao-pro-32k-functioncall-241028
+  doubao-pro-32k-browsing-241115
+  doubao-vision-pro-32k-241028
+  doubao-vision-lite-32k-241015
+  doubao-seaweed-241128
+  doubao-pro-256k-241115
+  doubao-pro-32k-character-241215
+  doubao-pro-32k-241215
+  doubao-1-5-lite-32k-250115
+  doubao-1-5-pro-32k-250115
+  doubao-1-5-vision-pro-32k-250115
+  doubao-embedding-vision-241215
+  doubao-1-5-pro-256k-250115
+  deepseek-v3-241226
+  deepseek-r1-distill-qwen-7b-250120
+  deepseek-r1-distill-qwen-32b-250120
+  deepseek-r1-250120
+  doubao-1-5-pro-32k-character-250228
+  doubao-1.5-vision-lite-250315
+  deepseek-v3-250324
+  doubao-1.5-vision-pro-250328
+  doubao-lite-32k-character-250228
+  doubao-1.5-ui-tars-250328
+  doubao-embedding-vision-250328
+  doubao-1-5-thinking-pro-250415
+  wan2-1-14b-i2v-250225
+  wan2-1-14b-t2v-250225
+  doubao-1-5-thinking-pro-m-250415
+  doubao-seedance-1-0-lite-i2v-250428
+  doubao-seedance-1-0-lite-t2v-250428
+  doubao-seedream-3-0-t2i-250415
+  wan2-1-14b-flf2v-250417
+  doubao-1-5-thinking-vision-pro-250428
+  doubao-1-5-thinking-pro-m-250428
+  doubao-embedding-large-text-250515
+  doubao-1-5-ui-tars-250428
+  deepseek-r1-250528
+  doubao-seed-1-6-flash-250615
+  doubao-seed-1-6-250615
+  doubao-seed-1-6-thinking-250615
+  doubao-seedance-1-0-pro-250528
+  doubao-embedding-vision-250615
+  doubao-seed-1-6-thinking-250715
+  doubao-1-5-pro-32k-character-250715
+  doubao-seededit-3-0-i2i-250628
+  doubao-seed-1-6-flash-250715
+  kimi-k2-250711
+  doubao-seed-1-6-vision-250815
+  deepseek-v3-1-250821
+  doubao-seed-1-6-flash-250828
+  glm-4-5-air-20250728
+  qwen3-8b-20250429
+  qwen3-32b-20250429
+  qwen2-5-72b-20240919
+  doubao-seedream-4-0-250828
+  kimi-k2-250905
+  doubao-seed-translation-250915
+  deepseek-v3-1-terminus
+  doubao-smart-router-250928
+  doubao-seed-1-6-251015
+  doubao-seedance-1-0-pro-fast-251015
+  doubao-seed-1-6-lite-251015
+  doubao-seed3d-1-0-250928
+  kimi-k2-thinking-251104
+  doubao-seed-code-preview-251028
+  qwen3-0-6b-20250429
+  qwen3-14b-20250429
+  doubao-seedream-4-5-251128
+  doubao-embedding-vision-251215
+  deepseek-v3-2-251201
+  doubao-seedance-1-5-pro-251215
+  glm-4-7-251222
+  doubao-seed-1-8-251228
+  doubao-seed-character-251128
+  doubao-seed-2-0-lite-260215
+  doubao-seedance-2-0-260128
+  doubao-seedream-5-0-260128
+  doubao-seed-2-0-mini-260215
+  doubao-seed-2-0-pro-260215
+  doubao-seedance-2-0-fast-260128
+  doubao-seed-2-0-code-preview-260215
+  hyper3d-gen2-260112
+  hitem3d-2-0-251223
+  doubao-seed3d-2-0-260328
+  doubao-seed-2-0-mini-260428
+  doubao-seed-2-0-lite-260428
+  deepseek-v4-pro-260425
+  deepseek-v4-flash-260425
+  doubao-seedance-2-0-mini-260615
+total: 120

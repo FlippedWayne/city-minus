@@ -1,0 +1,36 @@
+# 城市变迁认知多智能体系统
+
+# 核心
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# 知识图谱
+lightrag-hku>=1.4.0
+networkx>=3.0
+
+# 大模型
+openai>=1.0.0
+httpx>=0.24.0
+
+# Embedding
+sentence-transformers>=2.0.0
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+
+# 文档解析
+pypdf>=3.0.0
+PyMuPDF>=1.24.0
+jieba>=0.42
+
+# 智能体框架
+agentscope>=2.0.0
+
+# HTTP API
+fastapi>=0.100.0
+uvicorn>=0.20.0
+python-multipart>=0.0.9
+
+# 测试
+pytest>=7.0.0

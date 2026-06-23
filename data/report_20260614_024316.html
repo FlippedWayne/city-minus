@@ -1,0 +1,410 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>空间数字化红线预警影响综合分析报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f6f6f6;
+            font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #111827;
+            padding: 20px 0;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        header {
+            margin-bottom: 32px;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+        .subtitle {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-left: 3px solid #2563eb;
+            padding-left: 12px;
+            margin: 2rem 0 1rem 0;
+        }
+        h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 20px;
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+        .stat-card .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        .stat-card .sub {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+        .card p {
+            margin-bottom: 12px;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .badge-enter {
+            background: #ecfdf5;
+            color: #059669;
+        }
+        .badge-exit {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        .badge-neutral {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.875rem;
+        }
+        caption {
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+        thead {
+            background: #2563eb;
+            color: #ffffff;
+        }
+        th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .ref {
+            color: #6b7280;
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+        footer {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 20px;
+            margin-top: 32px;
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: center;
+        }
+        .highlight {
+            background: #f3f4f6;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+            color: #374151;
+        }
+        .evidence-missing {
+            color: #6b7280;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            th, td {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>空间数字化红线预警影响综合分析报告</h1>
+            <div class="subtitle">报告日期：2025年7月 · 数据范围：2020年—2025年城市边界动态演变</div>
+            <div class="subtitle" style="margin-top:4px;">核心机制：三区三线（生态保护红线、永久基本农田控制线、城镇开发边界）</div>
+        </header>
+
+        <main>
+            <!-- 数据概览 -->
+            <section>
+                <h2>数据概览</h2>
+                <div class="card-grid">
+                    <div class="stat-card">
+                        <div class="label">总变化事件</div>
+                        <div class="value">14</div>
+                        <div class="sub">2020–2025 边界进出事件</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">进入边界</div>
+                        <div class="value">8</div>
+                        <div class="sub">2023–2025 年新增点位</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">退出边界</div>
+                        <div class="value">6</div>
+                        <div class="sub">因红线预警等原因退出</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">净变化</div>
+                        <div class="value">+2</div>
+                        <div class="sub">边界内点位净增</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 空间变化分析 -->
+            <section>
+                <h2>空间变化分析</h2>
+                <div class="card">
+                    <h3>逐年变化摘要</h3>
+                    <p><strong>2023年：</strong>进入边界3个点位（居住组团R、国际会议中心、居住组团W），退出边界2个点位（钱江新城住区、运河二通道港区）。其中居住组团W位于生态保护红线内，国际会议中心位于永久基本农田内，存在合规隐患 [空间分析-E2(2023)]。</p>
+                    <p><strong>2024年：</strong>进入边界3个点位（西湖风景名胜区、城西银泰商圈、奥体中心），退出边界2个点位（居住组团W、滨江互联网小镇）。西湖风景名胜区位于生态保护红线内，仅存在1年即退出 [空间分析-E2(2024)]。</p>
+                    <p><strong>2025年：</strong>进入边界2个点位（临平新城商圈、滨江互联网小镇），退出边界1个点位（西湖风景名胜区）。滨江互联网小镇呈现“退出—再进入”的反复特征 [空间分析-E2(2025)]。</p>
+                    <div class="highlight">
+                        <strong>关键空间格局：</strong>退出点位合计影响人口超过10万人（居住组团W 42,940人、钱江新城住区 28,283人、居住组团Q 31,677人），人口承载空间被迫重新分配 [空间分析-E2][空间分析-E3][空间分析-E4(2023)]。
+                    </div>
+                </div>
+            </section>
+
+            <!-- 政策驱动分析 -->
+            <section>
+                <h2>政策驱动分析</h2>
+                <div class="card">
+                    <p>空间数字化红线预警是一项依托GIS和城市大脑技术，对基本农田、生态保护红线等核心管控边界内的项目进行实时监测的政策措施 [图谱推理-E5]。该机制被纳入《杭州市土地利用规划白皮书（2021-2025）》第五章“政策实施保障”中，原文记载为：“空间数字化红线预警：依托G…” [图谱推理-D2]，是保障土地红线刚性管控的核心技术手段。</p>
+                    <p>针对位于永久基本农田内的在建/已建成项目，规划文件明确采取“控制与流转”政策，即“红线刚性保护、存量有序流转、占补平衡纠偏”的差异化处置方案 [图谱推理-D1]。2024年，奥体中心相关的不符合红线要求的非核心点位被叫停 [图谱推理-D4]。</p>
+                    <p>政策执行中呈现“先纳后退”的矛盾模式：2023—2025年间，每年均有位于生态保护红线或永久基本农田内的点位被纳入边界（如国际会议中心、居住组团W、西湖风景名胜区、滨江互联网小镇），随后又因红线约束被清退，说明事前审查环节仍存在漏洞。</p>
+                </div>
+            </section>
+
+            <!-- 因果推理 -->
+            <section>
+                <h2>因果推理</h2>
+                <div class="card">
+                    <p><strong>直接因果链：</strong>空间数字化红线预警（政策工具）→ 实时监测管控边界内的项目 → 识别违规点位 → 触发清退或调整 → 边界退出事件发生。</p>
+                    <p><strong>生态保护红线最强约束：</strong>涉及生态保护红线的点位（居住组团W、滨江互联网小镇、西湖风景名胜区）均出现了“进入后快速退出”或“反复进出”的现象，退出概率100%。预警机制对生态敏感区具有“一票否决”式效力。</p>
+                    <p><strong>永久基本农田的存量风险：</strong>国际会议中心（在建）、下沙大学城北住区（在建）、杭州大剧院（规划中）等点位目前仍在边界内，但位于基本农田上，未来存在被清退的潜在风险 [空间分析-E1][空间分析-E17][空间分析-E20]。</p>
+                    <p><strong>人口再分配压力：</strong>退出点位合计影响超过10万人的居住空间，这些人口的居住、就业、公共服务需求需要重新在边界内空间进行安置和平衡，对城市公共服务配套形成压力。</p>
+                    <p class="evidence-missing">关于预警机制的具体技术实现细节（如监测频率、阈值设定）以及政策制定过程中的博弈分析，当前证据不足，无法进一步推理。</p>
+                </div>
+            </section>
+
+            <!-- 事件详情表格 -->
+            <section>
+                <h2>事件详情</h2>
+                <div class="card">
+                    <table>
+                        <caption>2020–2025 年城市边界变化事件清单</caption>
+                        <thead>
+                            <tr>
+                                <th>点位名称</th>
+                                <th>所在区域</th>
+                                <th>事件类型</th>
+                                <th>年份</th>
+                                <th>红线类型</th>
+                                <th>状态</th>
+                                <th>引用编号</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>居住组团R</td>
+                                <td>临平区</td>
+                                <td><span class="badge badge-enter">进入</span></td>
+                                <td>2023</td>
+                                <td>城镇开发边界</td>
+                                <td>已建成，服务27,236人</td>
+                                <td class="ref">[空间分析-E2(2023)]</td>
+                            </tr>
+                            <tr>
+                                <td>国际会议中心</td>
+                                <td>拱墅区</td>
+                                <td><span class="badge badge-enter">进入</span></td>
+                                <td>2023</td>
+                                <td>永久基本农田</td>
+                                <td>在建，服务5,212人</td>
+                                <td class="ref">[空间分析-E2(2023)]</td>
+                            </tr>
+                            <tr>
+                                <td>居住组团W</td>
+                                <td>西湖区</td>
+                                <td><span class="badge badge-enter">进入</span></td>
+                                <td>2023</td>
+                                <td>生态保护红线</td>
+                                <td>已建成，服务42,940人</td>
+                                <td class="ref">[空间分析-E2(2023)]</td>
+                            </tr>
+                            <tr>
+                                <td>西湖风景名胜区</td>
+                                <td>临平区</td>
+                                <td><span class="badge badge-enter">进入</span></td>
+                                <td>2024</td>
+                                <td>生态保护红线</td>
+                                <td>在建</td>
+                                <td class="ref">[空间分析-E2(2024)]</td>
+                            </tr>
+                            <tr>
+                                <td>城西银泰商圈</td>
+                                <td>余杭区</td>
+                                <td><span class="badge badge-enter">进入</span></td>
+                                <td>2024</td>
+                                <td>城镇开发边界</td>
+                                <td>在建</td>
+                                <td class="ref">[空间分析-E2(2024)]</td>
+                            </tr>
+                            <tr>
+                                <td>奥体中心</td>
+                                <td>余杭区</td>
+                                <td><span class="badge badge-enter">进入</span></td>
+                                <td>2024</td>
+                                <td>城镇开发边界</td>
+                                <td>待更新，服务42,170人</td>
+                                <td class="ref">[空间分析-E2(2024)]</td>
+                            </tr>
+                            <tr>
+                                <td>临平新城商圈</td>
+                                <td>上城区</td>
+                                <td><span class="badge badge-enter">进入</span></td>
+                                <td>2025</td>
+                                <td>城镇开发边界</td>
+                                <td>在建</td>
+                                <td class="ref">[空间分析-E2(2025)]</td>
+                            </tr>
+                            <tr>
+                                <td>滨江互联网小镇</td>
+                                <td>临安区</td>
+                                <td><span class="badge badge-enter">进入</span></td>
+                                <td>2025</td>
+                                <td>生态保护红线</td>
+                                <td>规划中（2024年曾退出）</td>
+                                <td class="ref">[空间分析-E2(2025)]</td>
+                            </tr>
+                            <tr>
+                                <td>钱江新城住区</td>
+                                <td>—</td>
+                                <td><span class="badge badge-exit">退出</span></td>
+                                <td>2023</td>
+                                <td>城镇开发边界</td>
+                                <td>待更新，服务28,283人</td>
+                                <td class="ref">[空间分析-E6(2023)]</td>
+                            </tr>
+                            <tr>
+                                <td>运河二通道港区</td>
+                                <td>—</td>
+                                <td><span class="badge badge-exit">退出</span></td>
+                                <td>2023</td>
+                                <td>永久基本农田</td>
+                                <td>已建成</td>
+                                <td class="ref">[空间分析-E5(2023)]</td>
+                            </tr>
+                            <tr>
+                                <td>居住组团W</td>
+                                <td>西湖区</td>
+                                <td><span class="badge badge-exit">退出</span></td>
+                                <td>2024</td>
+                                <td>生态保护红线</td>
+                                <td>已建成，服务42,940人</td>
+                                <td class="ref">[空间分析-E5(2024)]</td>
+                            </tr>
+                            <tr>
+                                <td>滨江互联网小镇</td>
+                                <td>临安区</td>
+                                <td><span class="badge badge-exit">退出</span></td>
+                                <td>2024</td>
+                                <td>生态保护红线</td>
+                                <td>规划中</td>
+                                <td class="ref">[空间分析-E2(2024)]</td>
+                            </tr>
+                            <tr>
+                                <td>西湖风景名胜区</td>
+                                <td>临平区</td>
+                                <td><span class="badge badge-exit">退出</span></td>
+                                <td>2025</td>
+                                <td>生态保护红线</td>
+                                <td>在建</td>
+                                <td class="ref">[空间分析-E4(2025)]</td>
+                            </tr>
+                            <tr>
+                                <td>居住组团Q</td>
+                                <td>—</td>
+                                <td><span class="badge badge-exit">退出</span></td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>服务31,677人</td>
+                                <td class="ref">[空间分析-E2]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="evidence-missing" style="margin-top:12px;">注：部分点位退出年份或红线类型未在分析结果中明确标注，以“—”表示证据不足。</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>城市变迁分析系统 · 空间数字化红线预警影响综合分析报告</div>
+            <div style="margin-top:4px;">生成时间：2025年7月 · 数据版本 v2.3</div>
+        </footer>
+    </div>
+</body>
+</html>
+```

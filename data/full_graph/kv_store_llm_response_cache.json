@@ -1,0 +1,294 @@
+{
+  "hybrid:keywords:69da33ca1ec0720162e5dc90848ec20c": {
+    "return": "{\"high_level_keywords\": [\"Urban boundaries\", \"Points within city limits\", \"2020 year\"], \"low_level_keywords\": [\"Point list\", \"City boundaries\", \"Points of interest\"]}",
+    "cache_type": "keywords",
+    "chunk_id": null,
+    "original_prompt": "2020年城市边界内所有点位列表",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781375167,
+    "update_time": 1781375167,
+    "_id": "hybrid:keywords:69da33ca1ec0720162e5dc90848ec20c"
+  },
+  "hybrid:query:1c748cfe8b6d4588733350a067691cdf": {
+    "return": "根据提供的知识图谱数据，**2020年城市边界**内共包含 **10 个点位**。然而，在给定的“点位”类型的实体描述中，信息并未完整列出所有这10个点位。以下是通过“首次出现”标签能够确认的、在2020年边界内的点位：\n\n*   **奥体中心**（首次出现：2020年）\n*   **青山湖科创园**（首次出现：2020年）\n*   **居住组团R**（首次出现：2020年）\n*   **滨江互联网小镇**（首次出现：2020年）\n\n由于数据中未提供其他点位（如下沙大学城北住区、良渚品质住区等）的首次出现年份信息，因此无法确定它们在2020年是否已处于边界内。\n\n### References\n\n- [1] 2020年城市边界",
+    "cache_type": "query",
+    "chunk_id": null,
+    "original_prompt": "2020年城市边界内所有点位列表",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "hl_keywords": "Urban boundaries, Points within city limits, 2020 year",
+      "ll_keywords": "Point list, City boundaries, Points of interest",
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781375183,
+    "update_time": 1781375183,
+    "_id": "hybrid:query:1c748cfe8b6d4588733350a067691cdf"
+  },
+  "hybrid:keywords:99633db45c0dd991b55b57941c30e10b": {
+    "return": "{\"high_level_keywords\": [\"Spatial digital red line warning\", \"Consequences and impacts\", \"Spatial governance\"], \"low_level_keywords\": [\"Digital red line\", \"Early warning system\", \"Spatial planning\", \"Ecological protection\", \"Urban development risks\"]}",
+    "cache_type": "keywords",
+    "chunk_id": null,
+    "original_prompt": "空间数字化红线预警 后果 影响",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781376240,
+    "update_time": 1781376240,
+    "_id": "hybrid:keywords:99633db45c0dd991b55b57941c30e10b"
+  },
+  "hybrid:query:037a2b050381ff85b5847c40adbea054": {
+    "return": "根据您提供的知识图谱数据，关于“空间数字化红线预警”的后果和影响，可以从城市边界动态演变、控制线约束以及点位功能调整等多个维度进行分析。\n\n### 城市边界动态演变与空间管控\n\n空间数字化红线预警最直接的影响体现在城市边界的动态调整上。从2020年到2025年，城市边界内的点位数量经历了从10个（2020年）到15个（2025年）的波动变化，但并非单向增长。每年都有新的点位被纳入，同时也有原有点位被划出。例如，2023年有3个点（居住组团W、居住组团R、国际会议中心）进入边界，但同时也有2个点（运河二通道港区、钱江新城住区）退出边界。这种“有进有出”的动态平衡，表明红线预警机制正在发挥调控作用，防止城市的无序蔓延。\n\n### 不同类型控制线的刚性约束影响\n\n知识图谱中明确标注了各点位所处的控制线类型，这直接决定了发展的可行性及后果：\n\n- **永久基本农田控制线**：多个点位（如国际会议中心、运河二通道港区、下沙大学城北住区、大江东智造园、杭州大剧院）均位于此控制线内。这些点位的“在建”或“已建成”状态表明项目可能面临严格的用地合规性审查，存在被叫停、整改或调整规划的风险。例如，尽管国际会议中心目前处于“在建”阶段，但其位于永久基本农田上，这是一个重大的合规性风险点。\n- **生态保护红线**：位于生态保护红线内的点位（如居住组团W、滨江互联网小镇、西湖风景名胜区）面临最严格的环境保护要求。例如，**居住组团W**在2023年被纳入边界后，于2024年即因“产业园区建设”原因退出边界外；**滨江互联网小镇**于2025年进入边界，但此前在2024年曾退出边界外。这表明生态保护红线对空间开发具有一票否决权，相关开发活动极易被中止或迁移。\n- **城镇开发边界**：位于城镇开发边界内的点位（如钱江新城住区、青山湖科创园、城西银泰商圈、奥体中心、半山森林公园、良渚品质住区、萧山国际机场等）虽具备开发潜力，但同样受控于增长边界。例如，**城西银泰商圈**曾在2022年因“交通网络延伸”而退出边界外，这反映了交通等基础设施的延伸也可能导致部分区域在阶段性开发后被重新评估。\n\n### 布局调整对人口与功能的影响\n\n红线预警直接导致了人口和功能布局的调整。例如，服务人口高达31677人的**居住组团Q**（滨江区）以及服务人口28283人的**钱江新城住区**被划出边界，意味着大量居住人口的规划需要重新安置或调整。同时，以产业创新为重点的**青山湖科创园**和**大江东智造园**在2022年被纳入，而**滨江互联网小镇**则经历了进入和退出边界的波动，这反映了产业空间布局在红线约束下的不稳定性。\n\n### 结论\n\n综合来看，空间数字化红线预警的后果是深刻的。它不仅塑造了城市空间增长的动态边界，还对具体点位的开发阶段（规划中、在建、已建成、待更新）和类型（居住、工业、商业、服务）施加了强制性约束。位于生态保护红线或永久基本农田内的项目面临极高的中断或迁移风险，而位于城镇开发边界内的项目也可能因阶段性评估而被调整。这一机制最终导致了城市人口、产业和服务功能的动态再分配，以避免触及空间发展的底线。\n\n### References\n\n*   [1] Knowledge Graph Data (Entity) - 包含2020年至2025年各年份的城市边界状态、进入/退出边界事件以及各点位的控制线属性和功能信息。\n*   [2] Knowledge Graph Data (Relationship) - 包含边界事件与具体点位之间的关联关系，以及各点位之间的地理邻近关系。",
+    "cache_type": "query",
+    "chunk_id": null,
+    "original_prompt": "空间数字化红线预警 后果 影响",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "hl_keywords": "Spatial digital red line warning, Consequences and impacts, Spatial governance",
+      "ll_keywords": "Digital red line, Early warning system, Spatial planning, Ecological protection, Urban development risks",
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781376259,
+    "update_time": 1781376259,
+    "_id": "hybrid:query:037a2b050381ff85b5847c40adbea054"
+  },
+  "hybrid:query:bc5e1cba9f2b5048a7e86219e312e4c5": {
+    "return": "API temporarily unavailable, returning raw data only.",
+    "cache_type": "query",
+    "chunk_id": null,
+    "original_prompt": "杭州土地利用规划核心政策",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "hl_keywords": "",
+      "ll_keywords": "杭州土地利用规划核心政策",
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781376994,
+    "update_time": 1781376994,
+    "_id": "hybrid:query:bc5e1cba9f2b5048a7e86219e312e4c5"
+  },
+  "hybrid:query:d80814a0751c876e366b5bfe4244fa0b": {
+    "return": "API temporarily unavailable, returning raw data only.",
+    "cache_type": "query",
+    "chunk_id": null,
+    "original_prompt": "2024年进入边界的点",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "hl_keywords": "",
+      "ll_keywords": "2024年进入边界的点",
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781377073,
+    "update_time": 1781377073,
+    "_id": "hybrid:query:d80814a0751c876e366b5bfe4244fa0b"
+  },
+  "hybrid:keywords:890319a951d79027269210150855e033": {
+    "return": "{\"high_level_keywords\": [\"Urban boundary change\", \"Driving forces\", \"Policy analysis\", \"Causes analysis\"], \"low_level_keywords\": [\"2020-2025\", \"Urban expansion\", \"Land use policy\", \"Urban planning\", \"Spatial change\"]}",
+    "cache_type": "keywords",
+    "chunk_id": null,
+    "original_prompt": "2020-2025年城市边界变化驱动力 政策 原因分析",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781425622,
+    "update_time": 1781425622,
+    "_id": "hybrid:keywords:890319a951d79027269210150855e033"
+  },
+  "hybrid:query:0c5ba59b5742c0cd70bd2f109489f5d8": {
+    "return": "根据提供的知识图谱数据，城市边界从2020年的10个点位，逐年扩展至2025年的15个点位，期间经历了明显的动态调整，其驱动力主要体现在**城市更新改造**、**交通网络延伸**、**产业园区建设**、**城市扩张**以及**生态环境修复**等方面。\n\n### 边界扩展与核心增长点\n\n观察边界扩展的空间路径，城市发展的集聚效应显著。**钱江新城**、**临平新城**、**大江东产业集聚区**及**城西科创大走廊**等规划片区是新增点位的主要落址区域。例如，在2022年，**大江东智造园**（位于规划片区：大江东产业集聚区）和**青山湖科创园**（位于规划片区：城西科创大走廊）作为产业创新区，因**城市更新改造**与**城市扩张**原因进入边界内。2023年，**居住组团W**（位于规划片区：钱江新城）因**产业园区建设**进入边界，进一步强化了核心增长极的空间承载力。\n\n### 退出机制与生态约束\n\n边界动态调整并非单向扩张，也存在撤退现象，这体现了**生态保护红线**和**永久基本农田**等控制性因素对城市无序蔓延的约束。例如，**西湖风景名胜区**在2021年首次退出边界，原因明确为**生态环境修复**，但又在2024年通过**生态环境修复**重回边界，反映出生态与城市发展界限的动态权衡。同样，**运河二通道港区**在2023年因**生态环境修复**退出，**城西银泰商圈**在2022年因**交通网络延伸**退出后又于2024年因同样原因重新进入，显示了政策与规划导向下的复杂调整。\n\n### 功能类型与政策驱动力\n\n从功能类型上看，**居住用地 (R2)**、**产业用地 (M1)** 和**公共服务用地 (A)** 是边界内新增的主要功能类型。例如，2021年进入的**钱江新城住区**和**居住组团Q**（均为R2，高品质住区或人才公寓组团），其变化原因分别为**交通网络延伸**和**城市更新改造**。产业用地如**滨江互联网小镇**（M1，产业创新区）在2024年退出、2025年再次进入，原因均涉及**城市扩张**和**产业园区建设**，显示了产业空间布局的动态调整。公共服务核心点**国际会议中心**（A，公共服务）于2023年因**城市更新改造**进入，服务于其所在的规划片区。这些变化共同揭示了城市边界受多重政策与建设活动综合影响的演变轨迹。\n\n### References\n\n*   [1] Knowledge Graph Data (Entity)\n*   [2] Knowledge Graph Data (Relationship)",
+    "cache_type": "query",
+    "chunk_id": null,
+    "original_prompt": "2020-2025年城市边界变化驱动力 政策 原因分析",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "hl_keywords": "Urban boundary change, Driving forces, Policy analysis, Causes analysis",
+      "ll_keywords": "2020-2025, Urban expansion, Land use policy, Urban planning, Spatial change",
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781425643,
+    "update_time": 1781425643,
+    "_id": "hybrid:query:0c5ba59b5742c0cd70bd2f109489f5d8"
+  },
+  "hybrid:keywords:95e388763d08243ffdeea7640eb385a0": {
+    "return": "{\"high_level_keywords\": [\"Urban boundary changes\", \"Policy-driven factors\", \"Cause analysis\"], \"low_level_keywords\": [\"Hangzhou\", \"2023\", \"2024\", \"City expansion policies\", \"Land use regulation\"]}",
+    "cache_type": "keywords",
+    "chunk_id": null,
+    "original_prompt": "杭州城市边界变化 政策驱动 原因分析 2023 2024",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781455130,
+    "update_time": 1781455130,
+    "_id": "hybrid:keywords:95e388763d08243ffdeea7640eb385a0"
+  },
+  "hybrid:query:c26c512b2c430f0c18adf389e455d9ae": {
+    "return": "根据提供的知识图谱数据，2023年至2024年杭州城市边界发生了显著变化，边界内点位数量由13个增加至14个，且伴随一系列进入与退出事件。这些变化背后反映出多种政策驱动的因素，包括城市更新改造、产业园区建设、交通网络延伸以及生态环境修复等。\n\n### 2023年边界变化与政策驱动\n\n2023年，共有3个点位进入城市边界，分别是**国际会议中心**、**居住组团W**和**居住组团R**。其中，国际会议中心的形成原因为“城市更新改造”，居住组团W的原因为“产业园区建设”，居住组团R的原因为“城市更新改造”。这些原因表明，城市更新与产业园区建设是推动边界扩张的重要政策导向。同年，有2个点位退出边界：**运河二通道港区**，其变化原因为“生态环境修复”；**钱江新城住区**，原因为“交通网络延伸”。这显示出生态修复和交通规划调整也可能导致部分用地退出城市核心边界。\n\n### 2024年边界变化与政策驱动\n\n2024年，边界内新进入3个点位：**奥体中心**（原因：产业园区建设）、**城西银泰商圈**（原因：交通网络延伸）以及**西湖风景名胜区**（原因：生态环境修复）。这些进入事件进一步印证了产业政策、交通规划与生态保护对城市空间发展的多重驱动。同年退出的点位包括**居住组团W**（原因：产业园区建设）和**滨江互联网小镇**（原因：城市扩张）。值得注意的是，居住组团W在2023年进入、2024年退出，其变动可能与产业园区建设的动态调整有关；滨江互联网小镇的退出则反映了城市扩张过程中用地功能的再平衡。\n\n### 综合分析\n\n从2023年至2024年的边界变化可以看出，政策驱动主要集中以下四个维度：  \n- **城市更新改造**：推动部分公共服务与居住功能点进入边界（如国际会议中心、居住组团R）。  \n- **产业园区建设**：是边界扩张与收缩的活跃因素，部分产业功能点快速进出（如居住组团W、奥体中心）。  \n- **交通网络延伸**：促进商业与住区功能点的进入（如钱江新城住区退出，但城西银泰商圈进入，体现交通导向的发展）。  \n- **生态环境修复**：影响绿地与交通点位的边界归属（如运河二通道港区退出、西湖风景名胜区进入）。  \n\n这些政策因素相互作用，导致城市边界在2023-2024年间呈现动态调整，总体表现出以发展和生态并重的空间治理特征。\n\n### References\n\n（无可用参考文档）",
+    "cache_type": "query",
+    "chunk_id": null,
+    "original_prompt": "杭州城市边界变化 政策驱动 原因分析 2023 2024",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "hl_keywords": "Urban boundary changes, Policy-driven factors, Cause analysis",
+      "ll_keywords": "Hangzhou, 2023, 2024, City expansion policies, Land use regulation",
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781455155,
+    "update_time": 1781455155,
+    "_id": "hybrid:query:c26c512b2c430f0c18adf389e455d9ae"
+  },
+  "hybrid:keywords:e374bd4f47dbecc01959b9a3cbbd6edc": {
+    "return": "{\"high_level_keywords\": [\"Urban boundary evolution\", \"Policy-driven development\", \"Urban expansion trends\"], \"low_level_keywords\": [\"Hangzhou\", \"2022\", \"2023\", \"Urban planning policies\", \"City boundary changes\"]}",
+    "cache_type": "keywords",
+    "chunk_id": null,
+    "original_prompt": "杭州城市边界演变趋势 政策驱动 2022 2023",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781456749,
+    "update_time": 1781456749,
+    "_id": "hybrid:keywords:e374bd4f47dbecc01959b9a3cbbd6edc"
+  },
+  "hybrid:keywords:df7eea2a158bce9bc171e7a45cef53c9": {
+    "return": "{\"high_level_keywords\": [\"Land use planning\", \"Urban governance\", \"Industrial innovation\"], \"low_level_keywords\": [\"\\u676d\\u5dde\\u5e02\\u571f\\u5730\\u5229\\u7528\\u89c4\\u5212\\u767d\\u76ae\\u4e66\", \"\\u98de\\u5730\\u6cbb\\u7406\\u6a21\\u5f0f\", \"\\u4ea7\\u4e1a\\u521b\\u65b0\\u533a\", \"2021-2025\"]}",
+    "cache_type": "keywords",
+    "chunk_id": null,
+    "original_prompt": "杭州市土地利用规划白皮书 飞地治理模式 产业创新区 2021-2025",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781456807,
+    "update_time": 1781456807,
+    "_id": "hybrid:keywords:df7eea2a158bce9bc171e7a45cef53c9"
+  },
+  "hybrid:keywords:0ac1715466d3dc23421d6d576241a631": {
+    "return": "{\"high_level_keywords\": [\"Enclave governance model\", \"Industrial innovation zone\", \"Land use planning\", \"Policy provisions\"], \"low_level_keywords\": [\"Hangzhou\", \"Policy clauses\", \"Spatial planning\", \"Industrial district\", \"Governance model\"]}",
+    "cache_type": "keywords",
+    "chunk_id": null,
+    "original_prompt": "飞地治理模式 产业创新区 政策条款 杭州 土地利用规划",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1781456821,
+    "update_time": 1781456821,
+    "_id": "hybrid:keywords:0ac1715466d3dc23421d6d576241a631"
+  },
+  "hybrid:keywords:5ddb7c3195000f508c178b9bf67de0a6": {
+    "return": "{\"high_level_keywords\": [\"Urban spatial pattern\", \"Spatial structure\", \"Development boundary\", \"Ecological protection\", \"Cross-regional collaboration\"], \"low_level_keywords\": [\"\\u676d\\u5dde\", \"Three zones and three lines\", \"Urban development boundary\", \"Ecological conservation\", \"Regional coordination\"]}",
+    "cache_type": "keywords",
+    "chunk_id": null,
+    "original_prompt": "杭州城市空间格局 三区三线 开发边界 生态保护 跨区协作 空间结构",
+    "queryparam": {
+      "mode": "hybrid",
+      "response_type": "Multiple Paragraphs",
+      "top_k": 40,
+      "chunk_top_k": 20,
+      "max_entity_tokens": 6000,
+      "max_relation_tokens": 8000,
+      "max_total_tokens": 30000,
+      "user_prompt": "",
+      "enable_rerank": true
+    },
+    "create_time": 1782031802,
+    "update_time": 1782031802,
+    "_id": "hybrid:keywords:5ddb7c3195000f508c178b9bf67de0a6"
+  }
+}

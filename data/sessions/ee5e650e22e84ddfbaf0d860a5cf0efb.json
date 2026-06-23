@@ -1,0 +1,39 @@
+{
+  "session_id": "ee5e650e22e84ddfbaf0d860a5cf0efb",
+  "created_at": "2026-06-16T16:01:15.170093",
+  "current_task_id": "8031d8247f6f4f8caa5d4ae56499a3fa",
+  "tenant_id": "",
+  "turns": [
+    {
+      "task_id": "8031d8247f6f4f8caa5d4ae56499a3fa",
+      "session_id": "ee5e650e22e84ddfbaf0d860a5cf0efb",
+      "question": "红线刚性保护导致了什么区域的消退或者扩张",
+      "status": "done",
+      "intent": {
+        "agents": [
+          "SpatialEventAgent"
+        ],
+        "is_report": false
+      },
+      "sub_results": {
+        "SpatialEventAgent": {
+          "agent_name": "SpatialEventAgent",
+          "status": "failed",
+          "answer": "",
+          "evidence": [],
+          "tool_calls": [],
+          "self_audit": null,
+          "error": "APIConnectionError: Connection error.",
+          "started_at": "2026-06-16T16:02:09.362352",
+          "finished_at": "2026-06-16T16:02:09.362352"
+        }
+      },
+      "aggregated": "⚠ 所有分析维度均未能产出有效结果，无法回答该问题。\n\n  • SpatialEventAgent: 失败 — APIConnectionError: Connection error.\n\n可能原因：\n  1. 数据未导入（检查 data/gis_graph/ 与 data/full_graph/ 是否为空）\n  2. DeepSeek API 不可用（检查 .env 中的 DEEPSEEK_API_KEY 与网络）\n  3. 问题与已有数据无关——换一个角度提问",
+      "result": "⚠ 所有分析维度均未能产出有效结果，无法回答该问题。\n\n  • SpatialEventAgent: 失败 — APIConnectionError: Connection error.\n\n可能原因：\n  1. 数据未导入（检查 data/gis_graph/ 与 data/full_graph/ 是否为空）\n  2. DeepSeek API 不可用（检查 .env 中的 DEEPSEEK_API_KEY 与网络）\n  3. 问题与已有数据无关——换一个角度提问",
+      "citation_audit": null,
+      "error": null,
+      "started_at": "2026-06-16T16:01:15.173290",
+      "finished_at": "2026-06-16T16:02:09.363351"
+    }
+  ]
+}

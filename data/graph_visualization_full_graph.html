@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>full_graph 知识图谱</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', sans-serif; background: #1a1a2e; color: #eee; }
+        .container { display: flex; height: 100vh; }
+        .sidebar { width: 300px; background: #16213e; padding: 20px; overflow-y: auto; }
+        .graph-area { flex: 1; position: relative; }
+        #graph { width: 100%; height: 100%; }
+        .legend { position: absolute; top: 20px; right: 20px; background: rgba(22,33,62,0.9); padding: 15px; border-radius: 8px; }
+        .legend-item { display: flex; align-items: center; margin: 5px 0; }
+        .legend-color { width: 20px; height: 20px; border-radius: 50%; margin-right: 10px; }
+        .stats { background: #0f3460; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .node-info { background: #0f3460; padding: 15px; border-radius: 8px; margin-top: 20px; }
+        h2 { color: #e94560; margin-bottom: 15px; }
+        .search-box { width: 100%; padding: 10px; border: 1px solid #444; border-radius: 5px; background: #1a1a2e; color: #eee; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>🏙️ 城市变迁知识图谱</h2>
+            
+            <div class="stats">
+                <h3>📊 图谱统计</h3>
+                <p>节点数量: <strong>111</strong></p>
+                <p>关系数量: <strong>142</strong></p>
+            </div>
+            
+            <input type="text" class="search-box" id="searchInput" placeholder="搜索节点...">
+            
+            <div class="legend">
+                <h3>🎨 图例</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e94560;"></div>
+                    <span>Boundary (边界)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #00b4d8;"></div>
+                    <span>Point (点)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #06d6a0;"></div>
+                    <span>Policy (政策)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ffd166;"></div>
+                    <span>STTE_Event (事件)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #bb86fc;"></div>
+                    <span>District (区域)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff9a76;"></div>
+                    <span>其他</span>
+                </div>
+            </div>
+            
+            <div class="node-info" id="nodeInfo">
+                <h3>📝 节点信息</h3>
+                <p id="nodeInfoText">点击节点查看详情</p>
+            </div>
+        </div>
+        
+        <div class="graph-area">
+            <canvas id="graph"></canvas>
+        </div>
+    </div>
+    
+    <script>
+        const nodes = [{"id": "居住组团R", "type": "SpatialConcept", "description": "本轮新增流转的居住功能组团，被叫停", "x": -0.15276944160271314, "y": 0.7465594209664068}, {"id": "西湖风景名胜区", "type": "District", "description": "杭州西湖周边的风景名胜区，法定功能区", "x": 0.41388454247704476, "y": 0.025638779269458387}, {"id": "临平新城商圈", "type": "Infrastructure", "description": "临平新城的商圈项目", "x": -0.6033009352761427, "y": -0.3593686161271278}, {"id": "国际会议中心", "type": "Infrastructure", "description": "公共服务核心项目", "x": -0.516593033027634, "y": 0.11320354821320926}, {"id": "城西银泰商圈", "type": "Infrastructure", "description": "位于仓前街道的商业设施", "x": -0.10502139086710971, "y": 0.28869539784024456}, {"id": "运河二通道港区", "type": "Infrastructure", "description": "国家级/省级重大水运枢纽，属于重大交通基础设施", "x": -0.37871298308495843, "y": 0.576179329458126}, {"id": "居住组团W", "type": "SpatialConcept", "description": "位于西湖区北山街道的规划居住组团", "x": -0.03262699030212428, "y": -0.02359048405498218}, {"id": "滨江互联网小镇", "type": "Infrastructure", "description": "位于临安区玲珑街道但归属临平新城规划的互联网产业园区", "x": -0.39120397193970974, "y": -0.2923620660648622}, {"id": "湘湖旅游度假区", "type": "Point", "description": "行政区:富阳区 | 街道:鹿山街道 | 规划片区:钱江世纪城 | 经纬度:(120.2222,30.3182) | 功能:生态休闲区 | 用地:G1（公园绿地） | 类型:green_space | ", "x": 0.10743387162414805, "y": -0.04488296638463266}, {"id": "大江东智造园", "type": "Infrastructure", "description": "位于临安区青山湖街道的智能制造园区，由大江东产业集聚区托管", "x": 0.18509175572746447, "y": -0.18727993450423508}, {"id": "奥体中心", "type": "Point", "description": "行政区:余杭区 | 街道:仓前街道 | 规划片区:大江东产业集聚区 | 经纬度:(120.1467,30.2356) | 功能:教育科研区 | 用地:A（公共管理与公共服务用地） | 类型:servi", "x": -0.12736640031862367, "y": -0.2833879399812555}, {"id": "下沙大学城北住区", "type": "District", "description": "高品质住区与公共服务核心，位于下沙", "x": -0.31250429233071736, "y": 0.023663333581149033}, {"id": "钱江新城住区", "type": "Infrastructure", "description": "位于钱江新城的住区，启动城市更新改造", "x": 0.16872403368782557, "y": 0.31192552097265264}, {"id": "半山森林公园", "type": "District", "description": "杭州半山区域的森林公园，规划片区", "x": -0.1977529975453702, "y": -0.1618935087853227}, {"id": "良渚品质住区", "type": "District", "description": "服务人口2.2万的规划住区，属于良渚地区的品质民生项目，进行产城融合评估", "x": 0.15339909649168199, "y": -0.9760866738832576}, {"id": "青山湖科创园", "type": "Infrastructure", "description": "位于滨江区西兴街道的科创园区，纳入钱江新城规划主轴", "x": -0.059323805049942, "y": -0.08095926151852224}, {"id": "萧山国际机场", "type": "Infrastructure", "description": "杭州市级综合交通枢纽，位于萧山区", "x": -0.3793118799139873, "y": 0.7482318611322911}, {"id": "居住组团Q", "type": "Infrastructure", "description": "居住组团Q，与钱江新城住区一同列入城市更新改造", "x": 0.9394580720169122, "y": 0.3566889640892085}, {"id": "杭州大剧院", "type": "Infrastructure", "description": "位于富阳区富春街道的市级文化基础设施", "x": -0.33192456875718507, "y": -0.535052269562948}, {"id": "2020年城市边界", "type": "Boundary", "description": "2020年的城市边界状态，边界内共 10 个点位", "x": 0.9406566598456998, "y": -0.15519490593698712}, {"id": "2021年城市边界", "type": "Boundary", "description": "2021年的城市边界状态，边界内共 11 个点位", "x": -0.28357041009524564, "y": 0.20894534022036157}, {"id": "2022年城市边界", "type": "Boundary", "description": "2022年的城市边界状态，边界内共 12 个点位", "x": -0.7751951721782285, "y": 0.6781974198039257}, {"id": "2023年城市边界", "type": "Boundary", "description": "2023年的城市边界状态，边界内共 13 个点位", "x": -0.810580115255392, "y": 0.47106785995147527}, {"id": "2024年城市边界", "type": "Boundary", "description": "2024年的城市边界状态，边界内共 14 个点位", "x": 0.0024703188093243233, "y": 0.24894180955445666}, {"id": "2025年城市边界", "type": "Boundary", "description": "2025年的城市边界状态，边界内共 15 个点位", "x": -0.23579371302166469, "y": -0.2529129017483058}, {"id": "2021年进入边界事件", "type": "STTE_Event", "description": "2021年共有 2 个点进入边界内：萧山国际机场, 湘湖旅游度假区", "x": 0.6903916275832079, "y": 0.41388292258296655}, {"id": "2021年退出边界事件", "type": "STTE_Event", "description": "2021年共有 1 个点退出边界外：西湖风景名胜区", "x": 0.7318217443535995, "y": 0.7198911666760638}, {"id": "2022年进入边界事件", "type": "STTE_Event", "description": "2022年共有 2 个点进入边界内：大江东智造园, 青山湖科创园", "x": -0.029064255615107372, "y": 0.9898282271054867}, {"id": "2022年退出边界事件", "type": "STTE_Event", "description": "2022年共有 1 个点退出边界外：城西银泰商圈", "x": -0.8840310924161251, "y": -0.4863227233885334}, {"id": "2023年进入边界事件", "type": "STTE_Event", "description": "2023年共有 3 个点进入边界内：居住组团W, 居住组团R, 国际会议中心", "x": -0.9926373738689055, "y": -0.13121997520384748}, {"id": "2023年退出边界事件", "type": "STTE_Event", "description": "2023年共有 2 个点退出边界外：运河二通道港区, 钱江新城住区", "x": -0.587655969003034, "y": 0.05226153041104679}, {"id": "2024年进入边界事件", "type": "STTE_Event", "description": "2024年共有 3 个点进入边界内：奥体中心, 城西银泰商圈, 西湖风景名胜区", "x": 0.9233568678351723, "y": -0.233868067868954}, {"id": "2024年退出边界事件", "type": "STTE_Event", "description": "2024年共有 2 个点退出边界外：居住组团W, 滨江互联网小镇", "x": -0.9076647092252842, "y": 0.19256973371595568}, {"id": "2025年进入边界事件", "type": "STTE_Event", "description": "2025年共有 2 个点进入边界内：临平新城商圈, 滨江互联网小镇", "x": -0.8007801032076618, "y": 0.519922076492218}, {"id": "2025年退出边界事件", "type": "STTE_Event", "description": "2025年共有 1 个点退出边界外：西湖风景名胜区", "x": -0.3500242586279071, "y": 0.9653715573019214}, {"id": "杭州市", "type": "District", "description": "浙江省省会，政策适用的城市", "x": 0.5820514044070123, "y": -0.8032857949793331}, {"id": "三区三线", "type": "SpatialConcept", "description": "城市开发边界、永久基本农田、生态保护红线的统称", "x": -0.7688203942912567, "y": 0.27738996602939614}, {"id": "城市开发边界", "type": "SpatialConcept", "description": "三区三线中控制城市无序蔓延的边界线", "x": 0.4249773977726961, "y": 0.8457434434907278}, {"id": "永久基本农田", "type": "SpatialConcept", "description": "三区三线中保障粮食安全的耕地红线", "x": 0.09569841696432155, "y": -0.5821530120604731}, {"id": "生态保护红线", "type": "SpatialConcept", "description": "三区三线中维护生态安全的管控界线", "x": -0.22184867995590818, "y": -0.7498241403518106}, {"id": "滨江-临安-钱江新城联动轴", "type": "SpatialConcept", "description": "连接滨江、临安和钱江新城的空间发展轴线，定位高新产业创新区", "x": 0.9302625392812239, "y": 0.2953301776684098}, {"id": "滨江区", "type": "District", "description": "杭州市辖区，位于钱塘江南岸", "x": -0.051993940715823465, "y": -0.9770365998929851}, {"id": "西兴街道", "type": "District", "description": "滨江区下辖街道", "x": -0.6969683993101801, "y": -0.6558253443639438}, {"id": "钱江新城", "type": "District", "description": "杭州城市新中心，位于钱塘江北岸的规划功能区", "x": 0.788258270260672, "y": 0.5546074286596016}, {"id": "临安区", "type": "District", "description": "杭州市辖区，位于杭州西部", "x": 0.9860859636916118, "y": -0.05032801252879854}, {"id": "玲珑街道", "type": "District", "description": "临安区下辖街道", "x": -0.8918859730836903, "y": 0.43003804345811963}, {"id": "临平新城", "type": "District", "description": "杭州东部新城，规划涵盖滨江互联网小镇", "x": 0.9373444166924454, "y": 0.24042353092523958}, {"id": "临安-大江东现代制造带", "type": "SpatialConcept", "description": "连接临安与大江东的现代制造业发展带", "x": 0.8482328193064365, "y": -0.05029837242162728}, {"id": "青山湖街道", "type": "District", "description": "临安区下辖街道", "x": 0.41633793863907104, "y": 0.7939879785092213}, {"id": "大江东产业集聚区", "type": "District", "description": "杭州大江东区域产业功能区，托管大江东智造园", "x": -0.6830698928965638, "y": -0.7495938351231471}, {"id": "飞地政策", "type": "Policy", "description": "实行‘研发在核心、产业在周边’的跨区域产业协作政策", "x": -0.9919117306984565, "y": 0.15473573786707562}, {"id": "容积率", "type": "Indicator", "description": "建筑物面积与用地面积的比值，新引入项目不得低于2.5", "x": -0.9276989559950781, "y": 0.006734283654609828}, {"id": "富阳-钱江新城医疗康养组团", "type": "SpatialConcept", "description": "位于富阳区和钱江新城区域的医疗康养功能组团", "x": 0.7896424023882246, "y": -0.23345384777078607}, {"id": "拱墅-上城-西湖跨区品质居住带", "type": "SpatialConcept", "description": "跨拱墅、上城、西湖三区的品质居住带", "x": -0.11320028006187834, "y": 0.13811170745562526}, {"id": "富阳区", "type": "District", "description": "杭州市辖区", "x": -0.570107610200581, "y": -0.8320687944022934}, {"id": "富春街道", "type": "District", "description": "富阳区下辖街道", "x": -0.6217865604231093, "y": -0.7665362433001766}, {"id": "拱墅区", "type": "District", "description": "杭州市辖区", "x": 0.7916046721487444, "y": 0.6367472189003764}, {"id": "西湖区", "type": "District", "description": "杭州市辖区", "x": 0.1579187072567472, "y": 0.9767380509391026}, {"id": "上城区", "type": "District", "description": "杭州市辖区", "x": 0.7032838821733138, "y": -0.7078162179327215}, {"id": "北山街道", "type": "District", "description": "西湖区下辖街道", "x": 0.9898787752219533, "y": 0.053258354703302105}, {"id": "小营街道", "type": "District", "description": "上城区下辖街道", "x": 0.38779257193393046, "y": 0.9235864107259738}, {"id": "钱江世纪城", "type": "District", "description": "杭州钱江世纪城功能区", "x": -0.3159882893679604, "y": -0.9422613847808546}, {"id": "城西科创大走廊", "type": "SpatialConcept", "description": "杭州市城西的科技创新产业走廊", "x": -0.9398767597848828, "y": -0.23035358827468605}, {"id": "跨区一体化的公共配套'同城待遇'政策", "type": "PolicyMeasure", "description": "推行跨区公共服务一体化的具体政策", "x": 0.5504554118106694, "y": 0.8405533146554502}, {"id": "红线刚性保护", "type": "PolicyMeasure", "description": "差异化处置方案中的措施之一，强调对红线的刚性保护", "x": -0.9999999999999999, "y": -0.10040645960779966}, {"id": "存量有序流转", "type": "PolicyMeasure", "description": "差异化处置方案中的措施之一，允许存量建设用地有序流转", "x": -0.1676409246077371, "y": -0.9516742876407374}, {"id": "占补平衡纠偏", "type": "PolicyMeasure", "description": "差异化处置方案中的措施之一，纠正占补平衡中的偏差", "x": -0.9435821319926981, "y": -0.30585815727715565}, {"id": "绝对保留原则", "type": "PolicyMeasure", "description": "针对重大交通基础设施的政策原则，允许维持交通设施用地性质", "x": 0.9970859717513868, "y": -0.10220009119071964}, {"id": "存量锁死、不扩建原则", "type": "PolicyMeasure", "description": "针对高品质住区与公共服务核心的政策原则，限制土地流转在现有界线内", "x": -0.27340259294266234, "y": 0.84834510127723}, {"id": "临平区", "type": "District", "description": "杭州市辖区，位于城东", "x": -0.08949612202306985, "y": 0.9862485534331149}, {"id": "东湖街道", "type": "District", "description": "临平区下辖街道", "x": 0.9598669798102842, "y": -0.3106582666588966}, {"id": "生态环境修复", "type": "PolicyMeasure", "description": "双轮驱动措施之一，指生态环境治理与修复", "x": 0.502939660458623, "y": -0.7921585848399781}, {"id": "绿色交通网络延伸", "type": "PolicyMeasure", "description": "双轮驱动措施之一，指绿色交通系统的扩展", "x": -0.3980272019263339, "y": -0.9284642920146114}, {"id": "交通网络延伸", "type": "Policy", "description": "用于盘活住区的政策", "x": 0.7752012321800684, "y": -0.2909828059386502}, {"id": "仓前街道", "type": "District", "description": "杭州市余杭区下辖街道，城西银泰商圈所在地", "x": -0.9350727867838061, "y": -0.3774062279762612}, {"id": "钱塘江滨水绿廊", "type": "Infrastructure", "description": "新一轮城市扩张背景下的公园绿地规划项目，沿钱塘江的滨水绿廊", "x": 0.8357077557215251, "y": -0.5583777163355079}, {"id": "M1 一类工业用地", "type": "PolicyMeasure", "description": "一类工业用地，用于产业创新区，亩均税收大于50万元/亩", "x": -0.7479900339324247, "y": -0.06596239573161397}, {"id": "R2 二类居住用地", "type": "PolicyMeasure", "description": "二类居住用地，用于高品质住区/人才公寓，200-400人/公顷", "x": 0.8865403563671592, "y": -0.4991171457385631}, {"id": "B1 商业用地", "type": "PolicyMeasure", "description": "商业用地，用于商业商务区，地下空间开发率大于70%", "x": -0.02971645590343861, "y": 0.7638888718042218}, {"id": "A 公共管理/服务", "type": "PolicyMeasure", "description": "公共管理与服务用地，用于医疗康养/公共服务核心，辐射周边2-5万居民", "x": -0.690710633417187, "y": 0.6651968044748815}, {"id": "G1 公Park 绿地", "type": "PolicyMeasure", "description": "公园绿地，用于城市公园/生态休闲区，绿地率大于85%", "x": -0.19610874200488687, "y": -0.04409208004229211}, {"id": "亩均税收", "type": "Indicator", "description": "工业用地亩均税收指标，大于50万元/亩", "x": 0.30881967308213465, "y": 0.4206484007260917}, {"id": "地下空间开发率", "type": "Indicator", "description": "商业用地地下空间开发率指标，大于70%", "x": -0.8195540608176186, "y": 0.5943809791189641}, {"id": "绿地率", "type": "Indicator", "description": "公园绿地绿地率指标，大于85%", "x": -0.4924497337294236, "y": -0.847915457639093}, {"id": "城镇开发边界", "type": "SpatialConcept", "description": "城市扩展的控制边界，用地须在边界内", "x": -0.996224476488662, "y": 0.09099293083047647}, {"id": "基本农田", "type": "SpatialConcept", "description": "为保障粮食安全划定的农田区域，严控外溢", "x": 0.3356191360363396, "y": -0.9537116825694418}, {"id": "空间数字化红线预警", "type": "PolicyMeasure", "description": "依托GIS和数字化城市大脑对位于永久基本农田内的项目实施空间位移监测的预警机制", "x": 0.036411354318500073, "y": -0.9584636812212469}, {"id": "GIS", "type": "Infrastructure", "description": "地理信息系统，用于空间监测", "x": 0.45971704842214256, "y": -0.8635403080238728}, {"id": "数字化城市大脑", "type": "Infrastructure", "description": "杭州城市数字化管理平台", "x": 0.8400209165019961, "y": -0.44441229721660197}, {"id": "跨行政区利益分享机制", "type": "PolicyMeasure", "description": "针对滨江、富阳、余杭、拱墅等区建立的财税分成、指标共担机制", "x": 0.6642433250336709, "y": -0.5593792993228401}, {"id": "滨江", "type": "District", "description": "杭州市辖区，参与跨区协作机制", "x": -0.22697250010812023, "y": -0.9637879051123727}, {"id": "富阳", "type": "District", "description": "杭州市辖区，参与跨区协作机制", "x": 0.6862664955173223, "y": 0.755172341588247}, {"id": "余杭", "type": "District", "description": "杭州市辖区，参与跨区协作机制", "x": -0.41038732428263774, "y": 0.27524442239899155}, {"id": "拱墅", "type": "District", "description": "杭州市辖区，参与跨区协作机制", "x": 0.971420380565815, "y": 0.11348375765665897}, {"id": "高阳区", "type": "District", "description": "原文出现的行政区，可能为富阳区的OCR误写", "x": 0.24263210087698525, "y": -0.9250079870997171}, {"id": "海宁", "type": "District", "description": "浙江省嘉兴市下辖县级市", "x": -0.477073281420615, "y": 0.8946490854931515}, {"id": "临平", "type": "District", "description": "杭州市临平区", "x": 0.9765709926894545, "y": 0.19398075221524072}, {"id": "径山", "type": "SpatialConcept", "description": "杭州余杭区境内的山，知名风景区", "x": -0.7886418323247766, "y": -0.5322401115581374}, {"id": "悼女县", "type": "District", "description": "原文出现的县级地名，可能为淳安县的OCR误写", "x": 0.3297115613321877, "y": 0.9442863516493041}, {"id": "核心区", "type": "SpatialConcept", "description": "规划中的城市核心区域", "x": 0.8615943981851435, "y": 0.5184364639497437}, {"id": "钱塘", "type": "District", "description": "杭州市辖区", "x": 0.39646741012879555, "y": -0.9129846014414426}, {"id": "昌化", "type": "District", "description": "临安区辖镇", "x": -0.2606296543707798, "y": 0.9689644416436748}, {"id": "临安", "type": "District", "description": "杭州市辖区", "x": 0.1964309080117592, "y": -0.9897225696677566}, {"id": "萧山", "type": "District", "description": "杭州市辖区", "x": -0.9553759802333764, "y": 0.2716522077224667}, {"id": "绍兴", "type": "District", "description": "浙江省地级市", "x": -0.9200186600082471, "y": -0.45344144525033236}, {"id": "分水", "type": "District", "description": "桐庐县辖镇", "x": 0.07484464835250271, "y": 0.9476052403469198}, {"id": "场口", "type": "District", "description": "富阳区辖镇", "x": 0.632926890352927, "y": -0.7388058674680871}, {"id": "黄山市", "type": "District", "description": "安徽省地级市", "x": 0.7676214783178655, "y": -0.599898776339834}, {"id": "桐庐", "type": "District", "description": "杭州市下辖县", "x": -0.3996656607293866, "y": 0.8835206616016079}, {"id": "建德", "type": "District", "description": "杭州市下辖县级市", "x": 0.24481662442098867, "y": 0.9558628125480889}, {"id": "淳安", "type": "District", "description": "杭州市下辖县", "x": 0.6393166405272965, "y": 0.6936763566610402}];
+        const edges = [{"source": "居住组团R", "target": "湘湖旅游度假区", "type": "ADJACENT_TO", "description": "点'居住组团R'与点'湘湖旅游度假区'地理相邻（距离 3.62 公里）"}, {"source": "居住组团R", "target": "钱江新城住区", "type": "ADJACENT_TO", "description": "点'居住组团R'与点'钱江新城住区'地理相邻（距离 4.56 公里）"}, {"source": "居住组团R", "target": "半山森林公园", "type": "ADJACENT_TO", "description": "点'居住组团R'与点'半山森林公园'地理相邻（距离 4.23 公里）"}, {"source": "居住组团R", "target": "青山湖科创园", "type": "ADJACENT_TO", "description": "点'居住组团R'与点'青山湖科创园'地理相邻（距离 3.59 公里）"}, {"source": "居住组团R", "target": "2023年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'居住组团R'"}, {"source": "西湖风景名胜区", "target": "居住组团Q", "type": "ADJACENT_TO", "description": "点'居住组团Q'与点'西湖风景名胜区'地理相邻（距离 4.59 公里）"}, {"source": "西湖风景名胜区", "target": "2021年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'西湖风景名胜区'"}, {"source": "西湖风景名胜区", "target": "2024年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'西湖风景名胜区'"}, {"source": "西湖风景名胜区", "target": "2025年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'西湖风景名胜区'"}, {"source": "西湖风景名胜区", "target": "生态环境修复", "type": "APPLIES_TO", "description": "生态环境修复措施适用于西湖风景名胜区"}, {"source": "西湖风景名胜区", "target": "绿色交通网络延伸", "type": "APPLIES_TO", "description": "绿色交通网络延伸措施适用于西湖风景名胜区"}, {"source": "西湖风景名胜区", "target": "G1 公Park 绿地", "type": "MENTIONS", "description": "G1公园绿地的示例项目为西湖风景名胜区"}, {"source": "临平新城商圈", "target": "杭州大剧院", "type": "ADJACENT_TO", "description": "点'临平新城商圈'与点'杭州大剧院'地理相邻（距离 4.62 公里）"}, {"source": "临平新城商圈", "target": "2025年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'临平新城商圈'"}, {"source": "临平新城商圈", "target": "小营街道", "type": "LOCATED_IN", "description": "临平新城商圈位于上城区小营街道"}, {"source": "临平新城商圈", "target": "拱墅-上城-西湖跨区品质居住带", "type": "PART_OF", "description": "临平新城商圈属于该居住带"}, {"source": "国际会议中心", "target": "居住组团W", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'国际会议中心'地理相邻（距离 1.03 公里）"}, {"source": "国际会议中心", "target": "湘湖旅游度假区", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'湘湖旅游度假区'地理相邻（距离 2.97 公里）"}, {"source": "国际会议中心", "target": "钱江新城住区", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'钱江新城住区'地理相邻（距离 4.95 公里）"}, {"source": "国际会议中心", "target": "运河二通道港区", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'运河二通道港区'地理相邻（距离 2.86 公里）"}, {"source": "国际会议中心", "target": "杭州大剧院", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'杭州大剧院'地理相邻（距离 3.92 公里）"}, {"source": "国际会议中心", "target": "半山森林公园", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'半山森林公园'地理相邻（距离 2.63 公里）"}, {"source": "国际会议中心", "target": "青山湖科创园", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'青山湖科创园'地理相邻（距离 3.90 公里）"}, {"source": "国际会议中心", "target": "2023年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'国际会议中心'"}, {"source": "国际会议中心", "target": "存量锁死、不扩建原则", "type": "APPLIES_TO", "description": "存量锁死、不扩建原则适用于国际会议中心"}, {"source": "国际会议中心", "target": "空间数字化红线预警", "type": "APPLIES_TO", "description": "空间数字化红线预警对国际会议中心实施24小时空间位移监测"}, {"source": "国际会议中心", "target": "永久基本农田", "type": "LOCATED_IN", "description": "国际会议中心位于永久基本农田内"}, {"source": "城西银泰商圈", "target": "2022年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'城西银泰商圈'"}, {"source": "城西银泰商圈", "target": "2024年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'城西银泰商圈'"}, {"source": "城西银泰商圈", "target": "仓前街道", "type": "LOCATED_IN", "description": "城西银泰商圈位于仓前街道，确立其商业商务核心地位"}, {"source": "城西银泰商圈", "target": "B1 商业用地", "type": "MENTIONS", "description": "B1商业用地的示例项目为城西银泰商圈"}, {"source": "运河二通道港区", "target": "居住组团W", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'运河二通道港区'地理相邻（距离 3.89 公里）"}, {"source": "运河二通道港区", "target": "半山森林公园", "type": "ADJACENT_TO", "description": "点'运河二通道港区'与点'半山森林公园'地理相邻（距离 4.48 公里）"}, {"source": "运河二通道港区", "target": "2023年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'运河二通道港区'"}, {"source": "运河二通道港区", "target": "绝对保留原则", "type": "APPLIES_TO", "description": "绝对保留原则适用于运河二通道港区"}, {"source": "居住组团W", "target": "湘湖旅游度假区", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'湘湖旅游度假区'地理相邻（距离 2.55 公里）"}, {"source": "居住组团W", "target": "杭州大剧院", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'杭州大剧院'地理相邻（距离 3.19 公里）"}, {"source": "居住组团W", "target": "半山森林公园", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'半山森林公园'地理相邻（距离 2.52 公里）"}, {"source": "居住组团W", "target": "青山湖科创园", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'青山湖科创园'地理相邻（距离 2.97 公里）"}, {"source": "居住组团W", "target": "2023年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'居住组团W'"}, {"source": "居住组团W", "target": "2024年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'居住组团W'"}, {"source": "居住组团W", "target": "北山街道", "type": "LOCATED_IN", "description": "居住组团W位于西湖区北山街道"}, {"source": "居住组团W", "target": "拱墅-上城-西湖跨区品质居住带", "type": "PART_OF", "description": "居住组团W属于该居住带"}, {"source": "滨江互联网小镇", "target": "大江东智造园", "type": "ADJACENT_TO", "description": "点'滨江互联网小镇'与点'大江东智造园'地理相邻（距离 4.92 公里）"}, {"source": "滨江互联网小镇", "target": "杭州大剧院", "type": "ADJACENT_TO", "description": "点'滨江互联网小镇'与点'杭州大剧院'地理相邻（距离 4.94 公里）"}, {"source": "滨江互联网小镇", "target": "2024年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'滨江互联网小镇'"}, {"source": "滨江互联网小镇", "target": "2025年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'滨江互联网小镇'"}, {"source": "滨江互联网小镇", "target": "临安区", "type": "LOCATED_IN", "description": "滨江互联网小镇位于临安区玲珑街道"}, {"source": "滨江互联网小镇", "target": "临平新城", "type": "PART_OF", "description": "滨江互联网小镇归属临平新城规划"}, {"source": "滨江互联网小镇", "target": "飞地政策", "type": "APPLIES_TO", "description": "飞地政策适用于滨江互联网小镇"}, {"source": "湘湖旅游度假区", "target": "钱江新城住区", "type": "ADJACENT_TO", "description": "点'湘湖旅游度假区'与点'钱江新城住区'地理相邻（距离 3.17 公里）"}, {"source": "湘湖旅游度假区", "target": "半山森林公园", "type": "ADJACENT_TO", "description": "点'湘湖旅游度假区'与点'半山森林公园'地理相邻（距离 0.82 公里）"}, {"source": "湘湖旅游度假区", "target": "青山湖科创园", "type": "ADJACENT_TO", "description": "点'湘湖旅游度假区'与点'青山湖科创园'地理相邻（距离 2.20 公里）"}, {"source": "湘湖旅游度假区", "target": "2021年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'湘湖旅游度假区'"}, {"source": "湘湖旅游度假区", "target": "富阳区", "type": "GOVERNS", "description": "区域'富阳区'管辖空间点'湘湖旅游度假区'"}, {"source": "湘湖旅游度假区", "target": "钱江世纪城", "type": "GOVERNS", "description": "区域'钱江世纪城'管辖空间点'湘湖旅游度假区'"}, {"source": "湘湖旅游度假区", "target": "富阳", "type": "GOVERNS", "description": "区域'富阳'管辖空间点'湘湖旅游度假区'"}, {"source": "湘湖旅游度假区", "target": "生态环境修复", "type": "TARGETS", "description": "措施'生态环境修复'指向空间点'湘湖旅游度假区'"}, {"source": "湘湖旅游度假区", "target": "G1 公Park 绿地", "type": "TARGETS", "description": "措施'G1 公Park 绿地'指向空间点'湘湖旅游度假区'"}, {"source": "湘湖旅游度假区", "target": "城镇开发边界", "type": "CONTAINS", "description": "空间概念'城镇开发边界'包含空间点'湘湖旅游度假区'"}, {"source": "大江东智造园", "target": "奥体中心", "type": "ADJACENT_TO", "description": "点'大江东智造园'与点'奥体中心'地理相邻（距离 2.49 公里）"}, {"source": "大江东智造园", "target": "2022年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'大江东智造园'"}, {"source": "大江东智造园", "target": "临安区", "type": "LOCATED_IN", "description": "大江东智造园位于临安区青山湖街道"}, {"source": "大江东智造园", "target": "临安-大江东现代制造带", "type": "PART_OF", "description": "大江东智造园是临安-大江东现代制造带的一部分"}, {"source": "大江东智造园", "target": "大江东产业集聚区", "type": "SUPPORTS", "description": "大江东产业集聚区全面托管大江东智造园"}, {"source": "奥体中心", "target": "2024年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'奥体中心'"}, {"source": "奥体中心", "target": "大江东产业集聚区", "type": "GOVERNS", "description": "区域'大江东产业集聚区'管辖空间点'奥体中心'"}, {"source": "奥体中心", "target": "仓前街道", "type": "GOVERNS", "description": "区域'仓前街道'管辖空间点'奥体中心'"}, {"source": "奥体中心", "target": "余杭", "type": "GOVERNS", "description": "区域'余杭'管辖空间点'奥体中心'"}, {"source": "奥体中心", "target": "跨区一体化的公共配套'同城待遇'政策", "type": "TARGETS", "description": "措施'跨区一体化的公共配套'同城待遇'政策'指向空间点'奥体中心'"}, {"source": "奥体中心", "target": "M1 一类工业用地", "type": "TARGETS", "description": "措施'M1 一类工业用地'指向空间点'奥体中心'"}, {"source": "奥体中心", "target": "A 公共管理/服务", "type": "TARGETS", "description": "措施'A 公共管理/服务'指向空间点'奥体中心'"}, {"source": "奥体中心", "target": "空间数字化红线预警", "type": "TARGETS", "description": "措施'空间数字化红线预警'指向空间点'奥体中心'"}, {"source": "奥体中心", "target": "城镇开发边界", "type": "CONTAINS", "description": "空间概念'城镇开发边界'包含空间点'奥体中心'"}, {"source": "下沙大学城北住区", "target": "萧山国际机场", "type": "ADJACENT_TO", "description": "点'下沙大学城北住区'与点'萧山国际机场'地理相邻（距离 2.68 公里）"}, {"source": "下沙大学城北住区", "target": "存量锁死、不扩建原则", "type": "APPLIES_TO", "description": "存量锁死、不扩建原则适用于下沙大学城北住区"}, {"source": "下沙大学城北住区", "target": "R2 二类居住用地", "type": "MENTIONS", "description": "R2二类居住用地的示例项目为下沙大学城北住区"}, {"source": "钱江新城住区", "target": "半山森林公园", "type": "ADJACENT_TO", "description": "点'钱江新城住区'与点'半山森林公园'地理相邻（距离 2.70 公里）"}, {"source": "钱江新城住区", "target": "2023年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'钱江新城住区'"}, {"source": "钱江新城住区", "target": "交通网络延伸", "type": "SUPPORTS", "description": "依托'交通网络延伸'政策盘活钱江新城住区"}, {"source": "钱江新城住区", "target": "R2 二类居住用地", "type": "MENTIONS", "description": "R2二类居住用地的示例项目为钱江新城住区"}, {"source": "半山森林公园", "target": "青山湖科创园", "type": "ADJACENT_TO", "description": "点'半山森林公园'与点'青山湖科创园'地理相邻（距离 2.97 公里）"}, {"source": "半山森林公园", "target": "生态环境修复", "type": "APPLIES_TO", "description": "生态环境修复措施适用于半山森林公园"}, {"source": "半山森林公园", "target": "绿色交通网络延伸", "type": "APPLIES_TO", "description": "绿色交通网络延伸措施适用于半山森林公园"}, {"source": "良渚品质住区", "target": "居住组团Q", "type": "ADJACENT_TO", "description": "点'良渚品质住区'与点'居住组团Q'地理相邻（距离 4.91 公里）"}, {"source": "良渚品质住区", "target": "拱墅-上城-西湖跨区品质居住带", "type": "PART_OF", "description": "良渚品质住区属于该居住带"}, {"source": "良渚品质住区", "target": "钱江世纪城", "type": "SUPPORTS", "description": "良渚品质住区定向承接钱江世纪城溢出的人才居住需求"}, {"source": "青山湖科创园", "target": "杭州大剧院", "type": "ADJACENT_TO", "description": "点'杭州大剧院'与点'青山湖科创园'地理相邻（距离 4.00 公里）"}, {"source": "青山湖科创园", "target": "2022年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'青山湖科创园'"}, {"source": "青山湖科创园", "target": "滨江区", "type": "LOCATED_IN", "description": "青山湖科创园位于滨江区西兴街道"}, {"source": "青山湖科创园", "target": "钱江新城", "type": "PART_OF", "description": "青山湖科创园纳入钱江新城规划主轴"}, {"source": "青山湖科创园", "target": "飞地政策", "type": "APPLIES_TO", "description": "飞地政策适用于青山湖科创园"}, {"source": "青山湖科创园", "target": "M1 一类工业用地", "type": "MENTIONS", "description": "M1一类工业用地的示例项目为青山湖科创园"}, {"source": "青山湖科创园", "target": "跨行政区利益分享机制", "type": "SUPPORTS", "description": "跨行政区利益分享机制确保青山湖科创园作为飞地项目顺利推进"}, {"source": "萧山国际机场", "target": "2021年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'萧山国际机场'"}, {"source": "萧山国际机场", "target": "富阳-钱江新城医疗康养组团", "type": "PART_OF", "description": "萧山国际机场是该组团的组成部分"}, {"source": "居住组团Q", "target": "交通网络延伸", "type": "SUPPORTS", "description": "依托'交通网络延伸'政策盘活居住组团Q"}, {"source": "杭州大剧院", "target": "富春街道", "type": "LOCATED_IN", "description": "杭州大剧院位于富春街道"}, {"source": "杭州大剧院", "target": "富阳-钱江新城医疗康养组团", "type": "PART_OF", "description": "杭州大剧院是该组团的组成部分"}, {"source": "杭州大剧院", "target": "富阳区", "type": "LOCATED_IN", "description": "杭州大剧院位于富阳区"}, {"source": "杭州大剧院", "target": "A 公共管理/服务", "type": "MENTIONS", "description": "A公共管理/服务用地的示例项目为杭州大剧院"}, {"source": "2020年城市边界", "target": "2021年城市边界", "type": "TRANSITION_FROM", "description": "从2020年边界转换到2021年边界"}, {"source": "2021年城市边界", "target": "2022年城市边界", "type": "TRANSITION_FROM", "description": "从2021年边界转换到2022年边界"}, {"source": "2021年城市边界", "target": "2021年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2021年城市边界上"}, {"source": "2021年城市边界", "target": "2021年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2021年城市边界上"}, {"source": "2022年城市边界", "target": "2023年城市边界", "type": "TRANSITION_FROM", "description": "从2022年边界转换到2023年边界"}, {"source": "2022年城市边界", "target": "2022年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2022年城市边界上"}, {"source": "2022年城市边界", "target": "2022年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2022年城市边界上"}, {"source": "2023年城市边界", "target": "2024年城市边界", "type": "TRANSITION_FROM", "description": "从2023年边界转换到2024年边界"}, {"source": "2023年城市边界", "target": "2023年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2023年城市边界上"}, {"source": "2023年城市边界", "target": "2023年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2023年城市边界上"}, {"source": "2024年城市边界", "target": "2025年城市边界", "type": "TRANSITION_FROM", "description": "从2024年边界转换到2025年边界"}, {"source": "2024年城市边界", "target": "2024年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2024年城市边界上"}, {"source": "2024年城市边界", "target": "2024年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2024年城市边界上"}, {"source": "2025年城市边界", "target": "2025年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2025年城市边界上"}, {"source": "2025年城市边界", "target": "2025年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2025年城市边界上"}, {"source": "三区三线", "target": "城市开发边界", "type": "PART_OF", "description": "城市开发边界是三区三线的组成部分"}, {"source": "三区三线", "target": "永久基本农田", "type": "PART_OF", "description": "永久基本农田是三区三线的组成部分"}, {"source": "三区三线", "target": "生态保护红线", "type": "PART_OF", "description": "生态保护红线是三区三线的组成部分"}, {"source": "永久基本农田", "target": "红线刚性保护", "type": "CONSTRAINS", "description": "红线刚性保护措施对永久基本农田实施刚性保护"}, {"source": "生态保护红线", "target": "红线刚性保护", "type": "CONSTRAINS", "description": "红线刚性保护措施对生态保护红线实施刚性保护"}, {"source": "生态保护红线", "target": "G1 公Park 绿地", "type": "CONSTRAINS", "description": "G1公园绿地生态保护红线内绝对禁止商业化"}, {"source": "滨江-临安-钱江新城联动轴", "target": "滨江区", "type": "MENTIONS", "description": "联动轴提及滨江区"}, {"source": "滨江-临安-钱江新城联动轴", "target": "临安区", "type": "MENTIONS", "description": "联动轴提及临安区"}, {"source": "滨江-临安-钱江新城联动轴", "target": "钱江新城", "type": "MENTIONS", "description": "联动轴提及钱江新城"}, {"source": "临安区", "target": "临安-大江东现代制造带", "type": "MENTIONS", "description": "现代制造带提及临安区"}, {"source": "临安-大江东现代制造带", "target": "大江东产业集聚区", "type": "MENTIONS", "description": "现代制造带提及大江东产业集聚区"}, {"source": "拱墅-上城-西湖跨区品质居住带", "target": "跨区一体化的公共配套'同城待遇'政策", "type": "APPLIES_TO", "description": "该政策适用于跨区品质居住带"}, {"source": "富阳区", "target": "富春街道", "type": "PART_OF", "description": "富春街道是富阳区的下辖街道"}, {"source": "临平区", "target": "东湖街道", "type": "PART_OF", "description": "东湖街道是临平区下辖的街道"}, {"source": "M1 一类工业用地", "target": "城镇开发边界", "type": "CONSTRAINS", "description": "M1一类工业用地须在城镇开发边界内，且严格生态审查"}, {"source": "M1 一类工业用地", "target": "亩均税收", "type": "HAS_GOAL", "description": "M1一类工业用地目标为亩均税收大于50万元/亩"}, {"source": "R2 二类居住用地", "target": "基本农田", "type": "CONSTRAINS", "description": "R2二类居住用地严控向基本农田外溢"}, {"source": "B1 商业用地", "target": "城镇开发边界", "type": "CONSTRAINS", "description": "B1商业用地须在城镇开发边界内"}, {"source": "B1 商业用地", "target": "地下空间开发率", "type": "HAS_GOAL", "description": "B1商业用地目标为地下空间开发率大于70%"}, {"source": "G1 公Park 绿地", "target": "绿地率", "type": "HAS_GOAL", "description": "G1公园绿地目标为绿地率大于85%"}, {"source": "空间数字化红线预警", "target": "GIS", "type": "SUPPORTS", "description": "GIS为空间数字化红线预警提供技术支撑"}, {"source": "空间数字化红线预警", "target": "数字化城市大脑", "type": "SUPPORTS", "description": "数字化城市大脑为空间数字化红线预警提供平台支持"}, {"source": "跨行政区利益分享机制", "target": "滨江", "type": "APPLIES_TO", "description": "跨行政区利益分享机制针对滨江区土地利用与经济规划错位现象"}, {"source": "跨行政区利益分享机制", "target": "富阳", "type": "APPLIES_TO", "description": "跨行政区利益分享机制针对富阳区土地利用与经济规划错位现象"}, {"source": "跨行政区利益分享机制", "target": "余杭", "type": "APPLIES_TO", "description": "跨行政区利益分享机制针对余杭区土地利用与经济规划错位现象"}, {"source": "跨行政区利益分享机制", "target": "拱墅", "type": "APPLIES_TO", "description": "跨行政区利益分享机制针对拱墅区土地利用与经济规划错位现象"}];
+        
+        // 颜色映射
+        const typeColors = {
+            'Boundary': '#e94560',
+            'Point': '#00b4d8',
+            'Policy': '#06d6a0',
+            'STTE_Event': '#ffd166',
+            'District': '#bb86fc',
+            'PolicyGoal': '#ff6b6b',
+            'PolicyMeasure': '#48dbfb',
+            'Infrastructure': '#ff9a76',
+            'LandUse': '#a8e6cf',
+            'Keyword': '#dfe6e9',
+            'DocumentChunk': '#b2bec3',
+            'Unknown': '#636e72'
+        };
+        
+        // 初始化画布
+        const canvas = document.getElementById('graph');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        
+        function resize() {
+            width = canvas.parentElement.clientWidth;
+            height = canvas.parentElement.clientHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        
+        // 节点布局（使用服务端预计算位置，叠加少量力导向微调后固定）
+        const nodePositions = {};
+        nodes.forEach(node => {
+            // 预计算坐标映射到画布
+            const scaleX = width * 0.4;
+            const scaleY = height * 0.4;
+            nodePositions[node.id] = {
+                x: width/2 + (node.x || 0) * scaleX,
+                y: height/2 + (node.y || 0) * scaleY,
+                vx: 0,
+                vy: 0
+            };
+        });
+
+        // 力导向布局——有限迭代后停止
+        const MAX_ITERATIONS = 300;
+        let iteration = 0;
+        let running = true;
+
+        function applyForces() {
+            if (!running) return;
+            const k = 0.005;
+            const repulsion = 3000;
+
+            // 节点间排斥
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const n1 = nodePositions[nodes[i].id];
+                    const n2 = nodePositions[nodes[j].id];
+                    const dx = n2.x - n1.x;
+                    const dy = n2.y - n1.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+                    const force = repulsion / (dist * dist);
+
+                    n1.vx -= (dx / dist) * force;
+                    n1.vy -= (dy / dist) * force;
+                    n2.vx += (dx / dist) * force;
+                    n2.vy += (dy / dist) * force;
+                }
+            }
+
+            // 边的吸引力
+            edges.forEach(edge => {
+                const n1 = nodePositions[edge.source];
+                const n2 = nodePositions[edge.target];
+                if (!n1 || !n2) return;
+
+                const dx = n2.x - n1.x;
+                const dy = n2.y - n1.y;
+                const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+                const force = k * (dist - 100);
+
+                n1.vx += (dx / dist) * force;
+                n1.vy += (dy / dist) * force;
+                n2.vx -= (dx / dist) * force;
+                n2.vy -= (dy / dist) * force;
+            });
+
+            // 更新位置
+            nodes.forEach(node => {
+                const pos = nodePositions[node.id];
+                pos.vx *= 0.85;  // 强阻尼——快速收敛
+                pos.vy *= 0.85;
+                pos.x += pos.vx;
+                pos.y += pos.vy;
+
+                pos.x = Math.max(30, Math.min(width - 30, pos.x));
+                pos.y = Math.max(30, Math.min(height - 30, pos.y));
+            });
+
+            iteration++;
+            if (iteration >= MAX_ITERATIONS) {
+                running = false;
+            }
+        }
+
+        // 动画循环——停止后固定
+        function animate() {
+            if (running) {
+                applyForces();
+            }
+            draw();
+            requestAnimationFrame(animate);
+        }
+        animate();
+        
+        // 绘制
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // 绘制边
+            edges.forEach(edge => {
+                const n1 = nodePositions[edge.source];
+                const n2 = nodePositions[edge.target];
+                if (!n1 || !n2) return;
+                
+                ctx.beginPath();
+                ctx.moveTo(n1.x, n1.y);
+                ctx.lineTo(n2.x, n2.y);
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            });
+            
+            // 绘制节点
+            nodes.forEach(node => {
+                const pos = nodePositions[node.id];
+                const color = typeColors[node.type] || typeColors['Unknown'];
+                const radius = node.type === 'Boundary' ? 12 : 8;
+                
+                // 光晕效果
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, radius + 4, 0, Math.PI * 2);
+                ctx.fillStyle = color + '40';
+                ctx.fill();
+                
+                // 节点
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // 标签
+                ctx.fillStyle = '#fff';
+                ctx.font = '11px Microsoft YaHei';
+                ctx.textAlign = 'center';
+                ctx.fillText(node.id.substring(0, 8), pos.x, pos.y + radius + 15);
+            });
+        }
+
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            nodes.forEach(node => {
+                const pos = nodePositions[node.id];
+                if (query && node.id.toLowerCase().includes(query)) {
+                    pos.highlighted = true;
+                } else {
+                    pos.highlighted = false;
+                }
+            });
+        });
+        
+        // 点击节点
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            for (const node of nodes) {
+                const pos = nodePositions[node.id];
+                const dist = Math.sqrt((x - pos.x)**2 + (y - pos.y)**2);
+                if (dist < 15) {
+                    document.getElementById('nodeInfoText').innerHTML = `
+                        <strong>${node.id}</strong><br>
+                        类型: ${node.type}<br>
+                        描述: ${node.description || '无'}
+                    `;
+                    break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

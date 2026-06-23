@@ -1,0 +1,13 @@
+Building prefix dict from the default dictionary ...
+Loading model from cache C:\Users\WANGHA~1\AppData\Local\Temp\jieba.cache
+Loading model cost 0.485 seconds.
+Prefix dict has been built successfully.
+total: 2  types: {'image': 2}
+  image: p1 len=329
+    【图表描述】
+1. 图表类型：地图  
+2. 主要对象：杭州市行政区划边界，包括余杭区、西湖区、上城区、下城区、江干区、拱墅区、滨江区、萧山区、富阳区、临安区、
+  image: p2 len=417
+    【图表描述】
+1. 图表类型：地图  
+2. 主要对象：涉及的区域包括城市核心区、临平、余杭、萧山、滨江、富阳、临安、淳安、桐庐和建德板块等；点位包括多个区县节

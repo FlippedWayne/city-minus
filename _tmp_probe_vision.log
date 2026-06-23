@@ -1,0 +1,8 @@
+FAIL doubao-seed-1-6-vision-250815: NotFoundError Error code: 404 - {'error': {'code': 'ModelNotOpen', 'message': 'Your account 2120459313 has not activated the model doubao-seed-1-6-vision-250815. Pl
+FAIL doubao-1-5-thinking-vision-pro-250428: NotFoundError Error code: 404 - {'error': {'code': 'InvalidEndpointOrModel.NotFound', 'message': 'The model or endpoint doubao-1-5-thinking-vision-pro-250428 does n
+FAIL doubao-1.5-vision-pro-250328: NotFoundError Error code: 404 - {'error': {'code': 'InvalidEndpointOrModel.NotFound', 'message': 'The model or endpoint doubao-1.5-vision-pro-250328 does not exist 
+FAIL doubao-1-5-vision-pro-32k-250115: NotFoundError Error code: 404 - {'error': {'code': 'ModelNotOpen', 'message': 'Your account 2120459313 has not activated the model doubao-1-5-vision-pro-32k-250115.
+FAIL doubao-1.5-vision-lite-250315: NotFoundError Error code: 404 - {'error': {'code': 'InvalidEndpointOrModel.NotFound', 'message': 'The model or endpoint doubao-1.5-vision-lite-250315 does not exist
+FAIL doubao-vision-pro-32k-241028: NotFoundError Error code: 404 - {'error': {'code': 'InvalidEndpointOrModel.NotFound', 'message': 'The model or endpoint doubao-vision-pro-32k-241028 does not exist 
+
+WINNER=None

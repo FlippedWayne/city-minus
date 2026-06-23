@@ -1,0 +1,5 @@
+=== doubao-seed-2-0-code-preview-260215 纯文本 ===
+TEXT FAIL: NotFoundError: Error code: 404 - {'error': {'code': 'ModelNotOpen', 'message': 'Your account 2120459313 has not activated the model doubao-seed-2-0-code-preview-260215. Please activate the model service in the Ark Console. Request id: 02178175405965916105250997c3183a3687369088432ade6615e', 'param': '', 'type': 'No
+
+=== doubao-seed-2-0-code-preview-260215 带图 ===
+IMG FAIL: NotFoundError: Error code: 404 - {'error': {'code': 'ModelNotOpen', 'message': 'Your account 2120459313 has not activated the model doubao-seed-2-0-code-preview-260215. Please activate the model service in the Ark Console. Request id: 02178175405980216105250997c3183a3687369088432ad77c5a4', 'param': '', 'type': 'No

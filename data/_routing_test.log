@@ -1,0 +1,18 @@
+D:\project\env\python311\Lib\site-packages\opentelemetry\util\_importlib_metadata.py:32: DeprecationWarning: SelectableGroups dict interface is deprecated. Use select.
+  return EntryPoints(ep for group_eps in eps.values() for ep in group_eps)
+D:\project\City_Manus_dev_v2\src\models\temporal.py:7: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+  class TimePoint(BaseModel):
+C:\Users\wanghancheng\AppData\Roaming\Python\Python311\site-packages\pydantic\_internal\_generate_schema.py:319: PydanticDeprecatedSince20: `json_encoders` is deprecated. See https://docs.pydantic.dev/2.12/concepts/serialization/#custom-serializers for alternatives. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+  warnings.warn(
+D:\project\City_Manus_dev_v2\src\models\boundary.py:7: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+  class BoundaryState(BaseModel):
+D:\project\City_Manus_dev_v2\src\models\spatial.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+  class SpatialObject(BaseModel):
+D:\project\City_Manus_dev_v2\src\models\stte.py:27: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+  class STTEEvent(BaseModel):
+D:\project\City_Manus_dev_v2\src\models\policy.py:27: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+  class PolicyEntity(BaseModel):
+2022年哪些点进入了边界？ SpatialEventAgent=0.11 | GraphReasoningAgent=0.00 | TemporalReasoningAgent=0.00
+城市边界为什么持续扩张？ SpatialEventAgent=0.11 | GraphReasoningAgent=0.03 | TemporalReasoningAgent=0.00
+从2020年到2025年边界增长率是多少？ SpatialEventAgent=0.06 | GraphReasoningAgent=0.00 | TemporalReasoningAgent=0.06
+杭州空间格局有什么特点？ SpatialEventAgent=0.00 | GraphReasoningAgent=0.05 | TemporalReasoningAgent=0.00

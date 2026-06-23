@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gis_graph 知识图谱</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', sans-serif; background: #1a1a2e; color: #eee; }
+        .container { display: flex; height: 100vh; }
+        .sidebar { width: 300px; background: #16213e; padding: 20px; overflow-y: auto; }
+        .graph-area { flex: 1; position: relative; }
+        #graph { width: 100%; height: 100%; }
+        .legend { position: absolute; top: 20px; right: 20px; background: rgba(22,33,62,0.9); padding: 15px; border-radius: 8px; }
+        .legend-item { display: flex; align-items: center; margin: 5px 0; }
+        .legend-color { width: 20px; height: 20px; border-radius: 50%; margin-right: 10px; }
+        .stats { background: #0f3460; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .node-info { background: #0f3460; padding: 15px; border-radius: 8px; margin-top: 20px; }
+        h2 { color: #e94560; margin-bottom: 15px; }
+        .search-box { width: 100%; padding: 10px; border: 1px solid #444; border-radius: 5px; background: #1a1a2e; color: #eee; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>🏙️ 城市变迁知识图谱</h2>
+            
+            <div class="stats">
+                <h3>📊 图谱统计</h3>
+                <p>节点数量: <strong>35</strong></p>
+                <p>关系数量: <strong>64</strong></p>
+            </div>
+            
+            <input type="text" class="search-box" id="searchInput" placeholder="搜索节点...">
+            
+            <div class="legend">
+                <h3>🎨 图例</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e94560;"></div>
+                    <span>Boundary (边界)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #00b4d8;"></div>
+                    <span>Point (点)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #06d6a0;"></div>
+                    <span>Policy (政策)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ffd166;"></div>
+                    <span>STTE_Event (事件)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #bb86fc;"></div>
+                    <span>District (区域)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff9a76;"></div>
+                    <span>其他</span>
+                </div>
+            </div>
+            
+            <div class="node-info" id="nodeInfo">
+                <h3>📝 节点信息</h3>
+                <p id="nodeInfoText">点击节点查看详情</p>
+            </div>
+        </div>
+        
+        <div class="graph-area">
+            <canvas id="graph"></canvas>
+        </div>
+    </div>
+    
+    <script>
+        const nodes = [{"id": "西湖风景名胜区", "type": "Point", "description": "行政区:临平区 | 街道:东湖街道 | 规划片区:三江汇 | 功能:城市公园 | 用地:G1（公园绿地）", "x": 0.1622106228395465, "y": 0.81479143866227}, {"id": "临平新城商圈", "type": "Point", "description": "行政区:上城区 | 街道:小营街道 | 规划片区:城西科创大走廊 | 功能:商业商务区 | 用地:B1（商业用地）", "x": 0.8213022635918155, "y": 0.3108868811173182}, {"id": "青山湖科创园", "type": "Point", "description": "行政区:滨江区 | 街道:西兴街道 | 规划片区:钱江新城 | 功能:产业创新区 | 用地:M1（一类工业用地）", "x": -0.15376826480277367, "y": -0.5612576092985566}, {"id": "国际会议中心", "type": "Point", "description": "行政区:拱墅区 | 街道:小河街道 | 规划片区:下沙副城 | 功能:公共服务核心 | 用地:A（公共管理与公共服务用地）", "x": -0.11436915746455635, "y": -0.2805658142822978}, {"id": "大江东智造园", "type": "Point", "description": "行政区:临安区 | 街道:青山湖街道 | 规划片区:临平新城 | 功能:产业创新区 | 用地:M1（一类工业用地）", "x": 0.5420647037873341, "y": 0.5035953048109805}, {"id": "城西银泰商圈", "type": "Point", "description": "行政区:余杭区 | 街道:仓前街道 | 规划片区:钱江新城 | 功能:商业商务区 | 用地:B1（商业用地）", "x": -0.7928110408379668, "y": 0.48483911331498136}, {"id": "半山森林公园", "type": "Point", "description": "行政区:临平区 | 街道:东湖街道 | 规划片区:钱江新城 | 功能:城市公园 | 用地:G1（公园绿地）", "x": 0.20016592716260992, "y": -0.5257090233807691}, {"id": "湘湖旅游度假区", "type": "Point", "description": "行政区:富阳区 | 街道:鹿山街道 | 规划片区:钱江世纪城 | 功能:生态休闲区 | 用地:G1（公园绿地）", "x": 0.05145253413315208, "y": -0.8208783924044702}, {"id": "居住组团R", "type": "Point", "description": "行政区:临平区 | 街道:南苑街道 | 规划片区:三江汇 | 功能:人才公寓组团 | 用地:R2（二类居住用地）", "x": -0.39070047586744006, "y": -0.7167012111928347}, {"id": "奥体中心", "type": "Point", "description": "行政区:余杭区 | 街道:仓前街道 | 规划片区:大江东产业集聚区 | 功能:教育科研区 | 用地:A（公共管理与公共服务用地）", "x": 0.6301568930524297, "y": -0.3956036080355534}, {"id": "杭州大剧院", "type": "Point", "description": "行政区:富阳区 | 街道:富春街道 | 规划片区:钱江新城 | 功能:医疗康养区 | 用地:A（公共管理与公共服务用地）", "x": 0.21016231018860004, "y": -0.19994313173718992}, {"id": "居住组团W", "type": "Point", "description": "行政区:西湖区 | 街道:北山街道 | 规划片区:钱江新城 | 功能:高品质住区 | 用地:R2（二类居住用地）", "x": -0.22655454938444777, "y": -0.36754048086291735}, {"id": "下沙大学城北住区", "type": "Point", "description": "行政区:滨江区 | 街道:浦沿街道 | 规划片区:大江东产业集聚区 | 功能:高品质住区 | 用地:R2（二类居住用地）", "x": 0.4697218053937612, "y": 0.3434822681441378}, {"id": "滨江互联网小镇", "type": "Point", "description": "行政区:临安区 | 街道:玲珑街道 | 规划片区:临平新城 | 功能:产业创新区 | 用地:M1（一类工业用地）", "x": -0.34100732194981037, "y": 0.32159534018940483}, {"id": "萧山国际机场", "type": "Point", "description": "行政区:富阳区 | 街道:富春街道 | 规划片区:临平新城 | 功能:综合交通枢纽 | 用地:S（交通设施用地）", "x": 0.5428196294803765, "y": -0.705544669439353}, {"id": "钱江新城住区", "type": "Point", "description": "行政区:拱墅区 | 街道:米市巷街道 | 规划片区:钱江新城 | 功能:高品质住区 | 用地:R2（二类居住用地）", "x": 0.36420503158720163, "y": -0.7050854248308109}, {"id": "良渚品质住区", "type": "Point", "description": "行政区:拱墅区 | 街道:小河街道 | 规划片区:钱江世纪城 | 功能:人才公寓组团 | 用地:R2（二类居住用地）", "x": -0.5948628327289657, "y": 0.7908252557548869}, {"id": "运河二通道港区", "type": "Point", "description": "行政区:滨江区 | 街道:西兴街道 | 规划片区:城西科创大走廊 | 功能:综合交通枢纽 | 用地:S（交通设施用地）", "x": 0.4751367556717107, "y": -0.07653514965013763}, {"id": "居住组团Q", "type": "Point", "description": "行政区:滨江区 | 街道:浦沿街道 | 规划片区:钱江世纪城 | 功能:人才公寓组团 | 用地:R2（二类居住用地）", "x": -0.29922207538632417, "y": -0.14910166710291886}, {"id": "2020年城市边界", "type": "Boundary", "description": "2020年的城市边界状态", "x": 0.7965963061720917, "y": -0.32837294637027636}, {"id": "2021年城市边界", "type": "Boundary", "description": "2021年的城市边界状态", "x": 0.039295116436711734, "y": 0.11344883881440139}, {"id": "2022年城市边界", "type": "Boundary", "description": "2022年的城市边界状态", "x": -0.7501252201248264, "y": 0.2898463806743115}, {"id": "2023年城市边界", "type": "Boundary", "description": "2023年的城市边界状态", "x": -0.49199277536627123, "y": -0.030455893611198638}, {"id": "2024年城市边界", "type": "Boundary", "description": "2024年的城市边界状态", "x": -0.1943261916163391, "y": 0.33670227517711593}, {"id": "2025年城市边界", "type": "Boundary", "description": "2025年的城市边界状态", "x": 0.04770797463743593, "y": 0.0286832006253489}, {"id": "2021年进入边界事件", "type": "STTE_Event", "description": "2021年共有 2 个点进入边界内", "x": 0.8510211107569668, "y": -0.27178732081022594}, {"id": "2021年退出边界事件", "type": "STTE_Event", "description": "2021年共有 1 个点退出边界外", "x": 0.5525066693676018, "y": 0.8491817139787106}, {"id": "2022年进入边界事件", "type": "STTE_Event", "description": "2022年共有 2 个点进入边界内", "x": -0.0395613988860166, "y": 0.44055440425662573}, {"id": "2022年退出边界事件", "type": "STTE_Event", "description": "2022年共有 1 个点退出边界外", "x": -0.9103939979079229, "y": -0.30795936604598656}, {"id": "2023年进入边界事件", "type": "STTE_Event", "description": "2023年共有 3 个点进入边界内", "x": -0.9056511443971156, "y": -0.2479428115291468}, {"id": "2023年退出边界事件", "type": "STTE_Event", "description": "2023年共有 2 个点退出边界外", "x": 0.16949606434534087, "y": -0.8691880719481775}, {"id": "2024年进入边界事件", "type": "STTE_Event", "description": "2024年共有 3 个点进入边界内", "x": 0.26953814312743557, "y": 0.17754564405462053}, {"id": "2024年退出边界事件", "type": "STTE_Event", "description": "2024年共有 2 个点退出边界外", "x": -0.8374406791860334, "y": 0.122610467756486}, {"id": "2025年进入边界事件", "type": "STTE_Event", "description": "2025年共有 2 个点进入边界内", "x": -0.02786556378579014, "y": 0.6315840652012218}, {"id": "2025年退出边界事件", "type": "STTE_Event", "description": "2025年共有 1 个点退出边界外", "x": -0.12490717203952167, "y": 0.9999999999999999}];
+        const edges = [{"source": "西湖风景名胜区", "target": "居住组团Q", "type": "ADJACENT_TO", "description": "点'居住组团Q'与点'西湖风景名胜区'地理相邻（距离 4.59 公里）"}, {"source": "西湖风景名胜区", "target": "2021年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'西湖风景名胜区'"}, {"source": "西湖风景名胜区", "target": "2024年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'西湖风景名胜区'"}, {"source": "西湖风景名胜区", "target": "2025年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'西湖风景名胜区'"}, {"source": "临平新城商圈", "target": "杭州大剧院", "type": "ADJACENT_TO", "description": "点'临平新城商圈'与点'杭州大剧院'地理相邻（距离 4.62 公里）"}, {"source": "临平新城商圈", "target": "2025年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'临平新城商圈'"}, {"source": "青山湖科创园", "target": "居住组团W", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'青山湖科创园'地理相邻（距离 2.97 公里）"}, {"source": "青山湖科创园", "target": "居住组团R", "type": "ADJACENT_TO", "description": "点'居住组团R'与点'青山湖科创园'地理相邻（距离 3.59 公里）"}, {"source": "青山湖科创园", "target": "国际会议中心", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'青山湖科创园'地理相邻（距离 3.90 公里）"}, {"source": "青山湖科创园", "target": "湘湖旅游度假区", "type": "ADJACENT_TO", "description": "点'湘湖旅游度假区'与点'青山湖科创园'地理相邻（距离 2.20 公里）"}, {"source": "青山湖科创园", "target": "杭州大剧院", "type": "ADJACENT_TO", "description": "点'杭州大剧院'与点'青山湖科创园'地理相邻（距离 4.00 公里）"}, {"source": "青山湖科创园", "target": "半山森林公园", "type": "ADJACENT_TO", "description": "点'半山森林公园'与点'青山湖科创园'地理相邻（距离 2.97 公里）"}, {"source": "青山湖科创园", "target": "2022年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'青山湖科创园'"}, {"source": "国际会议中心", "target": "居住组团W", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'国际会议中心'地理相邻（距离 1.03 公里）"}, {"source": "国际会议中心", "target": "湘湖旅游度假区", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'湘湖旅游度假区'地理相邻（距离 2.97 公里）"}, {"source": "国际会议中心", "target": "钱江新城住区", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'钱江新城住区'地理相邻（距离 4.95 公里）"}, {"source": "国际会议中心", "target": "运河二通道港区", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'运河二通道港区'地理相邻（距离 2.86 公里）"}, {"source": "国际会议中心", "target": "杭州大剧院", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'杭州大剧院'地理相邻（距离 3.92 公里）"}, {"source": "国际会议中心", "target": "半山森林公园", "type": "ADJACENT_TO", "description": "点'国际会议中心'与点'半山森林公园'地理相邻（距离 2.63 公里）"}, {"source": "国际会议中心", "target": "2023年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'国际会议中心'"}, {"source": "大江东智造园", "target": "滨江互联网小镇", "type": "ADJACENT_TO", "description": "点'滨江互联网小镇'与点'大江东智造园'地理相邻（距离 4.92 公里）"}, {"source": "大江东智造园", "target": "奥体中心", "type": "ADJACENT_TO", "description": "点'大江东智造园'与点'奥体中心'地理相邻（距离 2.49 公里）"}, {"source": "大江东智造园", "target": "2022年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'大江东智造园'"}, {"source": "城西银泰商圈", "target": "2022年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'城西银泰商圈'"}, {"source": "城西银泰商圈", "target": "2024年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'城西银泰商圈'"}, {"source": "半山森林公园", "target": "居住组团W", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'半山森林公园'地理相邻（距离 2.52 公里）"}, {"source": "半山森林公园", "target": "居住组团R", "type": "ADJACENT_TO", "description": "点'居住组团R'与点'半山森林公园'地理相邻（距离 4.23 公里）"}, {"source": "半山森林公园", "target": "湘湖旅游度假区", "type": "ADJACENT_TO", "description": "点'湘湖旅游度假区'与点'半山森林公园'地理相邻（距离 0.82 公里）"}, {"source": "半山森林公园", "target": "钱江新城住区", "type": "ADJACENT_TO", "description": "点'钱江新城住区'与点'半山森林公园'地理相邻（距离 2.70 公里）"}, {"source": "半山森林公园", "target": "运河二通道港区", "type": "ADJACENT_TO", "description": "点'运河二通道港区'与点'半山森林公园'地理相邻（距离 4.48 公里）"}, {"source": "湘湖旅游度假区", "target": "居住组团W", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'湘湖旅游度假区'地理相邻（距离 2.55 公里）"}, {"source": "湘湖旅游度假区", "target": "居住组团R", "type": "ADJACENT_TO", "description": "点'居住组团R'与点'湘湖旅游度假区'地理相邻（距离 3.62 公里）"}, {"source": "湘湖旅游度假区", "target": "钱江新城住区", "type": "ADJACENT_TO", "description": "点'湘湖旅游度假区'与点'钱江新城住区'地理相邻（距离 3.17 公里）"}, {"source": "湘湖旅游度假区", "target": "2021年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'湘湖旅游度假区'"}, {"source": "居住组团R", "target": "钱江新城住区", "type": "ADJACENT_TO", "description": "点'居住组团R'与点'钱江新城住区'地理相邻（距离 4.56 公里）"}, {"source": "居住组团R", "target": "2023年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'居住组团R'"}, {"source": "奥体中心", "target": "2024年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'奥体中心'"}, {"source": "杭州大剧院", "target": "居住组团W", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'杭州大剧院'地理相邻（距离 3.19 公里）"}, {"source": "杭州大剧院", "target": "滨江互联网小镇", "type": "ADJACENT_TO", "description": "点'滨江互联网小镇'与点'杭州大剧院'地理相邻（距离 4.94 公里）"}, {"source": "居住组团W", "target": "运河二通道港区", "type": "ADJACENT_TO", "description": "点'居住组团W'与点'运河二通道港区'地理相邻（距离 3.89 公里）"}, {"source": "居住组团W", "target": "2023年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'居住组团W'"}, {"source": "居住组团W", "target": "2024年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'居住组团W'"}, {"source": "下沙大学城北住区", "target": "萧山国际机场", "type": "ADJACENT_TO", "description": "点'下沙大学城北住区'与点'萧山国际机场'地理相邻（距离 2.68 公里）"}, {"source": "滨江互联网小镇", "target": "2024年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'滨江互联网小镇'"}, {"source": "滨江互联网小镇", "target": "2025年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'滨江互联网小镇'"}, {"source": "萧山国际机场", "target": "2021年进入边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'萧山国际机场'"}, {"source": "钱江新城住区", "target": "2023年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'钱江新城住区'"}, {"source": "良渚品质住区", "target": "居住组团Q", "type": "ADJACENT_TO", "description": "点'良渚品质住区'与点'居住组团Q'地理相邻（距离 4.91 公里）"}, {"source": "运河二通道港区", "target": "2023年退出边界事件", "type": "INVOLVES_POINT", "description": "事件涉及点'运河二通道港区'"}, {"source": "2020年城市边界", "target": "2021年城市边界", "type": "TRANSITION_FROM", "description": "从2020年边界转换到2021年边界"}, {"source": "2021年城市边界", "target": "2022年城市边界", "type": "TRANSITION_FROM", "description": "从2021年边界转换到2022年边界"}, {"source": "2021年城市边界", "target": "2021年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2021年城市边界上"}, {"source": "2021年城市边界", "target": "2021年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2021年城市边界上"}, {"source": "2022年城市边界", "target": "2023年城市边界", "type": "TRANSITION_FROM", "description": "从2022年边界转换到2023年边界"}, {"source": "2022年城市边界", "target": "2022年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2022年城市边界上"}, {"source": "2022年城市边界", "target": "2022年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2022年城市边界上"}, {"source": "2023年城市边界", "target": "2024年城市边界", "type": "TRANSITION_FROM", "description": "从2023年边界转换到2024年边界"}, {"source": "2023年城市边界", "target": "2023年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2023年城市边界上"}, {"source": "2023年城市边界", "target": "2023年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2023年城市边界上"}, {"source": "2024年城市边界", "target": "2025年城市边界", "type": "TRANSITION_FROM", "description": "从2024年边界转换到2025年边界"}, {"source": "2024年城市边界", "target": "2024年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2024年城市边界上"}, {"source": "2024年城市边界", "target": "2024年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2024年城市边界上"}, {"source": "2025年城市边界", "target": "2025年进入边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2025年城市边界上"}, {"source": "2025年城市边界", "target": "2025年退出边界事件", "type": "ON_BOUNDARY", "description": "该事件发生在2025年城市边界上"}];
+        
+        // 颜色映射
+        const typeColors = {
+            'Boundary': '#e94560',
+            'Point': '#00b4d8',
+            'Policy': '#06d6a0',
+            'STTE_Event': '#ffd166',
+            'District': '#bb86fc',
+            'PolicyGoal': '#ff6b6b',
+            'PolicyMeasure': '#48dbfb',
+            'Infrastructure': '#ff9a76',
+            'LandUse': '#a8e6cf',
+            'Keyword': '#dfe6e9',
+            'DocumentChunk': '#b2bec3',
+            'Unknown': '#636e72'
+        };
+        
+        // 初始化画布
+        const canvas = document.getElementById('graph');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        
+        function resize() {
+            width = canvas.parentElement.clientWidth;
+            height = canvas.parentElement.clientHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        
+        // 节点布局（使用服务端预计算位置，叠加少量力导向微调后固定）
+        const nodePositions = {};
+        nodes.forEach(node => {
+            // 预计算坐标映射到画布
+            const scaleX = width * 0.4;
+            const scaleY = height * 0.4;
+            nodePositions[node.id] = {
+                x: width/2 + (node.x || 0) * scaleX,
+                y: height/2 + (node.y || 0) * scaleY,
+                vx: 0,
+                vy: 0
+            };
+        });
+
+        // 力导向布局——有限迭代后停止
+        const MAX_ITERATIONS = 300;
+        let iteration = 0;
+        let running = true;
+
+        function applyForces() {
+            if (!running) return;
+            const k = 0.005;
+            const repulsion = 3000;
+
+            // 节点间排斥
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const n1 = nodePositions[nodes[i].id];
+                    const n2 = nodePositions[nodes[j].id];
+                    const dx = n2.x - n1.x;
+                    const dy = n2.y - n1.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+                    const force = repulsion / (dist * dist);
+
+                    n1.vx -= (dx / dist) * force;
+                    n1.vy -= (dy / dist) * force;
+                    n2.vx += (dx / dist) * force;
+                    n2.vy += (dy / dist) * force;
+                }
+            }
+
+            // 边的吸引力
+            edges.forEach(edge => {
+                const n1 = nodePositions[edge.source];
+                const n2 = nodePositions[edge.target];
+                if (!n1 || !n2) return;
+
+                const dx = n2.x - n1.x;
+                const dy = n2.y - n1.y;
+                const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+                const force = k * (dist - 100);
+
+                n1.vx += (dx / dist) * force;
+                n1.vy += (dy / dist) * force;
+                n2.vx -= (dx / dist) * force;
+                n2.vy -= (dy / dist) * force;
+            });
+
+            // 更新位置
+            nodes.forEach(node => {
+                const pos = nodePositions[node.id];
+                pos.vx *= 0.85;  // 强阻尼——快速收敛
+                pos.vy *= 0.85;
+                pos.x += pos.vx;
+                pos.y += pos.vy;
+
+                pos.x = Math.max(30, Math.min(width - 30, pos.x));
+                pos.y = Math.max(30, Math.min(height - 30, pos.y));
+            });
+
+            iteration++;
+            if (iteration >= MAX_ITERATIONS) {
+                running = false;
+            }
+        }
+
+        // 动画循环——停止后固定
+        function animate() {
+            if (running) {
+                applyForces();
+            }
+            draw();
+            requestAnimationFrame(animate);
+        }
+        animate();
+        
+        // 绘制
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // 绘制边
+            edges.forEach(edge => {
+                const n1 = nodePositions[edge.source];
+                const n2 = nodePositions[edge.target];
+                if (!n1 || !n2) return;
+                
+                ctx.beginPath();
+                ctx.moveTo(n1.x, n1.y);
+                ctx.lineTo(n2.x, n2.y);
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            });
+            
+            // 绘制节点
+            nodes.forEach(node => {
+                const pos = nodePositions[node.id];
+                const color = typeColors[node.type] || typeColors['Unknown'];
+                const radius = node.type === 'Boundary' ? 12 : 8;
+                
+                // 光晕效果
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, radius + 4, 0, Math.PI * 2);
+                ctx.fillStyle = color + '40';
+                ctx.fill();
+                
+                // 节点
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // 标签
+                ctx.fillStyle = '#fff';
+                ctx.font = '11px Microsoft YaHei';
+                ctx.textAlign = 'center';
+                ctx.fillText(node.id.substring(0, 8), pos.x, pos.y + radius + 15);
+            });
+        }
+
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            nodes.forEach(node => {
+                const pos = nodePositions[node.id];
+                if (query && node.id.toLowerCase().includes(query)) {
+                    pos.highlighted = true;
+                } else {
+                    pos.highlighted = false;
+                }
+            });
+        });
+        
+        // 点击节点
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            for (const node of nodes) {
+                const pos = nodePositions[node.id];
+                const dist = Math.sqrt((x - pos.x)**2 + (y - pos.y)**2);
+                if (dist < 15) {
+                    document.getElementById('nodeInfoText').innerHTML = `
+                        <strong>${node.id}</strong><br>
+                        类型: ${node.type}<br>
+                        描述: ${node.description || '无'}
+                    `;
+                    break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

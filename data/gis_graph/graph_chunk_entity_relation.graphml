@@ -1,0 +1,806 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d11" for="edge" attr.name="created_at" attr.type="long"/>
+<key id="d10" for="edge" attr.name="file_path" attr.type="string"/>
+<key id="d9" for="edge" attr.name="source_id" attr.type="string"/>
+<key id="d8" for="edge" attr.name="keywords" attr.type="string"/>
+<key id="d7" for="edge" attr.name="description" attr.type="string"/>
+<key id="d6" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d5" for="node" attr.name="created_at" attr.type="long"/>
+<key id="d4" for="node" attr.name="file_path" attr.type="string"/>
+<key id="d3" for="node" attr.name="source_id" attr.type="string"/>
+<key id="d2" for="node" attr.name="description" attr.type="string"/>
+<key id="d1" for="node" attr.name="entity_type" attr.type="string"/>
+<key id="d0" for="node" attr.name="entity_id" attr.type="string"/>
+<graph edgedefault="undirected"><node id="居住组团R">
+  <data key="d0">居住组团R</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:临平区 | 街道:南苑街道 | 规划片区:三江汇 | 经纬度:(120.2530,30.3370) | 功能:人才公寓组团 | 用地:R2（二类居住用地） | 类型:residential | 控制线:城镇开发边界内 | 阶段:已建成 | 服务人口:27236 | 首次出现:2020年 | 变化原因:城市更新改造</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="西湖风景名胜区">
+  <data key="d0">西湖风景名胜区</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:临平区 | 街道:东湖街道 | 规划片区:三江汇 | 经纬度:(120.1611,30.3903) | 功能:城市公园 | 用地:G1（公园绿地） | 类型:green_space | 控制线:生态保护红线内 | 阶段:在建 | 首次出现:2025年 | 变化原因:生态环境修复</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="临平新城商圈">
+  <data key="d0">临平新城商圈</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:上城区 | 街道:小营街道 | 规划片区:城西科创大走廊 | 经纬度:(120.2532,30.2368) | 功能:商业商务区 | 用地:B1（商业用地） | 类型:commercial | 控制线:城镇开发边界内 | 阶段:在建 | 首次出现:2023年 | 变化原因:城市更新改造</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="国际会议中心">
+  <data key="d0">国际会议中心</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:拱墅区 | 街道:小河街道 | 规划片区:下沙副城 | 经纬度:(120.2011,30.2987) | 功能:公共服务核心 | 用地:A（公共管理与公共服务用地） | 类型:service | 控制线:永久基本农田 | 阶段:在建 | 服务人口:5212 | 首次出现:2021年 | 变化原因:城市更新改造</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="城西银泰商圈">
+  <data key="d0">城西银泰商圈</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:余杭区 | 街道:仓前街道 | 规划片区:钱江新城 | 经纬度:(120.2803,30.4190) | 功能:商业商务区 | 用地:B1（商业用地） | 类型:commercial | 控制线:城镇开发边界内 | 阶段:在建 | 首次出现:2024年 | 变化原因:交通网络延伸</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="运河二通道港区">
+  <data key="d0">运河二通道港区</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:滨江区 | 街道:西兴街道 | 规划片区:城西科创大走廊 | 经纬度:(120.1716,30.3024) | 功能:综合交通枢纽 | 用地:S（交通设施用地） | 类型:transportation | 控制线:永久基本农田 | 阶段:已建成 | 首次出现:2024年 | 变化原因:生态环境修复</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="居住组团W">
+  <data key="d0">居住组团W</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:西湖区 | 街道:北山街道 | 规划片区:钱江新城 | 经纬度:(120.2117,30.2971) | 功能:高品质住区 | 用地:R2（二类居住用地） | 类型:residential | 控制线:生态保护红线内 | 阶段:已建成 | 服务人口:42940 | 首次出现:2024年 | 变化原因:产业园区建设</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="滨江互联网小镇">
+  <data key="d0">滨江互联网小镇</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:临安区 | 街道:玲珑街道 | 规划片区:临平新城 | 经纬度:(120.1988,30.2357) | 功能:产业创新区 | 用地:M1（一类工业用地） | 类型:industrial | 控制线:生态保护红线内 | 阶段:规划中 | 首次出现:2020年 | 变化原因:城市扩张</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="湘湖旅游度假区">
+  <data key="d0">湘湖旅游度假区</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:富阳区 | 街道:鹿山街道 | 规划片区:钱江世纪城 | 经纬度:(120.2222,30.3182) | 功能:生态休闲区 | 用地:G1（公园绿地） | 类型:green_space | 控制线:城镇开发边界内 | 阶段:在建 | 首次出现:2021年 | 变化原因:城市扩张</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="大江东智造园">
+  <data key="d0">大江东智造园</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:临安区 | 街道:青山湖街道 | 规划片区:临平新城 | 经纬度:(120.1540,30.2571) | 功能:产业创新区 | 用地:M1（一类工业用地） | 类型:industrial | 控制线:永久基本农田 | 阶段:在建 | 首次出现:2022年 | 变化原因:城市更新改造</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="奥体中心">
+  <data key="d0">奥体中心</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:余杭区 | 街道:仓前街道 | 规划片区:大江东产业集聚区 | 经纬度:(120.1467,30.2356) | 功能:教育科研区 | 用地:A（公共管理与公共服务用地） | 类型:service | 控制线:城镇开发边界内 | 阶段:待更新 | 服务人口:42170 | 首次出现:2020年 | 变化原因:产业园区建设</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="下沙大学城北住区">
+  <data key="d0">下沙大学城北住区</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:滨江区 | 街道:浦沿街道 | 规划片区:大江东产业集聚区 | 经纬度:(120.1104,30.2843) | 功能:高品质住区 | 用地:R2（二类居住用地） | 类型:residential | 控制线:永久基本农田 | 阶段:在建 | 服务人口:12930 | 首次出现:2024年 | 变化原因:城市更新改造</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="钱江新城住区">
+  <data key="d0">钱江新城住区</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:拱墅区 | 街道:米市巷街道 | 规划片区:钱江新城 | 经纬度:(120.2060,30.3430) | 功能:高品质住区 | 用地:R2（二类居住用地） | 类型:residential | 控制线:城镇开发边界内 | 阶段:待更新 | 服务人口:28283 | 首次出现:2021年 | 变化原因:交通网络延伸</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="半山森林公园">
+  <data key="d0">半山森林公园</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:临平区 | 街道:东湖街道 | 规划片区:钱江新城 | 经纬度:(120.2138,30.3197) | 功能:城市公园 | 用地:G1（公园绿地） | 类型:green_space | 控制线:城镇开发边界内 | 阶段:规划中 | 首次出现:2024年 | 变化原因:交通网络延伸</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="良渚品质住区">
+  <data key="d0">良渚品质住区</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:拱墅区 | 街道:小河街道 | 规划片区:钱江世纪城 | 经纬度:(120.1850,30.4397) | 功能:人才公寓组团 | 用地:R2（二类居住用地） | 类型:residential | 控制线:城镇开发边界内 | 阶段:在建 | 服务人口:22691 | 首次出现:2023年 | 变化原因:城市更新改造</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="青山湖科创园">
+  <data key="d0">青山湖科创园</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:滨江区 | 街道:西兴街道 | 规划片区:钱江新城 | 经纬度:(120.2407,30.3065) | 功能:产业创新区 | 用地:M1（一类工业用地） | 类型:industrial | 控制线:城镇开发边界内 | 阶段:规划中 | 首次出现:2020年 | 变化原因:城市扩张</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="萧山国际机场">
+  <data key="d0">萧山国际机场</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:富阳区 | 街道:富春街道 | 规划片区:临平新城 | 经纬度:(120.0868,30.2714) | 功能:综合交通枢纽 | 用地:S（交通设施用地） | 类型:transportation | 控制线:城镇开发边界内 | 阶段:已建成 | 首次出现:2022年 | 变化原因:产业园区建设</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="居住组团Q">
+  <data key="d0">居住组团Q</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:滨江区 | 街道:浦沿街道 | 规划片区:钱江世纪城 | 经纬度:(120.2076,30.4001) | 功能:人才公寓组团 | 用地:R2（二类居住用地） | 类型:residential | 控制线:城镇开发边界内 | 阶段:待更新 | 服务人口:31677 | 首次出现:2021年 | 变化原因:城市更新改造</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="杭州大剧院">
+  <data key="d0">杭州大剧院</data>
+  <data key="d1">Point</data>
+  <data key="d2">行政区:富阳区 | 街道:富春街道 | 规划片区:钱江新城 | 经纬度:(120.2281,30.2722) | 功能:医疗康养区 | 用地:A（公共管理与公共服务用地） | 类型:service | 控制线:永久基本农田 | 阶段:规划中 | 服务人口:29504 | 首次出现:2021年 | 变化原因:产业园区建设</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2020年城市边界">
+  <data key="d0">2020年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2020年的城市边界状态，边界内共 10 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2021年城市边界">
+  <data key="d0">2021年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2021年的城市边界状态，边界内共 11 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2022年城市边界">
+  <data key="d0">2022年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2022年的城市边界状态，边界内共 12 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2023年城市边界">
+  <data key="d0">2023年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2023年的城市边界状态，边界内共 13 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2024年城市边界">
+  <data key="d0">2024年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2024年的城市边界状态，边界内共 14 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2025年城市边界">
+  <data key="d0">2025年城市边界</data>
+  <data key="d1">Boundary</data>
+  <data key="d2">2025年的城市边界状态，边界内共 15 个点位</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2021年进入边界事件">
+  <data key="d0">2021年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2021年共有 2 个点进入边界内：萧山国际机场, 湘湖旅游度假区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2021年退出边界事件">
+  <data key="d0">2021年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2021年共有 1 个点退出边界外：西湖风景名胜区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2022年进入边界事件">
+  <data key="d0">2022年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2022年共有 2 个点进入边界内：大江东智造园, 青山湖科创园</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2022年退出边界事件">
+  <data key="d0">2022年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2022年共有 1 个点退出边界外：城西银泰商圈</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2023年进入边界事件">
+  <data key="d0">2023年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2023年共有 3 个点进入边界内：居住组团W, 居住组团R, 国际会议中心</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2023年退出边界事件">
+  <data key="d0">2023年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2023年共有 2 个点退出边界外：运河二通道港区, 钱江新城住区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2024年进入边界事件">
+  <data key="d0">2024年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2024年共有 3 个点进入边界内：奥体中心, 城西银泰商圈, 西湖风景名胜区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2024年退出边界事件">
+  <data key="d0">2024年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2024年共有 2 个点退出边界外：居住组团W, 滨江互联网小镇</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2025年进入边界事件">
+  <data key="d0">2025年进入边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2025年共有 2 个点进入边界内：临平新城商圈, 滨江互联网小镇</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<node id="2025年退出边界事件">
+  <data key="d0">2025年退出边界事件</data>
+  <data key="d1">STTE_Event</data>
+  <data key="d2">2025年共有 1 个点退出边界外：西湖风景名胜区</data>
+  <data key="d3">UNKNOWN</data>
+  <data key="d4">custom_kg</data>
+  <data key="d5">1781374691</data>
+</node>
+<edge source="居住组团R" target="湘湖旅游度假区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团R'与点'湘湖旅游度假区'地理相邻（距离 3.62 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团R" target="钱江新城住区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团R'与点'钱江新城住区'地理相邻（距离 4.56 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团R" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团R'与点'半山森林公园'地理相邻（距离 4.23 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团R" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团R'与点'青山湖科创园'地理相邻（距离 3.59 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团R" target="2023年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'居住组团R'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="西湖风景名胜区" target="居住组团Q">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团Q'与点'西湖风景名胜区'地理相邻（距离 4.59 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="西湖风景名胜区" target="2021年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'西湖风景名胜区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="西湖风景名胜区" target="2024年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'西湖风景名胜区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="西湖风景名胜区" target="2025年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'西湖风景名胜区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="临平新城商圈" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'临平新城商圈'与点'杭州大剧院'地理相邻（距离 4.62 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="临平新城商圈" target="2025年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'临平新城商圈'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="国际会议中心" target="居住组团W">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'国际会议中心'地理相邻（距离 1.03 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="国际会议中心" target="湘湖旅游度假区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'湘湖旅游度假区'地理相邻（距离 2.97 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="国际会议中心" target="钱江新城住区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'钱江新城住区'地理相邻（距离 4.95 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="国际会议中心" target="运河二通道港区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'运河二通道港区'地理相邻（距离 2.86 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="国际会议中心" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'杭州大剧院'地理相邻（距离 3.92 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="国际会议中心" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'半山森林公园'地理相邻（距离 2.63 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="国际会议中心" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'国际会议中心'与点'青山湖科创园'地理相邻（距离 3.90 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="国际会议中心" target="2023年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'国际会议中心'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="城西银泰商圈" target="2022年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'城西银泰商圈'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="城西银泰商圈" target="2024年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'城西银泰商圈'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="运河二通道港区" target="居住组团W">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'运河二通道港区'地理相邻（距离 3.89 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="运河二通道港区" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'运河二通道港区'与点'半山森林公园'地理相邻（距离 4.48 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="运河二通道港区" target="2023年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'运河二通道港区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团W" target="湘湖旅游度假区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'湘湖旅游度假区'地理相邻（距离 2.55 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团W" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'杭州大剧院'地理相邻（距离 3.19 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团W" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'半山森林公园'地理相邻（距离 2.52 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团W" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'居住组团W'与点'青山湖科创园'地理相邻（距离 2.97 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团W" target="2023年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'居住组团W'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="居住组团W" target="2024年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'居住组团W'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="滨江互联网小镇" target="大江东智造园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'滨江互联网小镇'与点'大江东智造园'地理相邻（距离 4.92 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="滨江互联网小镇" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'滨江互联网小镇'与点'杭州大剧院'地理相邻（距离 4.94 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="滨江互联网小镇" target="2024年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'滨江互联网小镇'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="滨江互联网小镇" target="2025年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'滨江互联网小镇'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="湘湖旅游度假区" target="钱江新城住区">
+  <data key="d6">1.0</data>
+  <data key="d7">点'湘湖旅游度假区'与点'钱江新城住区'地理相邻（距离 3.17 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="湘湖旅游度假区" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'湘湖旅游度假区'与点'半山森林公园'地理相邻（距离 0.82 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="湘湖旅游度假区" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'湘湖旅游度假区'与点'青山湖科创园'地理相邻（距离 2.20 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="湘湖旅游度假区" target="2021年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'湘湖旅游度假区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="大江东智造园" target="奥体中心">
+  <data key="d6">1.0</data>
+  <data key="d7">点'大江东智造园'与点'奥体中心'地理相邻（距离 2.49 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="大江东智造园" target="2022年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'大江东智造园'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="奥体中心" target="2024年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'奥体中心'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="下沙大学城北住区" target="萧山国际机场">
+  <data key="d6">1.0</data>
+  <data key="d7">点'下沙大学城北住区'与点'萧山国际机场'地理相邻（距离 2.68 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="钱江新城住区" target="半山森林公园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'钱江新城住区'与点'半山森林公园'地理相邻（距离 2.70 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="钱江新城住区" target="2023年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'钱江新城住区'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="半山森林公园" target="青山湖科创园">
+  <data key="d6">1.0</data>
+  <data key="d7">点'半山森林公园'与点'青山湖科创园'地理相邻（距离 2.97 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="良渚品质住区" target="居住组团Q">
+  <data key="d6">1.0</data>
+  <data key="d7">点'良渚品质住区'与点'居住组团Q'地理相邻（距离 4.91 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="青山湖科创园" target="杭州大剧院">
+  <data key="d6">1.0</data>
+  <data key="d7">点'杭州大剧院'与点'青山湖科创园'地理相邻（距离 4.00 公里）</data>
+  <data key="d8">ADJACENT_TO, 地理相邻</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="青山湖科创园" target="2022年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'青山湖科创园'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="萧山国际机场" target="2021年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">事件涉及点'萧山国际机场'</data>
+  <data key="d8">INVOLVES_POINT, 空间事件</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2020年城市边界" target="2021年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2020年边界转换到2021年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2021年城市边界" target="2022年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2021年边界转换到2022年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2021年城市边界" target="2021年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2021年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2021年城市边界" target="2021年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2021年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2022年城市边界" target="2023年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2022年边界转换到2023年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2022年城市边界" target="2022年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2022年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2022年城市边界" target="2022年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2022年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2023年城市边界" target="2024年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2023年边界转换到2024年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2023年城市边界" target="2023年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2023年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2023年城市边界" target="2023年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2023年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2024年城市边界" target="2025年城市边界">
+  <data key="d6">1.0</data>
+  <data key="d7">从2024年边界转换到2025年边界</data>
+  <data key="d8">TRANSITION_FROM, 时间演变</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2024年城市边界" target="2024年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2024年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2024年城市边界" target="2024年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2024年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2025年城市边界" target="2025年进入边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2025年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+<edge source="2025年城市边界" target="2025年退出边界事件">
+  <data key="d6">1.0</data>
+  <data key="d7">该事件发生在2025年城市边界上</data>
+  <data key="d8">ON_BOUNDARY, 事件归属边界</data>
+  <data key="d9">UNKNOWN</data>
+  <data key="d10">custom_kg</data>
+  <data key="d11">1781374691</data>
+</edge>
+</graph></graphml>
