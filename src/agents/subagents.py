@@ -4,13 +4,15 @@
 """
 from __future__ import annotations
 
-from typing import Optional
+from typing import Optional, List
 
 from agentscope.message import Msg, TextBlock
+from agentscope.state import AgentState
+from agentscope.tool import FunctionTool
 
 from ..config import config
 from ..knowledge import GraphManager
-from .permission import wrap_tools
+from .permission import build_subagent_permission_context, build_toolkit_for_agent
 from .runtime import (
     set_graph_managers,
     create_model,
@@ -21,6 +23,7 @@ from .runtime import (
     ANTI_HALLUCINATION_RULES,
 )
 from .tools import (
+    build_all_tools,
     query_point_detail,
     query_year_summary,
     list_all_entities,
@@ -30,6 +33,12 @@ from .tools import (
     compare_periods,
     boundary_evolution_timeline,
 )
+
+
+def _build_default_tools(agent_kind: str) -> List[FunctionTool]:
+    """当外部未传入 tools 时，按白名单构建默认工具子集（兼容旧测试直接实例化）。"""
+    all_tools = build_all_tools()
+    return build_toolkit_for_agent(agent_kind, all_tools)
 
 
 # ============ SpatialEventAgent ============
@@ -46,7 +55,9 @@ class SpatialEventAgent:
         gis_graph=None,
         full_graph=None,
         enable_tracing: bool = True,
-        model_name: str = "deepseek-v4-flash"
+        model_name: str = "deepseek-v4-flash",
+        tools: Optional[List[FunctionTool]] = None,
+        state: Optional[AgentState] = None,
     ):
         self.name = "SpatialEventAgent"
 
@@ -84,10 +95,12 @@ class SpatialEventAgent:
 
 {ANTI_HALLUCINATION_RULES}"""
 
-        tools = wrap_tools(
-            [query_point_detail, query_year_summary, list_all_entities],
-            agent_kind="spatial",
-        )
+        tools = tools if tools is not None else _build_default_tools("spatial")
+        if state is None:
+            state = AgentState(
+                permission_context=build_subagent_permission_context("spatial")
+            )
+
         model = create_model(model_name, api_key,
                              temperature=config.llm.subagent_temperature)
         self.agent = create_agent(
@@ -95,7 +108,8 @@ class SpatialEventAgent:
             system_prompt=system_prompt,
             model=model,
             enable_tracing=enable_tracing,
-            tools=tools
+            tools=tools,
+            state=state,
         )
 
     def reply(self, x: Msg) -> Msg:
@@ -125,7 +139,9 @@ class GraphReasoningAgent:
         gis_graph=None,
         full_graph=None,
         enable_tracing: bool = True,
-        model_name: str = "deepseek-v4-flash"
+        model_name: str = "deepseek-v4-flash",
+        tools: Optional[List[FunctionTool]] = None,
+        state: Optional[AgentState] = None,
     ):
         self.name = "GraphReasoningAgent"
 
@@ -175,10 +191,12 @@ class GraphReasoningAgent:
 
         # 工具集：search_document_chunks 做 Step 1 向量检索（[D*] 编号）；
         # hybrid_retrieve 做 Step 2 图谱多跳（[E*] 编号 + 可能的 [D*] chunk）
-        tools = wrap_tools(
-            [search_document_chunks, hybrid_retrieve],
-            agent_kind="graph",
-        )
+        tools = tools if tools is not None else _build_default_tools("graph")
+        if state is None:
+            state = AgentState(
+                permission_context=build_subagent_permission_context("graph")
+            )
+
         model = create_model(model_name, api_key,
                              temperature=config.llm.subagent_temperature)
         self.agent = create_agent(
@@ -186,7 +204,8 @@ class GraphReasoningAgent:
             system_prompt=system_prompt,
             model=model,
             enable_tracing=enable_tracing,
-            tools=tools
+            tools=tools,
+            state=state,
         )
 
     def reply(self, x: Msg) -> Msg:
@@ -223,6 +242,8 @@ class TemporalReasoningAgent:
         full_graph=None,
         enable_tracing: bool = True,
         model_name: str = "deepseek-v4-flash",
+        tools: Optional[List[FunctionTool]] = None,
+        state: Optional[AgentState] = None,
     ):
         self.name = "TemporalReasoningAgent"
 
@@ -273,10 +294,12 @@ class TemporalReasoningAgent:
 
 {ANTI_HALLUCINATION_RULES}"""
 
-        tools = wrap_tools(
-            [time_series_aggregate, compare_periods, boundary_evolution_timeline],
-            agent_kind="temporal",
-        )
+        tools = tools if tools is not None else _build_default_tools("temporal")
+        if state is None:
+            state = AgentState(
+                permission_context=build_subagent_permission_context("temporal")
+            )
+
         model = create_model(model_name, api_key,
                              temperature=config.llm.subagent_temperature)
         self.agent = create_agent(
@@ -285,6 +308,7 @@ class TemporalReasoningAgent:
             model=model,
             enable_tracing=enable_tracing,
             tools=tools,
+            state=state,
         )
 
     def reply(self, x: Msg) -> Msg:
@@ -303,7 +327,9 @@ class ReportGenerationAgent:
         api_key: str,
         graph_manager: Optional[GraphManager] = None,
         enable_tracing: bool = True,
-        model_name: str = "deepseek-v4-flash"
+        model_name: str = "deepseek-v4-flash",
+        tools: Optional[List[FunctionTool]] = None,
+        state: Optional[AgentState] = None,
     ):
         self.name = "ReportGenerationAgent"
 
@@ -373,13 +399,19 @@ class ReportGenerationAgent:
 
 如果分析结果显示某些维度"证据不足"，必须如实转述，不能填充推测内容。"""
 
+        if state is None:
+            state = AgentState(
+                permission_context=build_subagent_permission_context("report")
+            )
+
         model = create_model(model_name, api_key,
                              temperature=config.llm.report_temperature)
         self.agent = create_agent(
             name=self.name,
             system_prompt=system_prompt,
             model=model,
-            enable_tracing=enable_tracing
+            enable_tracing=enable_tracing,
+            state=state,
         )
 
     def reply(self, x: Msg) -> Msg:

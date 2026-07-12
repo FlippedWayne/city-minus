@@ -1,4 +1,4 @@
-# 敏感文件
+﻿# 敏感文件
 .env
 
 # Python缓存
@@ -18,6 +18,42 @@ data/report.html
 .codegraph/
 .idea/
 .vscode/
+
+# 运行/构建产物
+static/
+graphify-out/
+out.json
+
+# Session 和数据跟踪文件
+data/sessions/
+data/memory/
+data/traces/
+data/users/
+data/_chunks_list.txt
+data/_import_full.log
+data/_parse_utf8.log
+data/_reparse.log
+data/_reparse2.log
+data/_reparse_vlm.log
+data/_routing_test.log
+data/report_*.html
+data/trace*.json
+data/full_graph/kv_store_llm_response_cache.json
+
+# 临时脚本
+_tmp_*.py
+_tmp_*.log
+
+# 配置文件
+opencode.json
+todos.txt
+1.24.0
+
+# Workbuddy 日志
+.workbuddy/memory/*.md
+
+# Claude 配置
+.claude/
 
 # 系统文件
 Thumbs.db

@@ -123,7 +123,12 @@ def test_graph_tools(mgr):
 def test_permissions():
     banner("权限白名单测试")
     import asyncio
-    from agentscope.permission import PermissionBehavior
+    from agentscope.permission import PermissionEngine, PermissionBehavior
+    from agentscope.tool import FunctionTool
+
+    def _engine(perm, agent_kind: str):
+        ctx = perm.build_subagent_permission_context(agent_kind)
+        return PermissionEngine(context=ctx)
 
     # BYPASS 模式
     os.environ["PERMISSION_MODE"] = "bypass"
@@ -134,8 +139,8 @@ def test_permissions():
     print(f"\n[1] PERMISSION_MODE=bypass（默认）：所有工具放行")
     def fn1(*a, **k): return None
     fn1.__name__ = "anything_random"
-    tools = perm_mod.wrap_tools([fn1], agent_kind="spatial")
-    d = asyncio.run(tools[0].check_permissions({}))
+    engine = _engine(perm_mod, "spatial")
+    d = asyncio.run(engine.check_permission(FunctionTool(func=fn1), {}))
     check("anything_random → ALLOW", d.behavior == PermissionBehavior.ALLOW, d.message)
 
     # DEFAULT 模式
@@ -145,21 +150,21 @@ def test_permissions():
     print(f"\n[2] PERMISSION_MODE=default：按白名单过滤")
     def fn_allowed(*a, **k): return None
     fn_allowed.__name__ = "query_gis_graph"   # spatial 白名单内
-    tools = perm_mod.wrap_tools([fn_allowed], agent_kind="spatial")
-    d = asyncio.run(tools[0].check_permissions({}))
+    engine = _engine(perm_mod, "spatial")
+    d = asyncio.run(engine.check_permission(FunctionTool(func=fn_allowed), {}))
     check("spatial.query_gis_graph → ALLOW", d.behavior == PermissionBehavior.ALLOW)
 
     def fn_blocked(*a, **k): return None
     fn_blocked.__name__ = "search_document_chunks"   # graph 工具，spatial 不该用
-    tools = perm_mod.wrap_tools([fn_blocked], agent_kind="spatial")
-    d = asyncio.run(tools[0].check_permissions({}))
+    engine = _engine(perm_mod, "spatial")
+    d = asyncio.run(engine.check_permission(FunctionTool(func=fn_blocked), {}))
     check("spatial.search_document_chunks → ASK（跨域阻塞）",
           d.behavior == PermissionBehavior.ASK)
 
     def fn_graph(*a, **k): return None
     fn_graph.__name__ = "search_document_chunks"
-    tools = perm_mod.wrap_tools([fn_graph], agent_kind="graph")
-    d = asyncio.run(tools[0].check_permissions({}))
+    engine = _engine(perm_mod, "graph")
+    d = asyncio.run(engine.check_permission(FunctionTool(func=fn_graph), {}))
     check("graph.search_document_chunks → ALLOW", d.behavior == PermissionBehavior.ALLOW)
 
     # 复位

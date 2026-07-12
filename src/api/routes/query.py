@@ -49,7 +49,7 @@ async def _do_query(req, master, store, stats):
     answer = extract_text(resp)
     elapsed = time.perf_counter() - t0
 
-    task = master.session.turns[-1] if master.session.turns else None
+    task = master.session.last_task
     audit_raw = getattr(task, "citation_audit", None) or {}
     audit = CitationAudit(
         total=audit_raw.get("total_citations", 0),

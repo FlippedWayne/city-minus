@@ -88,3 +88,47 @@ class ErrorResponse(BaseModel):
     error: str
     code: str
     detail: Optional[str] = None
+
+
+# ─── Chat ───
+
+class ChatSendRequest(BaseModel):
+    message: str = Field(..., min_length=1, max_length=5000, description="用户消息")
+    session_id: Optional[str] = Field(None, description="已有会话ID，不传则新建")
+
+
+class ChatSendResponse(BaseModel):
+    task_id: str
+    session_id: str
+
+
+class ChatMessageInfo(BaseModel):
+    id: str
+    role: str
+    content: str
+    timestamp: str
+    metadata: Dict[str, Any] = {}
+
+
+class ChatHistoryResponse(BaseModel):
+    session_id: str
+    title: str = ""
+    messages: List[ChatMessageInfo] = []
+
+
+class ChatSessionInfo(BaseModel):
+    session_id: str
+    title: str
+    message_count: int = 0
+    updated_at: str = ""
+
+
+class ChatSessionsResponse(BaseModel):
+    sessions: List[ChatSessionInfo] = []
+
+
+class ChatFeedbackRequest(BaseModel):
+    """用户对某轮回答的反馈——用于记忆系统的 good/bad 标记。"""
+    session_id: str = Field(..., description="会话ID")
+    question: str = Field(..., min_length=1, max_length=1000, description="对应的用户问题")
+    rating: str = Field(..., description="good 或 bad")

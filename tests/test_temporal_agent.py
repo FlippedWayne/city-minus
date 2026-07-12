@@ -150,14 +150,12 @@ class TestPermissionAllowlist:
         # list_all_entities 不应在 temporal 白名单（temporal 不需要探查实体）
         assert "list_all_entities" not in tools
 
-    def test_temporal_wrap_tools(self):
-        from src.agents.permission import wrap_tools
-        wrapped = wrap_tools(
-            [time_series_aggregate, compare_periods, boundary_evolution_timeline],
-            agent_kind="temporal",
-        )
-        assert len(wrapped) == 3
-        names = {w.name for w in wrapped}
+    def test_temporal_toolkit(self):
+        from src.agents.permission import build_toolkit_for_agent
+        from src.agents.tools import build_all_tools
+        tools = build_toolkit_for_agent("temporal", build_all_tools())
+        assert len(tools) == 3
+        names = {w.name for w in tools}
         assert "time_series_aggregate" in names
         assert "compare_periods" in names
         assert "boundary_evolution_timeline" in names

@@ -1,15 +1,11 @@
-"""Agent 会话状态：多轮上下文 + 异步任务归属
+"""Agent 执行状态：并发安全 + 崩溃恢复。
 
-设计目标：
-    1. 多轮对话保留初始 query 与意图，让追问能引用上文
-    2. 异步任务有明确归属，过期任务结果被丢弃（方案 B）
-
-不做的事：
-    - 不做 Blackboard / 跨 Agent 协作中间结果共享
-    - 不做 LongTermMemory / 跨会话向量检索
-    - 不做 DAG / Phase 阶段化执行
+AgentSession 不参与上下文拼接——历史上下文由 ChatService 从 PG 注入，
+或 CLI 直接走当前问题。Session 只负责：
+  1. 当前任务生命周期（pending→running→done）
+  2. 并发安全（is_current，防止旧回调污染）
+  3. 崩溃恢复（JSON 落盘，进程重启后 running→failed）
 """
-
 from __future__ import annotations
 
 import json
@@ -20,14 +16,14 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 
-# ─── 任务状态枚举（用字符串而不是 Enum，方便 JSON 序列化）─────────────
+# ─── 任务状态枚举 ─────────────────────────────────────────────────────
 TASK_PENDING = "pending"
 TASK_RUNNING = "running"
 TASK_DONE = "done"
 TASK_FAILED = "failed"
-TASK_TIMEOUT = "timeout"     # SubAgent 超时未返回
-TASK_DEGRADED = "degraded"   # 返回了但结果无效（空答/占位符/<20字）
-TASK_SUPERSEDED = "superseded"  # 方案 B：被新任务取代，结果丢弃
+TASK_TIMEOUT = "timeout"
+TASK_DEGRADED = "degraded"
+TASK_SUPERSEDED = "superseded"
 
 
 @dataclass
@@ -106,16 +102,12 @@ class TaskContext:
 
 @dataclass
 class Session:
-    """跨轮会话状态，JSON 落盘可恢复。
+    """Agent 执行会话——仅用于并发安全 + 崩溃恢复，不参与上下文拼接。
 
-    initial_question 永远指向第一轮，作为意图锚点。
-    current_task_id 记录"正在跑的最新任务"，旧任务回调时对照此字段判断是否过期。
-
-    tenant_id 为多租户准备——空字符串=默认/单租户。设值后 SessionStore
-    会把文件落到 data/sessions/{tenant_id}/{session_id}.json，做物理隔离。
+    turns 只保留当前任务（current_task）。历史上下文由 ChatService 从 PG 注入。
     """
     session_id: str
-    turns: List[TaskContext] = field(default_factory=list)
+    turns: List[TaskContext] = field(default_factory=list)  # 保留字段名，兼容旧代码
     current_task_id: Optional[str] = None
     created_at: str = field(default_factory=lambda: datetime.now().isoformat())
     tenant_id: str = ""
@@ -124,30 +116,28 @@ class Session:
     def new(cls, tenant_id: str = "") -> "Session":
         return cls(session_id=uuid.uuid4().hex, tenant_id=tenant_id)
 
+    # ── 便捷访问（替代旧代码中 turns[-1] / turns[0] 的散落写法）─────
+
     @property
-    def initial_question(self) -> str:
-        """第一轮问题——永远不变，作为意图锚点"""
-        return self.turns[0].question if self.turns else ""
+    def last_task(self) -> Optional[TaskContext]:
+        return self.turns[-1] if self.turns else None
+
+    # ── 任务生命周期 ─────────────────────────────────────────────────
 
     def start_task(self, question: str) -> TaskContext:
-        """开新一轮任务。旧的 running 任务自动标记为 superseded（方案 B）"""
+        """开新任务。旧的 running 任务标记 superseded。"""
         for t in self.turns:
             if t.status in (TASK_PENDING, TASK_RUNNING):
                 t.mark_superseded()
-
         task = TaskContext.new(self.session_id, question)
-        self.turns.append(task)
+        self.turns = [task]    # 替换，不累积
         self.current_task_id = task.task_id
         return task
 
     def is_current(self, task_id: str) -> bool:
-        """判断 task_id 是否仍是当前活跃任务（用于方案 B 的过期判断）"""
         return self.current_task_id == task_id
 
-    def recent_context(self, n: int = 3) -> List[TaskContext]:
-        """取最近 n 轮已完成的任务，给 Master 拼上下文"""
-        done_turns = [t for t in self.turns if t.status == TASK_DONE]
-        return done_turns[-n:]
+    # ── 序列化 ───────────────────────────────────────────────────────
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -162,26 +152,21 @@ class Session:
     def from_dict(cls, data: Dict[str, Any]) -> "Session":
         turns = []
         for raw in data.get("turns", []):
-            raw = dict(raw)  # 避免修改入参
+            raw = dict(raw)
             sub_raw = raw.pop("sub_results", {}) or {}
-            # 兼容旧 session 文件：没有 aggregated 字段时回退到 result
             if "aggregated" not in raw and "result" in raw:
                 raw["aggregated"] = raw.get("result")
             t = TaskContext(**raw)
-            t.sub_results = {
-                k: SubTaskResult(**v) for k, v in sub_raw.items()
-            }
+            t.sub_results = {k: SubTaskResult(**v) for k, v in sub_raw.items()}
             turns.append(t)
-        # 进程重启时把 running/pending 任务标记为 failed
+        # 崩溃恢复：running/pending → failed
         for t in turns:
             if t.status in (TASK_PENDING, TASK_RUNNING):
                 t.status = TASK_FAILED
                 t.error = "进程重启时任务未完成"
-            # 同步处理未完成的 sub_results
             for sub in t.sub_results.values():
                 if sub.status in (TASK_PENDING, TASK_RUNNING):
                     sub.status = TASK_FAILED
-                    sub.error = sub.error or "进程重启时未完成"
         return cls(
             session_id=data["session_id"],
             turns=turns,
@@ -190,30 +175,11 @@ class Session:
             tenant_id=data.get("tenant_id", ""),
         )
 
-    def trim_old_evidence(self, keep_recent_n: int = 3) -> None:
-        """控制 session 文件膨胀：只保留最近 N 轮的完整 evidence，
-        更早的轮次仅留 answer 文本。
-        """
-        done_turns = [t for t in self.turns if t.status == TASK_DONE]
-        if len(done_turns) <= keep_recent_n:
-            return
-        for t in done_turns[:-keep_recent_n]:
-            for sub in t.sub_results.values():
-                sub.evidence = []
-
 
 class SessionStore:
-    """Session 的 JSON 落盘存储，每个 session 一个文件。
-
-    多租户布局：
-      - tenant_id="" → data/sessions/{session_id}.json（兼容旧布局）
-      - tenant_id="acme" → data/sessions/acme/{session_id}.json（物理隔离）
-
-    路径里的 tenant_id 经过 _sanitize_tenant 清洗，禁止 ".." / "/" 等穿越字符。
-    """
+    """Session 的 JSON 落盘存储。"""
 
     def __init__(self, base_dir: Optional[str] = None):
-        # base_dir=None 时读 config（测试可显式传 base_dir 覆盖）
         if base_dir is None:
             from ..config import config
             base_dir = config.paths.sessions_dir
@@ -222,35 +188,25 @@ class SessionStore:
 
     @staticmethod
     def _sanitize_tenant(tenant_id: str) -> str:
-        """禁止路径穿越——只保留字母数字下划线连字符；非法字符过滤为空。"""
         if not tenant_id:
             return ""
-        cleaned = "".join(c for c in tenant_id if c.isalnum() or c in ("-", "_"))
-        return cleaned
+        return "".join(c for c in tenant_id if c.isalnum() or c in ("-", "_"))
 
     def _path(self, session_id: str, tenant_id: str = "") -> str:
         tenant = self._sanitize_tenant(tenant_id)
         if tenant:
-            tenant_dir = os.path.join(self.base_dir, tenant)
-            os.makedirs(tenant_dir, exist_ok=True)
-            return os.path.join(tenant_dir, f"{session_id}.json")
+            d = os.path.join(self.base_dir, tenant)
+            os.makedirs(d, exist_ok=True)
+            return os.path.join(d, f"{session_id}.json")
         return os.path.join(self.base_dir, f"{session_id}.json")
 
     def save(self, session: Session) -> None:
-        # 落盘前清理旧轮次的 evidence，避免 session 文件无限膨胀
-        from ..config import config
-        session.trim_old_evidence(keep_recent_n=config.memory.trim_keep_recent_n)
         with open(self._path(session.session_id, session.tenant_id), "w", encoding="utf-8") as f:
             json.dump(session.to_dict(), f, ensure_ascii=False, indent=2)
 
     def load(self, session_id: str, tenant_id: str = "") -> Optional[Session]:
-        """加载指定 tenant 的 session。
-
-        兼容查询：若指定 tenant 路径不存在，回退到旧布局（base_dir 根）。
-        """
         path = self._path(session_id, tenant_id)
         if not os.path.exists(path):
-            # 兼容：旧 session 在 base_dir 根，没有 tenant 子目录
             legacy = os.path.join(self.base_dir, f"{session_id}.json")
             if tenant_id and os.path.exists(legacy):
                 path = legacy
@@ -264,36 +220,7 @@ class SessionStore:
         if session_id:
             existing = self.load(session_id, tenant_id)
             if existing:
-                # 老 session 没 tenant_id，给它打上当前 tenant 的标
                 if tenant_id and not existing.tenant_id:
                     existing.tenant_id = tenant_id
                 return existing
         return Session.new(tenant_id=tenant_id)
-
-    def load_latest(self, tenant_id: str = "") -> Optional[Session]:
-        """加载最近修改的 session（按文件 mtime 排序）。
-
-        用于非交互模式的跨进程上下文延续：上次查询的 session 落盘后，
-        下次启动 main.py 自动恢复，_with_history 能引用之前的轮次。
-        """
-        tenant = self._sanitize_tenant(tenant_id)
-        search_dir = os.path.join(self.base_dir, tenant) if tenant else self.base_dir
-        if not os.path.isdir(search_dir):
-            return None
-        candidates = []
-        for fname in os.listdir(search_dir):
-            if not fname.endswith(".json"):
-                continue
-            fpath = os.path.join(search_dir, fname)
-            candidates.append((os.path.getmtime(fpath), fpath, fname))
-        if not candidates:
-            return None
-        # 最近修改的排前面
-        candidates.sort(reverse=True)
-        _, fpath, fname = candidates[0]
-        session_id = fname.removesuffix(".json")
-        try:
-            with open(fpath, "r", encoding="utf-8") as f:
-                return Session.from_dict(json.load(f))
-        except Exception:
-            return None

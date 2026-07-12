@@ -1,7 +1,34 @@
 # full_graph 语义层 Schema
 
 > 城市变迁认知系统知识图谱设计文档
-> 最后更新：2026-06-10
+> 最后更新：2026-06-27
+
+## 附加：PG 聊天表（Web API 持久化，非图谱）
+
+```sql
+CREATE TABLE chat_sessions (
+    id         VARCHAR(64) PRIMARY KEY,
+    user_id    VARCHAR(64) NOT NULL,
+    title      VARCHAR(200),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE chat_messages (
+    id         VARCHAR(64) PRIMARY KEY,
+    session_id VARCHAR(64) NOT NULL REFERENCES chat_sessions(id) ON DELETE CASCADE,
+    role       VARCHAR(20) NOT NULL,          -- 'user' | 'assistant' | 'system'
+    content    TEXT NOT NULL,
+    metadata   JSONB DEFAULT '{}',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX idx_chat_messages_session ON chat_messages(session_id, created_at);
+```
+
+用户账户（文件，非 PG）：`data/users/{user_id}.json`
+
+---
 
 ## 一、实体类型（10 类）
 

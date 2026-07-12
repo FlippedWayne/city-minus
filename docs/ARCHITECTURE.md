@@ -1,14 +1,31 @@
 # 架构归属：AgentScope 与自研
 
-> 最后更新：2026-06-20
+> 最后更新：2026-06-27
 
 本文档梳理项目里**哪些能力来自 AgentScope 框架**、**哪些是自研逻辑**，便于后续维护者快速判断"改这个要看 AgentScope 文档还是看本项目代码"。
 
 ---
 
-## 模块布局（src/agents/）
+## 模块布局（src/）
 
-历史上 `agentscope_agents.py` 单文件 2858 行，2026-06-16 拆分如下：
+```
+src/
+├── agents/            多智能体编排（Master + 3 SubAgent + Report）
+├── api/               FastAPI 服务层
+│   ├── app.py         应用工厂 + lifespan（PG / tracing / 默认 root 账户）
+│   ├── chat/          聊天会话：消息模型、ChatService、SSE 流、路由
+│   ├── auth/          JWT 鉴权：注册、登录、token 验证、deps
+│   ├── persistence/   PostgreSQL：asyncpg pool + PgChatStore
+│   └── routes/        其他端点（query / session / report / stats / trace / documents）
+├── engines/           STTE 事件生成
+├── knowledge/         双图谱构建 + LightRAG 适配 + 文档解析 + 多模态
+├── llm/               LLM provider 封装
+├── memory/            用户记忆 / 画像
+├── tracing/           OpenTelemetry setup + 按 trace_id 分文件导出器
+└── utils/             logging（JSON 结构化日志 + RotatingFileHandler）
+```
+
+### `src/agents/` 详细分工
 
 | 文件 | 行数 | 职责 |
 |------|------|------|
@@ -18,9 +35,10 @@
 | `master.py` | ~1150 | MasterAgent（路由 + 并发 + 多轮 + L4 审计 + 报告） |
 | `agentscope_agents.py` | ~95 | re-export 入口（兼容旧 import 路径） |
 | `state.py` | — | Session / TaskContext / SubTaskResult |
-| `permission.py` | — | PolicyAwareTool + SUBAGENT_TOOL_ALLOWLIST |
+| `permission.py` | — | PermissionContext + SUBAGENT_TOOL_ALLOWLIST；工具由 MasterAgent 统一注册，按 SubAgent 授权 |
 | `middleware.py` | — | ToolCallRecorderMiddleware + TokenTrackerMiddleware |
 | `subagent_worker.py` | — | ProcessPoolExecutor worker 入口 |
+| `trace_propagation.py` | — | 跨进程 OTel span 收集与注入（W3C traceparent） |
 
 外部代码继续 `from src.agents.agentscope_agents import X` 即可，re-export 透传。新代码建议直接 `from src.agents.master import MasterAgent`。
 
@@ -103,14 +121,21 @@
 | 模块 | 功能 |
 |------|------|
 | `src/config.py` | **统一配置入口**，按角色分级 LLM temperature；env 优先；含 `CostConfig`（DeepSeek 定价）|
-| `src/agents/permission.py` | `PolicyAwareTool` 子类 + `SUBAGENT_TOOL_ALLOWLIST` 白名单（用 AgentScope 的 PermissionContext） |
+| `src/agents/permission.py` | PermissionContext + `SUBAGENT_TOOL_ALLOWLIST` 白名单；AgentScope 2.0.4 PermissionEngine 做最终决策；`build_all_tools()` / `build_toolkit_for_agent()` 实现工具在主智能体统一注册、按 SubAgent 分配 |
 | `src/agents/middleware.py` | `ToolCallRecorderMiddleware`（`on_acting` 抓工具 IO）+ `TokenTrackerMiddleware`（`on_model_call` 抓 token 用量）|
-| `src/api/` | **HTTP API 层**：FastAPI app 工厂 + `/query` `/sessions` `/report` `/health` `/stats` 端点；`api.py` CLI 入口 |
+| `src/api/` | **HTTP API 层**：FastAPI app 工厂 + 多端点路由（chat / auth / trace / query / session / report / stats / documents） |
+| `src/api/auth/` | **JWT 鉴权**：注册/登录/token 验证，PyJWT HS256，salt+sha256 密码哈希，文件存 UserStore；启动时自动创建 root/root123456 |
+| `src/api/chat/` | **聊天会话**：ChatService + SSE 流式推送；session/message 数据模型；前端 SSE 端点 |
+| `src/api/persistence/` | **PostgreSQL 持久化**：asyncpg pool + `PgChatStore`（chat_sessions / chat_messages JSONB）|
+| `src/api/routes/trace.py` | **追踪查询 API**：`/trace/list`（按用户过滤）+ `/trace/{trace_id}`（带归属校验） |
+| `src/tracing/` | **OpenTelemetry 接入**：`_setup_tracing` / `_PerTraceFileExporter` 按 trace_id 分文件存到 `data/traces/{trace_id}.json` + 维护 `index.jsonl` |
+| `src/memory/user_memory.py` | 用户记忆/画像（文件存 `data/memory/{user_id}/`） |
+| `src/utils/logging.py` | JSON 结构化日志（JsonFormatter + RotatingFileHandler 10MB×5 + ContextVar request_id/session_id）|
 | `deploy/` | 部署交付物：`.env.example` + `deploy.sh` + `README.md` |
-| OpenTelemetry trace 落盘 | `_setup_tracing` + `_FileExporter` + `_shutdown_tracing` flush（main.py）|
+| `static/chat.html` | 聊天前端（深色侧栏 + cyan accent 主题；右侧抽屉式 trace 面板） |
+| `static/traces.html` | 追踪监控页（KPI + 列表 + 甘特图 + span 详情） |
 | `scripts/show_trace.py` | trace JSON 消费工具（树状/慢 span/扁平视图）|
 | `scripts/test_spatial_retrieval.py` | **绕开 LLM 直测检索能力**——10 条 case 自动判 |
-| `scripts/manual_test_subagents.py` | 工具直调测试（不调 LLM）|
 
 ---
 

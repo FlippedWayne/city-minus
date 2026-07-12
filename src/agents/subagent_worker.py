@@ -60,6 +60,12 @@ def init_worker(
             GraphReasoningAgent,
             TemporalReasoningAgent,
         )
+        from src.agents.tools import build_all_tools
+        from src.agents.permission import (
+            build_toolkit_for_agent,
+            build_subagent_permission_context,
+        )
+        from agentscope.state import AgentState
 
         # 跨进程 OTel：worker 内 setup InMemoryExporter，TracingMiddleware
         # 产生的 span 收集到内存，run_query 末尾序列化回主进程
@@ -80,12 +86,21 @@ def init_worker(
             "temporal": TemporalReasoningAgent,
         }[agent_kind]
 
+        # worker 内统一注册工具并取出该 SubAgent 被授权的子集
+        all_tools = build_all_tools()
+        agent_tools = build_toolkit_for_agent(agent_kind, all_tools)
+        agent_state = AgentState(
+            permission_context=build_subagent_permission_context(agent_kind)
+        )
+
         _subagent = agent_cls(
             api_key=deepseek_key,
             gis_graph=mgr.gis_graph,
             full_graph=mgr.full_graph,
             enable_tracing=enable_tracing,    # tracing 由参数控制
             model_name=deepseek_model,
+            tools=agent_tools,
+            state=agent_state,
         )
         print(f"[worker-{agent_kind} pid={os.getpid()}] init done", flush=True)
     except Exception as e:

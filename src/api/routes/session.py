@@ -28,10 +28,11 @@ async def get_session(
     session = store.load(session_id)
     if not session:
         raise HTTPException(status_code=404, detail={"error": "Session 不存在", "code": "NOT_FOUND"})
-    turns = []
-    for t in session.turns:
-        agents = list(t.sub_results.keys()) if t.sub_results else []
-        turns.append(TurnInfo(question=t.question, status=t.status, agents=agents))
+    turns = [
+        TurnInfo(question=t.question, status=t.status,
+                 agents=list(t.sub_results.keys()) if t.sub_results else [])
+        for t in session.turns
+    ]
     return SessionDetailResponse(session_id=session.session_id, turns=turns)
 
 

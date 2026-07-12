@@ -50,6 +50,8 @@ if sys.platform == "win32":
 
 from dotenv import load_dotenv
 load_dotenv(".env", override=True)
+from src.utils.logging import setup_logging
+setup_logging()
 from src.config import reload_config
 reload_config()
 

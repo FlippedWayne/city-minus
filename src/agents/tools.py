@@ -19,7 +19,7 @@ from typing import Optional
 import networkx as nx
 
 from agentscope.message import TextBlock
-from agentscope.tool import ToolChunk
+from agentscope.tool import FunctionTool, ToolChunk
 from agentscope.tool._response import ToolResultState
 
 from .runtime import (
@@ -781,3 +781,32 @@ def retrieve_document_content(query: str) -> ToolChunk:
             content=[TextBlock(text=f"检索失败: {str(e)}")],
             state=ToolResultState.ERROR
         )
+
+
+# ─── 工具统一注册（供 MasterAgent 使用）─────────────────────────────────
+
+def build_all_tools() -> Dict[str, FunctionTool]:
+    """构建所有 SubAgent 可用的工具实例，供 MasterAgent 统一注册并分配。
+
+    Returns:
+        {tool_name: FunctionTool} 全量工具映射。
+    """
+    return {
+        # LightRAG 检索
+        "hybrid_retrieve": FunctionTool(func=hybrid_retrieve),
+        "query_gis_graph": FunctionTool(func=query_gis_graph),
+        "retrieve_policy_docs": FunctionTool(func=retrieve_policy_docs),
+        "search_document_chunks": FunctionTool(func=search_document_chunks),
+        "retrieve_document_content": FunctionTool(func=retrieve_document_content),
+        # 直读 graphml
+        "query_point_detail": FunctionTool(func=query_point_detail),
+        "query_year_summary": FunctionTool(func=query_year_summary),
+        "list_all_entities": FunctionTool(func=list_all_entities),
+        # 时间序列
+        "time_series_aggregate": FunctionTool(func=time_series_aggregate),
+        "compare_periods": FunctionTool(func=compare_periods),
+        "boundary_evolution_timeline": FunctionTool(func=boundary_evolution_timeline),
+        # 实体/关系探查（兼容用）
+        "get_entity_info": FunctionTool(func=get_entity_info),
+        "get_relation_info": FunctionTool(func=get_relation_info),
+    }

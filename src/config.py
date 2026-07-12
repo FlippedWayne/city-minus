@@ -121,13 +121,29 @@ class PermissionConfig:
 
 @dataclass(frozen=True)
 class MemoryConfig:
-    """会话上下文 / 落盘行为"""
+    """用户记忆系统参数——画像推断 / 长期 notes / 压缩阈值。
 
-    # _with_history 拼最近几轮对话给 LLM
-    recent_context_turns: int = field(default_factory=lambda: _env_int("MEMORY_RECENT_TURNS", 3, min_val=1))
+    记忆 LLM 调用（画像推断、note 摘要、note 压缩）全部可选且失败不阻断主流程。
+    """
 
-    # save 前 trim：保留最近几轮的完整 evidence
-    trim_keep_recent_n: int = field(default_factory=lambda: _env_int("MEMORY_TRIM_KEEP_N", 3, min_val=1))
+    # 拼给 LLM 的最近问题条数（recent_questions 滑窗本身更大，这里只控注入量）
+    context_recent_n: int = field(default_factory=lambda: _env_int("MEMORY_CONTEXT_RECENT_N", 3, min_val=0))
+    # recent_questions 滑窗上限（旧值 10 → 50）
+    max_recent_questions: int = field(default_factory=lambda: _env_int("MEMORY_MAX_RECENT_QUESTIONS", 50, min_val=5))
+    # 累计多少条问题后触发一次画像推断
+    profile_infer_threshold: int = field(default_factory=lambda: _env_int("MEMORY_PROFILE_INFER_THRESHOLD", 5, min_val=1))
+    # 画像复推断间隔（避免每轮都跑）
+    profile_reinfer_every: int = field(default_factory=lambda: _env_int("MEMORY_PROFILE_RERINFER_EVERY", 10, min_val=1))
+    # 是否启用长期 notes（每轮 +1 次轻量 LLM 摘要调用）
+    long_term_enabled: bool = field(default_factory=lambda: _env_bool("MEMORY_LONG_TERM_ENABLED", True))
+    # long_term_notes 上限
+    max_long_term_notes: int = field(default_factory=lambda: _env_int("MEMORY_MAX_LONG_TERM_NOTES", 100, min_val=10))
+    # 超过该阈值触发 LLM 压缩合并
+    compact_threshold: int = field(default_factory=lambda: _env_int("MEMORY_COMPACT_THRESHOLD", 60, min_val=10))
+    # build_context 注入的相关 notes 条数（关键词重合 Top-K）
+    context_notes_k: int = field(default_factory=lambda: _env_int("MEMORY_CONTEXT_NOTES_K", 5, min_val=0))
+    # 记忆专用 LLM 模型名（默认复用 Master 模型）
+    model_name: str = field(default_factory=lambda: _env_str("MEMORY_MODEL_NAME", "deepseek-v4-flash"))
 
 
 @dataclass(frozen=True)
@@ -168,6 +184,7 @@ class PathsConfig:
 
     sessions_dir: str = field(default_factory=lambda: _env_str("SESSIONS_DIR", "data/sessions"))
     cache_extracted_dir: str = field(default_factory=lambda: _env_str("CACHE_EXTRACTED_DIR", "data/cache/extracted"))
+    database_url: str = field(default_factory=lambda: _env_str("DATABASE_URL", ""))
 
 
 @dataclass(frozen=True)

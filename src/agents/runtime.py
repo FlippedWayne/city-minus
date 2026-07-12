@@ -27,6 +27,7 @@ from agentscope.message import Msg, TextBlock
 from agentscope.middleware import TracingMiddleware
 from agentscope.formatter import DeepSeekChatFormatter, OpenAIChatFormatter
 from agentscope.tool import FunctionTool, Toolkit
+from agentscope.state import AgentState
 
 from ..config import config
 
@@ -438,11 +439,14 @@ def create_agent(
     context_config: Optional[ContextConfig] = None,
     tools: Optional[List[FunctionTool]] = None,
     max_react_iters: Optional[int] = None,
+    state: Optional[AgentState] = None,
 ) -> Agent:
     """创建Agent实例（复用框架能力）
 
     max_react_iters: ReAct 循环最大轮次。None 表示用 SUBAGENT_MAX_REACT_ITERS 默认值。
     设小（2-3）能强制 SubAgent 1 次工具调用就给答案，大幅压低单 agent 耗时。
+
+    state: AgentState，用于挂载 PermissionContext 等 per-agent 状态（AgentScope 2.0.4+）。
     """
     middlewares = []
     if enable_tracing:
@@ -460,7 +464,7 @@ def create_agent(
 
     iters = max_react_iters if max_react_iters is not None else SUBAGENT_MAX_REACT_ITERS
 
-    return Agent(
+    agent_kwargs = dict(
         name=name,
         system_prompt=system_prompt,
         model=model,
@@ -472,6 +476,10 @@ def create_agent(
         ),
         react_config=ReActConfig(max_iters=iters),
     )
+    if state is not None:
+        agent_kwargs["state"] = state
+
+    return Agent(**agent_kwargs)
 
 
 def call_agent_sync(agent: Agent, msg: Msg) -> Msg:

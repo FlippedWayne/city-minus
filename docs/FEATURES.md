@@ -1,6 +1,6 @@
 # 城市变迁认知多智能体系统 - 功能实现说明
 
-> 最后更新：2026-06-20
+> 最后更新：2026-06-27
 
 ## 一、系统概述
 
@@ -8,9 +8,11 @@
 
 核心目标包括：
 - **双图谱设计**：`gis_graph`（仅 GIS）+ `full_graph`（GIS + 文档抽取实体 + 跨域关系）
-- **多智能体协同**：MasterAgent + 3 个 SubAgent（空间/政策/图谱推理）+ 报告 Agent
-- **会话状态保留**：单会话多轮对话保留初始 query 与意图，异步任务有归属
-- **防幻觉链路**：检索期返回结构化证据 + Prompt 强约束引用编号
+- **多智能体协同**：MasterAgent + 3 个 SubAgent（空间/时序/图谱推理）+ 报告 Agent
+- **Web 聊天服务**：FastAPI + SSE 流式推送 + JWT 鉴权 + 多用户隔离
+- **会话状态保留**：会话消息存 PostgreSQL（回退文件存 `data/chats/`），Agent 运行态独立存 `data/sessions/`
+- **防幻觉链路**：检索期返回结构化证据 + Prompt 强约束引用编号 + L4 后验审计
+- **可观测性**：OpenTelemetry trace 按 query 分文件 + 结构化日志 + 前端 Trace Explorer 可视化
 
 ## 二、核心功能模块
 
@@ -124,12 +126,14 @@
 
 > 所有工具只返回 `[evidence]` 段（不做 LLM 总结），SubAgent ReAct LLM 负责合成最终回答。
 
-**`PolicyAwareTool`**（`src/agents/permission.py`）：所有 SubAgent 工具用 `wrap_tools(funcs, agent_kind)` 包装，走 AgentScope 的 `PermissionContext + PermissionRule` 规则系统。
+**`PermissionContext` + `PermissionEngine`**（`src/agents/permission.py`）：工具在主智能体（`MasterAgent`）通过 `build_all_tools()` 统一注册，再按 `SUBAGENT_TOOL_ALLOWLIST` 分配给各 SubAgent；每个 SubAgent 的 `AgentState` 绑定独立的 `PermissionContext`。`FunctionTool` 默认返回 ASK，`PermissionEngine` 根据 allow_rules 决定是否 ALLOW；`PERMISSION_MODE` 支持 `bypass` / `default` / `explore` / `accept_edits` / `dont_ask`。
 
-- **三种模式**（env `PERMISSION_MODE`）：
-  - `bypass`（默认）：全允
-  - `default`：按 `SUBAGENT_TOOL_ALLOWLIST` 配置，未在 agent 白名单的工具被 ASK 阻塞
-  - `explore`：只允许声明 `read_only=True` 的工具
+- **五种模式**（env `PERMISSION_MODE`）：
+  - `bypass`（默认）：所有工具调用放行（兼容旧行为）
+  - `default`：只允许 `SUBAGENT_TOOL_ALLOWLIST` 中声明的工具，跨域工具返回 ASK
+  - `explore`：只读工具放行（当前未声明 read_only，效果同 default）
+  - `accept_edits`：允许工作目录内的文件操作
+  - `dont_ask`：无人值守模式，所有 ASK 转 DENY
 - **每个 SubAgent 的工具白名单**（来源 `src/agents/permission.py::SUBAGENT_TOOL_ALLOWLIST`）：
   - spatial: `query_point_detail`, `query_year_summary`, `list_all_entities`
   - temporal: `time_series_aggregate`, `compare_periods`, `boundary_evolution_timeline`
@@ -178,6 +182,73 @@
 > # dump 到 data/mock_inputs/gis.json 之类，然后用 --import-gis 喂给 main.py
 > ```
 
+### 9. Web API 服务
+
+**文件位置：** `src/api/app.py`、`src/api/chat/service.py`
+
+- FastAPI app 工厂 + lifespan（启动加载图谱 + PG + tracing；关闭 flush + 释放连接池）
+- SSE 流式推送：`POST /chat/send` 返回 task_id → `GET /chat/stream/{task_id}` 每秒推送状态直到 done/failed
+- 前端静态资源挂载：`/static/chat.html` + `/static/traces.html`
+- Windows 端口占用自动 kill：`api.py` 启动前查 `netstat` 并 `taskkill`
+
+### 10. 用户鉴权
+
+**文件位置：** `src/api/auth/`
+
+- JWT HS256 签发，72 小时过期，32 字节密钥（可通过 `JWT_SECRET` env 覆盖）
+- 密码 hash：`salt(random 16 bytes hex) + sha256(salt + password)`
+- 文件 UserStore：`data/users/{user_id}.json` 存 username/hash/api_key/model
+- 默认 root 账户：启动时若 root 不存在自动创建（密码 root123456，api_key 取自 `DEEPSEEK_API_KEY`）
+- FastAPI Depends：`get_current_user` 从 Authorization header 提取 Bearer token 验证 JWT
+
+### 11. 聊天持久化
+
+**文件位置：** `src/api/persistence/chat_store.py`（PG）、`src/api/chat/store.py`（文件后备）
+
+- **PG 模式**（`DATABASE_URL` 配置时）：asyncpg 连接池 → `chat_sessions(id, user_id, title, created_at, updated_at)` + `chat_messages(id, session_id, role, content, metadata JSONB, created_at)` 表
+- **文件模式**（无 PG）：`data/chats/{session_id}.json` 每会话一个 JSON
+- 切换逻辑：`ChatService._get_store()` 优先 PG，不可用降级文件
+- 归属校验：所有 /chat/* 端点读取时校验 `session.user_id == user.user_id`，否则 404
+- 历史注入：`get_recent_messages()` 取最近 6 条 user/assistant 对拼入 MasterAgent prompt
+
+### 12. Trace 追踪
+
+**文件位置：** `src/tracing/__init__.py`、`src/api/routes/trace.py`
+
+- `_setup_tracing("file")` 启用 `_PerTraceFileExporter`——按 `trace_id` 分文件存到 `data/traces/{trace_id}.json`
+- `data/traces/index.jsonl`：每条 trace 结束时追加一行 JSON 摘要（trace_id / question / session_id / user_id / agents / duration_ms / has_error）
+- `ChatService._run_agent` 用 `tracer.start_as_current_span("chat_query")` 包住 `master.reply()`，写入 `city.session_id/user_id/question/task_id` 属性
+- 跨进程 span 收集：主进程 master span → W3C traceparent 传 worker → worker 的 InMemoryExporter 累积 → `serialize_collected_spans()` 序列化 → `inject_external_spans()` 灌回主进程（`src/agents/trace_propagation.py`）
+- SSE 推送 `trace_id` 到前端 → 消息底栏出现 "查看推理过程" 按钮
+- API：`GET /trace/list` 按用户过滤、`GET /trace/{trace_id}` 带归属校验返回完整 span 树
+
+### 13. 结构化日志
+
+**文件位置：** `src/utils/logging.py`
+
+- `JsonFormatter`：每行 `{"ts","level","logger","msg","req","session",...custom fields}`
+- `RotatingFileHandler`：10MB × 5 文件自动轮转 → `data/logs/app.log`
+- `RequestContext` ContextVar：跨 asyncio 任务传递 `request_id` + `session_id`
+- 自定义 Logger：支持 `logger.info("msg", key=val)` 风格 extra fields
+
+### 14. Web 前端
+
+**文件位置：** `static/chat.html`、`static/traces.html`
+
+**chat.html**
+- 深色侧栏（会话列表 + 导航） + 浅色聊天区（cyan accent 主题）
+- 右侧抽屉式 Trace 面板：甘特图（按 start_time 横条，色彩区分 master/agent/tool/llm）+ span 树（点击展开 attributes）
+- 消息卡片：答案主区 + 折叠元数据（agents + citations + cost + trace 按钮）
+- 空状态：4 个示例问题快捷按钮（空间/时序/政策/综合）
+- 顶栏统计胶囊（本会话消息数）
+- 移动端响应式（侧栏 overlay + 自适应消息宽度）
+- 登录弹窗（渐变遮罩 + 注册/登录双按钮 + 错误提示）
+
+**traces.html**
+- 4 个 KPI 卡片（查询总数 / 平均耗时 / 失败数 / Agent 调用次数）
+- 左侧 trace 列表（问题截断 + 时长 + agents + span 数 + 失败标记）
+- 右侧详情区：甘特图 + span 树（与抽屉共用渲染逻辑）
+
 ## 三、系统架构
 
 ```
@@ -217,12 +288,15 @@ MasterAgent.reply(msg, output_html=...)
 **所有数据必须显式来自磁盘文件**——`--rebuild` 单独跑只清空图谱，不再现场生成 mock 数据。
 
 ```bash
+# Web 模式（推荐）
+python api.py --host 0.0.0.0 --port 8000          # 浏览器打开 /static/chat.html
+
 # 标准构建：一次性建好两图谱
 python main.py --import-gis data/mock_inputs/gis.json \
                --import-policies data/mock_inputs/policies.json \
                --import-docs
 
-# 查询
+# CLI 查询
 python main.py "城市边界发生了什么变化？"            # 单次查询
 python main.py -i                                  # 交互模式（共用一个 session_id）
 python main.py --report "撰写分析报告"               # 生成 HTML 报告
@@ -234,7 +308,8 @@ python main.py --import-docs                       # 增量导入文档（不清
 python main.py --rebuild-full-graph --import-docs  # 仅重建 full_graph
 python main.py --rebuild                           # 仅清空两图谱（不写入任何数据）
 
-python main.py --trace file --trace-file out.json "问题"  # 启用 OpenTelemetry 追踪
+# Trace 追踪（CLI 模式）
+python main.py --trace file "问题"                  # trace 写入 data/traces/
 ```
 
 交互模式额外命令：
@@ -251,9 +326,14 @@ python main.py --trace file --trace-file out.json "问题"  # 启用 OpenTelemet
 | 智能体框架 | AgentScope 2.0 |
 | LLM | DeepSeek |
 | 文档解析 | PyMuPDF（结构化语义切分）+ jieba |
+| Web 框架 | FastAPI + SSE 流式推送 |
+| 鉴权 | PyJWT HS256 + salt+sha256 密码哈希 |
+| 数据库 | PostgreSQL（asyncpg）；回退 JSON 文件 |
 | 状态持久化 | JSON 落盘（data/sessions/）|
+| 日志 | JSON 结构化日志 + RotatingFileHandler |
+| 追踪 | OpenTelemetry（按 trace_id 分文件 + index.jsonl）|
+| 前端 | 原生 HTML/CSS/JS（无框架，cyan accent 主题，dark sidebar + light chat）|
 | 报告生成 | HTML + CSS |
-| 追踪 | OpenTelemetry（可选 file/console/jaeger）|
 
 ## 七、防幻觉链路（已实现层）
 

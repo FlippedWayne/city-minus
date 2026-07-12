@@ -19,28 +19,39 @@ def _reload_permission_with_mode(mode_str: str):
     return permission
 
 
+def _make_engine(perm, agent_kind: str):
+    """构造带 PermissionContext 的 PermissionEngine"""
+    from agentscope.permission import PermissionEngine
+    ctx = perm.build_subagent_permission_context(agent_kind)
+    return PermissionEngine(context=ctx)
+
+
 def test_bypass_mode_allows_everything():
     perm = _reload_permission_with_mode("bypass")
     from agentscope.permission import PermissionBehavior
+    from agentscope.tool import FunctionTool
 
     def fake_tool(query: str) -> str:
         return query
 
-    tools = perm.wrap_tools([fake_tool], agent_kind="spatial")
-    d = asyncio.run(tools[0].check_permissions({"query": "x"}))
+    engine = _make_engine(perm, "spatial")
+    tool = FunctionTool(func=fake_tool)
+    d = asyncio.run(engine.check_permission(tool, {"query": "x"}))
     assert d.behavior == PermissionBehavior.ALLOW
-    assert "BYPASS" in d.message
+    assert "bypass" in d.message.lower()
 
 
 def test_default_mode_allows_whitelisted_tool():
     perm = _reload_permission_with_mode("default")
     from agentscope.permission import PermissionBehavior
+    from agentscope.tool import FunctionTool
 
     def query_point_detail(point_name: str) -> str:    # 名字必须在 spatial allowlist
         return point_name
 
-    tools = perm.wrap_tools([query_point_detail], agent_kind="spatial")
-    d = asyncio.run(tools[0].check_permissions({"query": "x"}))
+    engine = _make_engine(perm, "spatial")
+    tool = FunctionTool(func=query_point_detail)
+    d = asyncio.run(engine.check_permission(tool, {"point_name": "x"}))
     assert d.behavior == PermissionBehavior.ALLOW
 
 
@@ -48,12 +59,14 @@ def test_default_mode_blocks_cross_domain_tool():
     """DEFAULT 模式下，不在 spatial allowlist 的工具被 ASK（阻塞）"""
     perm = _reload_permission_with_mode("default")
     from agentscope.permission import PermissionBehavior
+    from agentscope.tool import FunctionTool
 
     def retrieve_document_content(query: str) -> str:   # 不在 spatial 白名单
         return query
 
-    tools = perm.wrap_tools([retrieve_document_content], agent_kind="spatial")
-    d = asyncio.run(tools[0].check_permissions({"query": "x"}))
+    engine = _make_engine(perm, "spatial")
+    tool = FunctionTool(func=retrieve_document_content)
+    d = asyncio.run(engine.check_permission(tool, {"query": "x"}))
     assert d.behavior == PermissionBehavior.ASK
 
 

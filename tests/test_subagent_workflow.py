@@ -132,6 +132,12 @@ def _reload_perm(mode: str):
     return permission
 
 
+def _make_engine(perm, agent_kind: str):
+    from agentscope.permission import PermissionEngine
+    ctx = perm.build_subagent_permission_context(agent_kind)
+    return PermissionEngine(context=ctx)
+
+
 @pytest.mark.parametrize("agent_kind,expected_tools", [
     ("spatial", {"query_point_detail", "query_year_summary",
                  "list_all_entities"}),
@@ -154,11 +160,14 @@ def test_default_mode_allows_whitelisted(agent_kind, allowed_tool):
     """DEFAULT 模式下白名单工具放行"""
     perm = _reload_perm("default")
     from agentscope.permission import PermissionBehavior
+    from agentscope.tool import FunctionTool
 
     def fn(*a, **kw): return None
     fn.__name__ = allowed_tool
-    tools = perm.wrap_tools([fn], agent_kind=agent_kind)
-    decision = asyncio.run(tools[0].check_permissions({"query": "x"}))
+
+    engine = _make_engine(perm, agent_kind)
+    tool = FunctionTool(func=fn)
+    decision = asyncio.run(engine.check_permission(tool, {"query": "x"}))
     assert decision.behavior == PermissionBehavior.ALLOW
 
 
@@ -171,11 +180,14 @@ def test_default_mode_blocks_cross_agent(agent_kind, blocked_tool):
     """DEFAULT 模式下跨域工具调用被 ASK 阻塞"""
     perm = _reload_perm("default")
     from agentscope.permission import PermissionBehavior
+    from agentscope.tool import FunctionTool
 
     def fn(*a, **kw): return None
     fn.__name__ = blocked_tool
-    tools = perm.wrap_tools([fn], agent_kind=agent_kind)
-    decision = asyncio.run(tools[0].check_permissions({"query": "x"}))
+
+    engine = _make_engine(perm, agent_kind)
+    tool = FunctionTool(func=fn)
+    decision = asyncio.run(engine.check_permission(tool, {"query": "x"}))
     assert decision.behavior == PermissionBehavior.ASK
 
 
@@ -183,10 +195,13 @@ def test_bypass_mode_allows_everything():
     """BYPASS（默认）所有工具放行——保证生产默认行为不变"""
     perm = _reload_perm("bypass")
     from agentscope.permission import PermissionBehavior
+    from agentscope.tool import FunctionTool
 
     def some_random_tool(*a, **kw): return None
-    tools = perm.wrap_tools([some_random_tool], agent_kind="spatial")
-    decision = asyncio.run(tools[0].check_permissions({}))
+
+    engine = _make_engine(perm, "spatial")
+    tool = FunctionTool(func=some_random_tool)
+    decision = asyncio.run(engine.check_permission(tool, {}))
     assert decision.behavior == PermissionBehavior.ALLOW
 
 

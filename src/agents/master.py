@@ -18,8 +18,12 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 
 from agentscope.message import Msg, TextBlock
+from agentscope.state import AgentState
 
 from ..config import config
+from ..utils.logging import get_logger
+
+logger = get_logger(__name__)
 from .state import Session, SessionStore, TaskContext, SubTaskResult
 from .runtime import (
     create_model,
@@ -41,6 +45,8 @@ from .subagents import (
     TemporalReasoningAgent,
     ReportGenerationAgent,
 )
+from .permission import build_subagent_permission_context, build_toolkit_for_agent
+from .tools import build_all_tools
 
 
 class MasterAgent:
@@ -85,15 +91,47 @@ class MasterAgent:
             enable_tracing=enable_tracing
         )
 
-        # 初始化Sub-Agents（传入对应的图谱和模型）
-        self.spatial_agent = SpatialEventAgent(api_key, gis_graph, full_graph, enable_tracing, model_name)
-        self.graph_agent = GraphReasoningAgent(api_key, gis_graph, full_graph, enable_tracing, model_name)
-        self.temporal_agent = TemporalReasoningAgent(api_key, gis_graph, full_graph, enable_tracing, model_name)
-        self.report_agent = ReportGenerationAgent(api_key, full_graph, enable_tracing, model_name)
+        # 在主智能体统一注册所有工具，再按 SubAgent 白名单分配工具子集。
+        # 这样工具实例由 MasterAgent 管理，权限上下文由各自 AgentState 绑定。
+        all_tools = build_all_tools()
+        spatial_tools = build_toolkit_for_agent("spatial", all_tools)
+        graph_tools = build_toolkit_for_agent("graph", all_tools)
+        temporal_tools = build_toolkit_for_agent("temporal", all_tools)
+
+        # 初始化Sub-Agents（传入对应的图谱、模型、工具子集、权限状态）
+        self.spatial_agent = SpatialEventAgent(
+            api_key, gis_graph, full_graph, enable_tracing, model_name,
+            tools=spatial_tools,
+            state=AgentState(
+                permission_context=build_subagent_permission_context("spatial")
+            ),
+        )
+        self.graph_agent = GraphReasoningAgent(
+            api_key, gis_graph, full_graph, enable_tracing, model_name,
+            tools=graph_tools,
+            state=AgentState(
+                permission_context=build_subagent_permission_context("graph")
+            ),
+        )
+        self.temporal_agent = TemporalReasoningAgent(
+            api_key, gis_graph, full_graph, enable_tracing, model_name,
+            tools=temporal_tools,
+            state=AgentState(
+                permission_context=build_subagent_permission_context("temporal")
+            ),
+        )
+        self.report_agent = ReportGenerationAgent(
+            api_key, full_graph, enable_tracing, model_name,
+            state=AgentState(
+                permission_context=build_subagent_permission_context("report")
+            ),
+        )
 
         # 会话状态：单 session_id 维持多轮上下文与异步任务归属
         self.session_store = session_store or SessionStore()
         self.session: Session = Session.new()
+        self._external_history: Optional[str] = None  # ChatService 注入的 PG 历史
+        self._memory_context: Optional[str] = None    # ChatService 注入的用户记忆上下文
 
         # 调用历史（保留向后兼容）
         self._history: List[Dict[str, Any]] = []
@@ -162,6 +200,14 @@ class MasterAgent:
     def bind_session(self, session: Session) -> None:
         """绑定一个已存在的 session（例如从磁盘恢复的）"""
         self.session = session
+
+    def set_history(self, text: str) -> None:
+        """注入外部历史上下文（ChatService 从 PG 查询）。"""
+        self._external_history = text
+
+    def set_memory_context(self, text: Optional[str]) -> None:
+        """注入用户记忆上下文（画像/长期 notes/最近问题/反馈模式）。"""
+        self._memory_context = text
 
     # 关键词→Agent 映射规则
     _agent_routing = {
@@ -244,7 +290,7 @@ class MasterAgent:
         parts = []
         for a in all_agents:
             parts.append(f"{a}={final[a]:.2f}(kw={kw_scores.get(a,0):.2f}/llm={llm_scores.get(a,0):.2f})")
-        print(f"[Master] 路由打分: {' | '.join(parts)}")
+        logger.info("路由打分", scores={a: round(final[a], 3) for a in all_agents})
 
         agents = {a for a, s in final.items() if s >= threshold}
         if not agents:
@@ -500,25 +546,23 @@ class MasterAgent:
                     f"合法 {audit['valid_citations']}，幻觉率 {audit['rate'] * 100:.1f}%"
                 )
                 final_text = final_text + "\n" + "\n".join(warning_lines)
-                print(f"[Master] L4 audit: 凭空引用 {len(audit['fabricated'])} 处，"
-                      f"幻觉率 {audit['rate'] * 100:.1f}%")
+                audit_msg = f"凭空引用 {len(audit['fabricated'])} 处，幻觉率 {audit['rate'] * 100:.1f}%"
+                logger.warning("L4 audit: 凭空引用", fabricated=len(audit["fabricated"]),
+                               rate=audit["rate"], total=audit["total_citations"],
+                               valid=audit["valid_citations"])
             else:
-                print(f"[Master] L4 audit: {audit['valid_citations']}/"
-                      f"{audit['total_citations']} 引用全部合法 ✓")
+                logger.info("L4 audit: 全部合法", total=audit["total_citations"],
+                            valid=audit["valid_citations"])
 
-            # Token 成本统计：汇总所有 SubAgent 的 token 用量
+            # Token 成本统计
             total_tokens = getattr(task, '_token_usage', None) or {
                 "input": 0, "output": 0, "cache_creation": 0,
                 "cache_read": 0, "calls": 0, "time": 0.0}
             cost = _estimate_cost(total_tokens)
             if total_tokens["calls"] > 0:
-                print(f"[Token] 总计: input={total_tokens['input']} "
-                      f"output={total_tokens['output']} "
-                      f"cache_hit={total_tokens['cache_read']} "
-                      f"calls={total_tokens['calls']} | "
-                      f"费用≈¥{cost:.4f}")
+                logger.info("Token 总计", token_usage=total_tokens, cost=cost)
             if round_num > 1:
-                print(f"[Master] 多轮迭代: {round_num} 轮")
+                logger.info("多轮迭代", rounds=round_num)
 
             task.mark_done(summary)
             self.session_store.save(self.session)
@@ -534,46 +578,26 @@ class MasterAgent:
             raise
 
     def _with_history(self, question: str) -> str:
-        """给 prompt 拼上初始问题 + 最近 3 轮上下文。
+        """给 prompt 拼上历史上下文 + 用户记忆上下文。
 
-        保证 Master 始终知道：
-          1. 用户最初的意图是什么（initial_question）
-          2. 最近几轮各 SubAgent 拿到的核心证据，便于解析"那些"、"刚才"等指代
+        外部历史（ChatService 从 PG 注入）优先；无外部历史时回退到
+        AgentSession.recent_context（CLI 兼容路径）。
+        记忆上下文（画像/长期 notes/最近问题/反馈模式）独立前置。
         """
-        parts = []
-        initial = self.session.initial_question
-        if initial and initial != question:
-            parts.append(f"【本次会话初始问题】\n{initial}")
+        # 记忆块——用完即清，防止污染下一轮
+        mem_block = ""
+        if self._memory_context:
+            mem_block = f"【用户记忆】\n{self._memory_context}\n\n"
+            self._memory_context = None
 
-        recent = [t for t in self.session.recent_context(n=config.memory.recent_context_turns)
-                  if t.question != question]
-        if recent:
-            history_lines = []
-            for i, t in enumerate(recent, 1):
-                history_lines.append(f"第{i}轮：问：{t.question}")
-                # 优先展开 sub_results（结构化），否则退回到旧的 aggregated/result 单段
-                if t.sub_results:
-                    for name, sub in t.sub_results.items():
-                        if sub.status != "done":
-                            continue
-                        ans = (sub.answer or "")[:200]
-                        history_lines.append(f"  [{name}] {ans}")
-                        if sub.evidence:
-                            ev_brief = "; ".join(
-                                f"{e.get('id','?')}:{(e.get('text') or '')[:40]}"
-                                for e in sub.evidence[:3]
-                            )
-                            history_lines.append(f"    证据: {ev_brief}")
-                    agg = t.aggregated or t.result or ""
-                    if agg:
-                        history_lines.append(f"  [汇总] {agg[:200]}")
-                else:
-                    ans = (t.aggregated or t.result or "")[:300]
-                    history_lines.append(f"  答：{ans}")
-            parts.append("【最近对话】\n" + "\n".join(history_lines))
+        # ChatService 路径：用 PG 聊天的历史
+        if self._external_history:
+            history = self._external_history
+            self._external_history = None  # 用完即清
+            return f"{mem_block}【历史对话】\n{history}\n\n【当前问题】\n{question}"
 
-        parts.append(f"【当前问题】\n{question}")
-        return "\n\n".join(parts)
+        # CLI / 无外部历史：只带当前问题
+        return f"{mem_block}【当前问题】\n{question}"
 
     def _call_subagents_parallel(self, question: str, agents_needed: set,
                                   task: Optional[TaskContext] = None) -> list:

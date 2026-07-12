@@ -25,12 +25,18 @@ PyMuPDF>=1.24.0
 jieba>=0.42
 
 # 智能体框架
-agentscope>=2.0.0
+agentscope>=2.0.4
 
 # HTTP API
 fastapi>=0.100.0
 uvicorn>=0.20.0
 python-multipart>=0.0.9
+
+# 鉴权
+PyJWT>=2.8.0
+
+# 数据库（可选）
+asyncpg>=0.28.0
 
 # 测试
 pytest>=7.0.0
