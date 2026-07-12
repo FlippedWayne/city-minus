@@ -19,6 +19,7 @@ from .store import ChatStore
 from ...agents.agentscope_agents import MasterAgent, _estimate_cost, extract_text
 from ...agents.state import SessionStore
 from ...memory.user_memory import UserMemoryStore
+from ...config import config
 from ...utils.logging import get_logger, RequestContext
 
 logger = get_logger(__name__)
@@ -146,10 +147,7 @@ class ChatService:
                 chat.add_message("assistant", answer, metadata=meta)
                 await store.save(chat)
 
-            self._memory.record_question(user_id, question[:200])
 
-            # Layer 2 + 画像推断：fire-and-forget，不阻塞 SSE 响应
-            asyncio.create_task(self._update_long_term_memory(user_id, question, answer))
 
             self._active[task_id] = {
                 "status": "done",
@@ -178,6 +176,11 @@ class ChatService:
             if chat:
                 chat.add_message("system", f"查询失败：{error_msg}")
                 await store.save(chat)
+        finally:
+            # 始终记录问题，即使查询失败
+            self._memory.record_question(user_id, question[:200])
+            # fire-and-forget 长期记忆更新
+            asyncio.create_task(self._update_long_term_memory(user_id, question, answer))
 
     # ── SSE 流式推送 ──────────────────────────────────────────────────────
 
@@ -209,7 +212,7 @@ class ChatService:
         return self._memory.build_context(user_id)
 
     async def _update_long_term_memory(self, user_id: str, question: str, answer: str):
-        """后台任务：摘要长期 note + 周期性画像推断。失败静默。"""
+        """后台任务：摘要长期 note + 周期性画像推断 + 压缩。失败静默。"""
         try:
             note = await asyncio.to_thread(
                 self._memory.summarize_for_memory, user_id, question, answer
@@ -217,6 +220,10 @@ class ChatService:
             if note:
                 self._memory.add_long_term_note(user_id, note, source_q=question)
             await asyncio.to_thread(self._memory.maybe_infer_profile, user_id)
+            # 超过压缩阈值时触发 LLM 合并
+            mem = self._memory.load(user_id)
+            if len(mem.long_term_notes) >= config.memory.compact_threshold:
+                await asyncio.to_thread(self._memory.compact_notes, user_id)
         except Exception as e:
             logger.warning("长期记忆更新失败: %s", e)
 
